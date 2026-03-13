@@ -1,0 +1,178 @@
+---
+// Kavram verileri - mto.ts'den basitleştirilmiş bubble cloud
+const kategoriler = [
+  { label: 'Tümü', color: '', active: true },
+  { label: 'Bilgi Kategorileri', color: '#e74c3c' },
+  { label: 'Kök · Usûl · Vuslat', color: '#3498db' },
+  { label: 'İç Dünya', color: '#9b59b6' },
+  { label: 'Metafizik', color: '#2ecc71' },
+  { label: 'İletişim · Bağ', color: '#f39c12' },
+  { label: 'Kaynak · Miras', color: '#1abc9c' },
+  { label: 'Kimlik · Toplum', color: '#e67e22' },
+  { label: 'Sorumluluk', color: '#c0392b' },
+  { label: 'Varoluş · Şiir', color: '#8e44ad' },
+];
+
+const kavramlar = [
+  { ad: 'Tevhid', size: 'large', kat: 'Metafizik' },
+  { ad: 'Hikmet', size: 'large', kat: 'Bilgi Kategorileri' },
+  { ad: 'İrfan', size: 'normal', kat: 'Bilgi Kategorileri' },
+  { ad: 'İlim', size: 'small', kat: 'Bilgi Kategorileri' },
+  { ad: 'Âlim', size: 'normal', kat: 'Bilgi Kategorileri' },
+  { ad: 'Hakîm', size: 'large', kat: 'Bilgi Kategorileri' },
+  { ad: 'Ârif', size: 'small', kat: 'Bilgi Kategorileri' },
+  { ad: 'Asıl', size: 'small', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Usûl', size: 'normal', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Vusûl', size: 'large', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Kalp', size: 'normal', kat: 'İç Dünya' },
+  { ad: 'Akıl', size: 'small', kat: 'İç Dünya' },
+  { ad: 'Ruh', size: 'large', kat: 'İç Dünya' },
+  { ad: 'Nefis', size: 'small', kat: 'İç Dünya' },
+  { ad: 'Vicdan', size: 'normal', kat: 'İç Dünya' },
+  { ad: 'Basîret', size: 'small', kat: 'İç Dünya' },
+  { ad: 'Feraset', size: 'normal', kat: 'İç Dünya' },
+  { ad: 'Ontoloji', size: 'large', kat: 'Metafizik' },
+  { ad: 'Epistemoloji', size: 'small', kat: 'Metafizik' },
+  { ad: 'Fenomenoloji', size: 'normal', kat: 'Metafizik' },
+  { ad: 'Uhuvvet', size: 'large', kat: 'İletişim · Bağ' },
+  { ad: 'Muhabbet', size: 'large', kat: 'İletişim · Bağ' },
+  { ad: 'Merak', size: 'small', kat: 'İletişim · Bağ' },
+  { ad: 'Celâl', size: 'small', kat: 'Kaynak · Miras' },
+  { ad: 'Cemâl', size: 'normal', kat: 'Kaynak · Miras' },
+  { ad: 'Kemâl', size: 'large', kat: 'Kaynak · Miras' },
+  { ad: 'Tevârüs', size: 'small', kat: 'Kaynak · Miras' },
+  { ad: 'İman', size: 'normal', kat: 'Kimlik · Toplum' },
+  { ad: 'İslâm', size: 'small', kat: 'Kimlik · Toplum' },
+  { ad: 'İhsan', size: 'large', kat: 'Kimlik · Toplum' },
+  { ad: 'Muhsin', size: 'large', kat: 'Kimlik · Toplum' },
+  { ad: 'Müslim', size: 'normal', kat: 'Kimlik · Toplum' },
+  { ad: 'Mesuliyet', size: 'normal', kat: 'Sorumluluk' },
+  { ad: 'Şükür', size: 'large', kat: 'Sorumluluk' },
+  { ad: 'Zikir', size: 'normal', kat: 'Sorumluluk' },
+  { ad: 'Tesbih', size: 'normal', kat: 'Sorumluluk' },
+  { ad: 'Tenzih', size: 'small', kat: 'Sorumluluk' },
+  { ad: 'Beşeri Şiir', size: 'large', kat: 'Varoluş · Şiir' },
+  { ad: 'Şiâr', size: 'small', kat: 'Varoluş · Şiir' },
+  { ad: 'Nebi', size: 'normal', kat: 'Varoluş · Şiir' },
+  { ad: 'Vecd', size: 'large', kat: 'Varoluş · Şiir' },
+  { ad: 'Vücud', size: 'normal', kat: 'Varoluş · Şiir' },
+  { ad: 'Nefes', size: 'large', kat: 'Varoluş · Şiir' },
+  { ad: 'Enfüs', size: 'small', kat: 'Varoluş · Şiir' },
+  { ad: 'İnkişaf', size: 'large', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Keşif', size: 'small', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Aksiyon', size: 'large', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Zaman', size: 'large', kat: 'Metafizik' },
+  { ad: 'Temellük', size: 'normal', kat: 'Kaynak · Miras' },
+  { ad: 'Temessül', size: 'large', kat: 'Kaynak · Miras' },
+  { ad: 'Bilme', size: 'small', kat: 'Bilgi Kategorileri' },
+  { ad: 'Bulma', size: 'normal', kat: 'Kök · Usûl · Vuslat' },
+  { ad: 'Olma', size: 'large', kat: 'Varoluş · Şiir' },
+  { ad: 'Öğrenme', size: 'small', kat: 'Bilgi Kategorileri' },
+  { ad: 'Özümseme', size: 'normal', kat: 'Kaynak · Miras' },
+  { ad: 'Örnekleme', size: 'large', kat: 'Sorumluluk' },
+  { ad: 'Fikir', size: 'small', kat: 'İç Dünya' },
+  { ad: 'Zihin', size: 'normal', kat: 'İç Dünya' },
+  { ad: 'Eksen', size: 'normal', kat: 'Metafizik' },
+  { ad: 'Zemin', size: 'normal', kat: 'Metafizik' },
+  { ad: 'Kurucu', size: 'small', kat: 'Sorumluluk' },
+  { ad: 'Koruyucu', size: 'large', kat: 'Sorumluluk' },
+  { ad: 'Konumlandırıcı', size: 'normal', kat: 'Sorumluluk' },
+];
+---
+
+<section class="py-20 px-5 md:px-8 bg-gray-50 text-center">
+  <div class="text-gray-400 text-[0.85rem] uppercase tracking-[3px] mb-2">Medeniyet Tasavvuru Okulu</div>
+  <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-navy uppercase tracking-[2px] mb-4">
+    Kavram Haritası
+  </h2>
+  <p class="text-gray-600 max-w-[600px] mx-auto text-[0.95rem] mb-8">
+    İslâm medeniyetini yeniden inşa ve ihya sürecinin kavramsal çerçevesi
+  </p>
+
+  <!-- Stages -->
+  <div class="flex flex-wrap items-center justify-center gap-4 mb-8">
+    <button class="kavram-stage px-5 py-2 border-2 border-gray-200 rounded text-[0.85rem] font-bold uppercase tracking-[1.5px] text-gray-600 cursor-pointer transition-all hover:border-teal hover:text-teal bg-transparent">
+      Mekke · Bilme
+    </button>
+    <span class="text-gray-400 text-xl">→</span>
+    <button class="kavram-stage px-5 py-2 border-2 border-gray-200 rounded text-[0.85rem] font-bold uppercase tracking-[1.5px] text-gray-600 cursor-pointer transition-all hover:border-teal hover:text-teal bg-transparent">
+      Medine · Bulma
+    </button>
+    <span class="text-gray-400 text-xl">→</span>
+    <button class="kavram-stage px-5 py-2 border-2 border-teal rounded text-[0.85rem] font-bold uppercase tracking-[1.5px] text-teal cursor-pointer transition-all bg-transparent">
+      Medeniyet · Olma
+    </button>
+  </div>
+
+  <!-- Filters -->
+  <div class="flex flex-wrap justify-center gap-2 mb-12">
+    {kategoriler.map(k => (
+      <button
+        class:list={[
+          'kavram-filter flex items-center gap-1.5 px-3.5 py-1.5 border rounded-full text-xs cursor-pointer transition-all',
+          k.active ? 'bg-navy text-white border-navy' : 'bg-white text-gray-600 border-gray-200 hover:border-teal hover:text-teal',
+        ]}
+        data-kat={k.label}
+      >
+        {k.color && <span class="w-2 h-2 rounded-full inline-block" style={`background:${k.color}`}></span>}
+        {k.label}
+      </button>
+    ))}
+  </div>
+
+  <!-- Bubble Cloud -->
+  <div class="kavram-cloud max-w-[1100px] mx-auto flex flex-wrap items-center justify-center gap-2 p-8 min-h-[400px]">
+    {kavramlar.map(k => (
+      <span
+        class:list={[
+          'kavram-bubble inline-flex items-center border-[1.5px] border-gray-200 rounded-full bg-white cursor-pointer transition-all shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:border-teal hover:shadow-[0_4px_16px_rgba(63,191,173,0.15)] hover:-translate-y-0.5 whitespace-nowrap',
+          k.size === 'large' && 'text-lg font-bold px-6 py-2.5',
+          k.size === 'normal' && 'text-sm px-5 py-2',
+          k.size === 'small' && 'text-xs text-gray-400 border-gray-100 px-4 py-1.5',
+        ]}
+        data-kat={k.kat}
+      >
+        {k.ad}
+      </span>
+    ))}
+  </div>
+</section>
+
+<script>
+  // Filter functionality
+  document.querySelectorAll('.kavram-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Active state
+      document.querySelectorAll('.kavram-filter').forEach(f => {
+        f.classList.remove('bg-navy', 'text-white', 'border-navy');
+        f.classList.add('bg-white', 'text-gray-600', 'border-gray-200');
+      });
+      btn.classList.remove('bg-white', 'text-gray-600', 'border-gray-200');
+      btn.classList.add('bg-navy', 'text-white', 'border-navy');
+
+      const kat = (btn as HTMLElement).dataset.kat;
+      document.querySelectorAll('.kavram-bubble').forEach(bubble => {
+        const bKat = (bubble as HTMLElement).dataset.kat;
+        if (kat === 'Tümü' || bKat === kat) {
+          (bubble as HTMLElement).style.opacity = '1';
+          (bubble as HTMLElement).style.transform = '';
+        } else {
+          (bubble as HTMLElement).style.opacity = '0.15';
+          (bubble as HTMLElement).style.transform = 'scale(0.9)';
+        }
+      });
+    });
+  });
+
+  // Stage click
+  document.querySelectorAll('.kavram-stage').forEach(stage => {
+    stage.addEventListener('click', () => {
+      document.querySelectorAll('.kavram-stage').forEach(s => {
+        s.classList.remove('border-teal', 'text-teal');
+        s.classList.add('border-gray-200', 'text-gray-600');
+      });
+      stage.classList.remove('border-gray-200', 'text-gray-600');
+      stage.classList.add('border-teal', 'text-teal');
+    });
+  });
+</script>

@@ -1,0 +1,31 @@
+---
+const haberler = [
+  { tarih: '10 Mart 2025', baslik: 'Bahar Dönemi Kayıtları Başladı', ozet: 'MTO 2025 Bahar dönemi için başvurular açılmıştır. Son başvuru tarihi 31 Mart 2025.' },
+  { tarih: '5 Mart 2025', baslik: 'Akademik Kadro Genişliyor', ozet: 'Yeni dönemde kadromuza katılan değerli hocalarımızla programımız daha da güçleniyor.' },
+  { tarih: '28 Şubat 2025', baslik: 'Güz Dönemi Başarıyla Tamamlandı', ozet: '2024-2025 Güz dönemi mezuniyet töreni gerçekleştirildi. Tüm talebelerimizi tebrik ederiz.' },
+];
+---
+
+<section class="py-20 px-5 md:px-8 bg-gray-50">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
+        MTO Bülten
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {haberler.map(h => (
+        <a href="#" class="block bg-white rounded-xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] no-underline group">
+          <div class="text-xs text-turkuaz font-medium uppercase tracking-wider mb-3">{h.tarih}</div>
+          <h3 class="font-heading text-lg text-lacivert font-bold mb-3 group-hover:text-mavi transition-colors">
+            <span class="bg-gradient-to-r from-turkuaz to-turkuaz bg-[length:0%_2px] bg-left-bottom bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-300 pb-0.5">
+              {h.baslik}
+            </span>
+          </h3>
+          <p class="text-body text-sm leading-relaxed">{h.ozet}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

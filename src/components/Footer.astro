@@ -1,0 +1,56 @@
+---
+const navLinks = ['Anasayfa', 'Akademik', '100 Kitap', 'Faaliyetler', 'Hakkımızda', 'İletişim'];
+---
+
+<!-- Footer: Newsletter kaldırıldı, lacivert bg, 2 sütun -->
+<footer id="iletisim" class="bg-lacivert text-gray-400 pt-16 px-8 lg:px-12">
+  <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-[1.5fr_1fr] gap-12">
+    <!-- Col 1: Logo + Contact -->
+    <div>
+      <div class="mb-6">
+        <img src="/images/mto-web-logo.png" alt="MTO — Medeniyet Tasavvuru Okulu" class="h-14 w-auto object-contain" />
+      </div>
+      <div class="w-[60px] h-px bg-gray-600 my-6"></div>
+      <div class="flex flex-col gap-3 text-sm">
+        <div class="flex items-center gap-2.5">
+          <svg class="w-[18px] h-[18px] fill-turkuaz flex-shrink-0" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+          +90 (XXX) XXX XX XX
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-[18px] h-[18px] fill-turkuaz flex-shrink-0" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          info@mto.edu.tr
+        </div>
+        <div class="flex items-center gap-2.5">
+          <svg class="w-[18px] h-[18px] fill-turkuaz flex-shrink-0" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          İstanbul, Türkiye
+        </div>
+      </div>
+    </div>
+
+    <!-- Col 2: Nav -->
+    <div>
+      <h4 class="text-white text-[0.85rem] font-bold uppercase tracking-[2px] mb-6 font-heading">Keşfetmek</h4>
+      <ul class="list-none flex flex-col gap-2.5">
+        {navLinks.map(link => (
+          <li><a href="#" class="text-gray-400 no-underline text-sm hover:text-turkuaz transition-colors font-body">{link}</a></li>
+        ))}
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="max-w-[1100px] mx-auto mt-12 py-6 border-t border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+    <span>© 2025 Medeniyet Tasavvuru Okulu — Tüm hakları saklıdır.</span>
+    <div class="flex gap-2.5">
+      <a href="#" class="w-8 h-8 border border-gray-600 rounded-full grid place-items-center hover:border-turkuaz hover:bg-turkuaz transition-all group" aria-label="X">
+        <svg class="w-3.5 h-3.5 fill-gray-400 group-hover:fill-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      </a>
+      <a href="#" class="w-8 h-8 border border-gray-600 rounded-full grid place-items-center hover:border-turkuaz hover:bg-turkuaz transition-all group" aria-label="Facebook">
+        <svg class="w-3.5 h-3.5 fill-gray-400 group-hover:fill-white" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-10 4.49-10 10.02 0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.52 1.49-3.93 3.78-3.93 1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 008.44-9.9c0-5.53-4.5-10.02-10-10.02z"/></svg>
+      </a>
+      <a href="#" class="w-8 h-8 border border-gray-600 rounded-full grid place-items-center hover:border-turkuaz hover:bg-turkuaz transition-all group" aria-label="Instagram">
+        <svg class="w-3.5 h-3.5 fill-gray-400 group-hover:fill-white" viewBox="0 0 24 24"><path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153a4.908 4.908 0 011.153 1.772c.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772 4.915 4.915 0 01-1.772 1.153c-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2z"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>

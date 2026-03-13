@@ -1,0 +1,58 @@
+---
+const sorular = [
+  { num: 1, q: 'Nasıl Başvuru Yapabilirim?', a: 'Başvuru tarihleri ilan edildiğinde tüm başvurular online olarak yapılmaktadır. Web sitemiz üzerinden başvuru formunu doldurarak kayıt sürecini başlatabilirsiniz.' },
+  { num: 2, q: 'Nereden Başvuru Yapacağım?', a: 'Web sitemiz üzerinden başvuru formunu doldurabilirsiniz.' },
+  { num: 3, q: 'Başvuru Şartları Nelerdir?', a: 'Lisans veya yüksek lisans öğrencisi/mezunu olmak gerekmektedir.' },
+  { num: 4, q: 'Kayıt Sürecinde Mülakat Oluyor Mu?', a: 'Evet, başvuru sonrası online mülakat yapılmaktadır.' },
+];
+---
+
+<!-- Sade SSS — dokümandaki talebe uygun -->
+<section class="py-20 px-8 lg:px-12 bg-white">
+  <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase text-center tracking-wider mb-12 font-bold">
+    Sıkça Sorulan Sorular
+  </h2>
+
+  <div class="max-w-[800px] mx-auto">
+    {sorular.map((s, i) => (
+      <div class:list={['accordion-item border-b border-gray-200', i === 0 && 'is-open']}>
+        <button class="accordion-header flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
+          <h4 class="text-[0.95rem] font-medium text-lacivert">
+            <span class="text-turkuaz font-bold mr-2">{s.num}.</span>
+            {s.q}
+          </h4>
+          <span class="accordion-icon text-xl text-turkuaz font-light transition-transform duration-300 flex-shrink-0 ml-4">+</span>
+        </button>
+        <div class:list={['accordion-body pb-5 text-body text-sm leading-relaxed', i !== 0 && 'hidden']}>
+          {s.a}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.accordion-header').forEach(header => {
+    header.addEventListener('click', () => {
+      const item = header.parentElement!;
+      const isOpen = item.classList.contains('is-open');
+
+      document.querySelectorAll('.accordion-item').forEach(i => {
+        i.classList.remove('is-open');
+        i.querySelector('.accordion-body')?.classList.add('hidden');
+        const icon = i.querySelector('.accordion-icon');
+        if (icon) (icon as HTMLElement).style.transform = '';
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        item.querySelector('.accordion-body')?.classList.remove('hidden');
+        const icon = item.querySelector('.accordion-icon');
+        if (icon) (icon as HTMLElement).style.transform = 'rotate(45deg)';
+      }
+    });
+  });
+
+  const firstOpen = document.querySelector('.accordion-item.is-open .accordion-icon');
+  if (firstOpen) (firstOpen as HTMLElement).style.transform = 'rotate(45deg)';
+</script>

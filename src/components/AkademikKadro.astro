@@ -1,0 +1,25 @@
+---
+const kadro = [
+  { title: 'Akademik Kadro — 1' },
+  { title: 'Akademik Kadro — 2' },
+  { title: 'Akademik Kadro — 3' },
+];
+---
+
+<section id="akademik" class="py-20 px-5 md:px-8" style="background: linear-gradient(180deg, #03253A 60%, #f5f7fa 60%);">
+  <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-white uppercase text-center tracking-wider mb-12 font-bold">
+    Akademik Kadro
+  </h2>
+
+  <div class="max-w-[1000px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
+    {kadro.map(item => (
+      <div class="bg-white/[0.08] border border-white/[0.12] backdrop-blur-[10px] rounded-xl p-8 transition-all duration-300 hover:bg-white/[0.14] hover:-translate-y-1">
+        <h3 class="text-turkuaz text-base font-bold uppercase tracking-wider mb-2 font-heading">{item.title}</h3>
+        <div class="w-10 h-[3px] bg-turkuaz mb-4"></div>
+        <div class="w-14 h-14 border-2 border-turkuaz rounded-full grid place-items-center ml-auto mt-4">
+          <svg class="w-7 h-7 fill-turkuaz" viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

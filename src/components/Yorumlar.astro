@@ -1,0 +1,31 @@
+---
+const yorumlar = [
+  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'Ahmet Yılmaz', unvan: 'Öğrenci', initials: 'AY' },
+  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'Fatma Demir', unvan: 'Mezun', initials: 'FD' },
+];
+---
+
+<section class="py-20 px-8 lg:px-12 bg-white border-t-4 border-lacivert">
+  <div class="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
+    <div>
+      <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-8 font-bold">Yorumlar</h2>
+      <div class="flex gap-3">
+        <button class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all">←</button>
+        <button class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all">→</button>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      {yorumlar.map(y => (
+        <div class="bg-gray-50 rounded-xl p-8">
+          <p class="text-body text-sm leading-relaxed mb-6">{y.yorum}</p>
+          <div class="font-bold text-lacivert text-sm">{y.isim}</div>
+          <div class="text-vizon text-xs">{y.unvan}</div>
+          <div class="w-12 h-12 rounded-full bg-lacivert text-white grid place-items-center font-bold text-sm mt-3">
+            {y.initials}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
