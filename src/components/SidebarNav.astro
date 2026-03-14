@@ -1,0 +1,79 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+  active?: boolean;
+  children?: NavItem[];
+}
+
+interface Props {
+  title: string;
+  items: NavItem[];
+  currentPath?: string;
+}
+
+const { title, items, currentPath = '' } = Astro.props;
+
+function isActive(item: NavItem): boolean {
+  if (item.active) return true;
+  if (item.href && item.href !== '#' && currentPath === item.href) return true;
+  if (item.children?.some(c => isActive(c))) return true;
+  return false;
+}
+---
+
+<aside class="w-full lg:w-[260px] flex-shrink-0">
+  <h3 class="text-[1.1rem] font-bold tracking-wider uppercase text-vizon border-b-2 border-turkuaz pb-3 mb-4 font-heading">
+    {title}
+  </h3>
+  <ul class="list-none space-y-0">
+    {items.map(item => {
+      const active = isActive(item);
+      const hasChildren = item.children && item.children.length > 0;
+      const childActive = hasChildren && item.children!.some(c => isActive(c));
+      return (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'flex items-center gap-2 py-2.5 px-3 text-sm font-medium border-b border-gray-100 no-underline transition-colors',
+              active
+                ? 'bg-turuncu text-white'
+                : 'text-lacivert hover:text-turkuaz hover:bg-gray-50',
+            ]}
+          >
+            {hasChildren ? (
+              <svg class:list={['w-2.5 h-2.5 flex-shrink-0 transition-transform', childActive ? 'rotate-90' : '']} fill="currentColor" viewBox="0 0 8 12">
+                <path d="M0 0l8 6-8 6z"/>
+              </svg>
+            ) : (
+              <svg class="w-2.5 h-2.5 flex-shrink-0 opacity-60" fill="currentColor" viewBox="0 0 8 12">
+                <path d="M0 0l8 6-8 6z"/>
+              </svg>
+            )}
+            {item.label}
+          </a>
+          {hasChildren && (childActive || active) && (
+            <ul class="list-none">
+              {item.children!.map(child => (
+                <li>
+                  <a
+                    href={child.href}
+                    class:list={[
+                      'block py-2 pl-10 pr-3 text-sm border-b border-gray-50 no-underline transition-colors',
+                      isActive(child)
+                        ? 'text-turkuaz font-medium'
+                        : 'text-body hover:text-turkuaz',
+                    ]}
+                  >
+                    {child.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      );
+    })}
+  </ul>
+</aside>

@@ -1,0 +1,53 @@
+---
+import InnerPageLayout from '../../layouts/InnerPageLayout.astro'
+import ShareButtons from '../../components/ShareButtons.astro'
+import { ilimBilmeNav } from '../../data/navigation'
+
+const sidebarItems = ilimBilmeNav.items.map(item => ({
+  ...item,
+  active: item.href === '/ilim-bilme/mto-mesaj'
+}))
+
+const breadcrumbs = [
+  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
+  { label: "MTO'DAN MESAJ" }
+]
+---
+
+<InnerPageLayout
+  title="MTO'dan Mesaj — MTO"
+  description="Medeniyet Tasavvuru Okulu'ndan mesaj."
+  pageTitle="MTO'DAN MESAJ"
+  sidebarTitle={ilimBilmeNav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath="/ilim-bilme/mto-mesaj"
+>
+  <div class="relative">
+    <div class="hidden lg:block absolute -left-16 top-0">
+      <ShareButtons />
+    </div>
+
+    <div class="w-full aspect-video bg-gray-300 rounded mb-10"></div>
+
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-vizon mb-8">
+      İLİM İRFAN HİKMET
+    </h2>
+
+    <div class="space-y-6 text-body leading-relaxed">
+      <p>
+        <span class="text-5xl font-heading font-bold text-lacivert float-left mr-3 mt-1 leading-none">U</span>sulsüz, vüsûl olmaz. Medeniyet Tasavvuru Okulu'nun nihâi varış noktası, Hakikat Medeniyetidir. Bu metod "İkili Yapı" ve "Üçlü Süreç" olarak tanımlanır.
+      </p>
+
+      <p>İkili yapı Yaratıcı Ruh-Kurucu İrade, Dikey Eksen-Yatay Eksen, Enfüs-Afak yani ilahi olan'la beşeri olan'ın buluşturulmasıdır.</p>
+
+      <p>Üçlü Süreç ise, İlim-İrfan-Hikmet güzergâhlarından oluşmaktadır. İlim, bilme yolculuğu; İrfan, bulma yolculuğu; Hikmet, olma yolculuğu olarak açıklanır.</p>
+
+      <p>Bir çağrının kurulması olan İlim yolculuğu, yani Mekke sürecinde, zihinlere İlahî şiar işlenir. Burada beşer, ilahî olanla bağ kurar. Akaidî yolculuk başlar. Beşer kitabı öğrenir, akleder, ne olduğunu bilir, basiret sahibi olur. Dil oluşturulur, fikir tevarüs eder ve şahsiyet inşâsı tamamlanır.</p>
+
+      <p>Çağrının çağını kurması olan İrfan yolculuğu, yani Medine sürecinde, zemin Nebevî şuur kazanır. Zihin, zemine kavuşur. Beşer dış olanla bağını oluşturur. Fıkıh hüküm bulur, mizanı özümser. Beşer kalp ile hayatın ne olacağını idrak eder, feraset sahibi olur. Yer (zemin) oluşturulur, zikir temellük eder ve toplum inşâsı tamamlanır.</p>
+
+      <p>Çağını kuran çağrının çağlaması olan Hikmet yolculuğu, yani Medeniyet sürecinde zaman Beşerî şiire dönüşmüştür. Beşer, içe ve dışa olan yolculuğunu sürdürür. Tasavvuf hasıl olur, hadidi örnekler. Beşer ruh ile kendinde ne olmadığının ve ne olamayacağının idrakinde olur, hedef uhuvvettir. Zaman oluşturulur, şükür temessül eder ve dünya inşâsı tamamlanır.</p>
+    </div>
+  </div>
+</InnerPageLayout>

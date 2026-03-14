@@ -1,0 +1,142 @@
+---
+import InnerPageLayout from '../../layouts/InnerPageLayout.astro'
+import { irfanBulmaNav } from '../../data/navigation'
+
+const sidebarItems = irfanBulmaNav.items.map(item => ({
+  ...item,
+  active: item.href === '/irfan-bulma/dersler'
+}))
+
+const breadcrumbs = [
+  { label: 'İRFAN - BULMA', href: '/irfan-bulma' },
+  { label: 'Dersler' }
+]
+
+const guncelDersler = [
+  { ders: 'Düşünce Tarihi 1', hoca: 'Tahsin Görgün', highlight: false },
+  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', highlight: false },
+  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', highlight: false },
+  { ders: 'İslâm İlimler Tasavvuru', hoca: 'Asım Cüneyd Köksal', highlight: true },
+  { ders: 'Telkinden Tekniğe: Romanın Eleştirel Tarihi', hoca: 'Özlem Fedai', highlight: false },
+  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', highlight: false },
+  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngöremez', highlight: false },
+  { ders: 'Yapay Zekâ, İslâm ve Etik', hoca: 'Ahmet Dağ', highlight: false },
+  { ders: 'Öncüler', hoca: 'Saadettin Acar', highlight: false },
+  { ders: 'Düşünce Tarihi 2', hoca: 'Tahsin Görgün', highlight: false },
+  { ders: 'Ehli Sünnetin Tarihi Rolü', hoca: 'Abdulkadir Turan', highlight: false },
+  { ders: 'İslam Sanat Tasavvuru', hoca: 'Ömer Lekesiz', highlight: false },
+  { ders: 'Klasikten Çağdaşa Batı Düşüncesinin Serüveni', hoca: 'Kasım Küçükalp', highlight: false },
+  { ders: "Felsefe'nin Düşüncesi, Düşünce'nin Felsefesi", hoca: 'Ahmet Dağ', highlight: false },
+  { ders: 'İktisadî İlâhiyât', hoca: 'Melih Oktay', highlight: false },
+]
+
+const seminerler = [
+  { ders: 'Sinirbilim ve Fıtrat Düzeni', hoca: 'Samira Yusifova' },
+  { ders: 'Şiirin Şuuru: Şuurun Şiiri', hoca: 'Celal Fedai' },
+  { ders: 'Sosyal Teori', hoca: 'Bengül Güngöremez' },
+  { ders: "Rahle'den Rıhle'ye: Siyer-i Nebi", hoca: 'Ayşe Akdağ' },
+  { ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi' },
+]
+---
+
+<InnerPageLayout
+  title="Dersler - İRFAN·BULMA"
+  description="Medeniyet Tasavvuru Okulu ders programları. Güz ve Bahar Dönemi dersleri."
+  pageTitle="Dersler"
+  sidebarTitle={irfanBulmaNav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath="/irfan-bulma/dersler"
+>
+  <!-- Description -->
+  <p class="text-lacivert/70 font-body text-lg mb-10 leading-relaxed">
+    Medeniyet Tasavvuru Okulu'nun ders programları Güz ve Bahar Dönemi'nde her kademeye özel olarak hazırlanır ve talebeye sunulur.
+  </p>
+
+  <!-- Toggle Tabs -->
+  <div class="flex mb-8" id="ders-tabs">
+    <button
+      class="tab-btn active-tab px-6 py-3 font-heading font-bold text-sm tracking-wider bg-lacivert text-white rounded-l-lg transition-colors"
+      data-tab="guncel"
+    >
+      GÜNCEL DERSLER
+    </button>
+    <button
+      class="tab-btn px-6 py-3 font-heading font-bold text-sm tracking-wider bg-gray-200 text-lacivert/60 rounded-r-lg transition-colors hover:bg-gray-300"
+      data-tab="gecmis"
+    >
+      GEÇMİŞ DÖNEMLERDEKİ DERSLER
+    </button>
+  </div>
+
+  <!-- Güncel Dersler -->
+  <div id="tab-guncel" class="tab-content">
+    <div class="divide-y divide-lacivert/10">
+      {guncelDersler.map((item) => (
+        <div class={`py-4 flex items-baseline gap-2 ${item.highlight ? 'bg-turkuaz/5 -mx-4 px-4 rounded-lg' : ''}`}>
+          <span class={`font-body text-base ${item.highlight ? 'text-turkuaz font-semibold' : 'text-lacivert/80'}`}>
+            {item.ders}
+          </span>
+          <span class="text-lacivert/30 font-body">&bull;</span>
+          <span class={`font-body text-sm ${item.highlight ? 'text-turkuaz/80' : 'text-lacivert/50'}`}>
+            {item.hoca}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Geçmiş Dönemlerdeki Dersler -->
+  <div id="tab-gecmis" class="tab-content hidden">
+    <p class="text-lacivert/50 font-body text-base py-8 text-center">
+      Geçmiş dönemlerdeki dersler yakında burada listelenecektir.
+    </p>
+  </div>
+
+  <!-- MTO Seminer Section -->
+  <div class="mt-12">
+    <h3 class="font-heading text-2xl font-bold text-lacivert mb-6 tracking-wide">MTO SEMİNER</h3>
+    <div class="divide-y divide-lacivert/10">
+      {seminerler.map((item) => (
+        <div class="py-4 flex items-baseline gap-2">
+          <span class="font-body text-base text-lacivert/80">{item.ders}</span>
+          <span class="text-lacivert/30 font-body">&bull;</span>
+          <span class="font-body text-sm text-lacivert/50">{item.hoca}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Tab Switching Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const tabs = document.querySelectorAll('.tab-btn');
+      const contents = document.querySelectorAll('.tab-content');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          const target = tab.getAttribute('data-tab');
+
+          // Reset all tabs
+          tabs.forEach(t => {
+            t.classList.remove('active-tab', 'bg-lacivert', 'text-white');
+            t.classList.add('bg-gray-200', 'text-lacivert/60');
+          });
+
+          // Activate clicked tab
+          tab.classList.add('active-tab', 'bg-lacivert', 'text-white');
+          tab.classList.remove('bg-gray-200', 'text-lacivert/60');
+
+          // Toggle content
+          contents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          const targetContent = document.getElementById(`tab-${target}`);
+          if (targetContent) {
+            targetContent.classList.remove('hidden');
+          }
+        });
+      });
+    });
+  </script>
+</InnerPageLayout>

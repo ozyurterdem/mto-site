@@ -1,0 +1,155 @@
+---
+import InnerPageLayout from '../../layouts/InnerPageLayout.astro'
+import { ilimBilmeNav } from '../../data/navigation'
+
+const sidebarItems = ilimBilmeNav.items.map(item => ({
+  ...item,
+  active: item.href === '/ilim-bilme/mto-bulten'
+}))
+
+const breadcrumbs = [
+  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
+  { label: 'MTO Bülten' }
+]
+
+const aylar = ['Tümü', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
+const yillar = ['Tümü', '2026', '2025', '2024']
+
+const haberler = [
+  {
+    title: 'Güz Dönemi Açılış Programı Gerçekleştirildi',
+    date: '15 Ekim 2025',
+    excerpt: 'Medeniyet Tasavvuru Okulu 2025-2026 Güz Dönemi açılış programı büyük bir katılımla gerçekleştirildi.',
+    image: '',
+  },
+  {
+    title: 'Prof. Dr. Ömer Türker ile Söyleşi',
+    date: '22 Ekim 2025',
+    excerpt: 'İslam Düşünce Geleneği dersi hocamız Prof. Dr. Ömer Türker ile özel bir söyleşi gerçekleştirdik.',
+    image: '',
+  },
+  {
+    title: 'Medeniyet Okumaları Başladı',
+    date: '1 Kasım 2025',
+    excerpt: 'Bu dönemin medeniyet okumaları serisi, seçkin eserlerle zenginleştirilmiş müfredatıyla başladı.',
+    image: '',
+  },
+  {
+    title: 'Şehir Temsilcilikleri Toplantısı',
+    date: '10 Kasım 2025',
+    excerpt: 'Tüm şehir temsilcilerimizin katılımıyla dönem değerlendirme toplantısı yapıldı.',
+    image: '',
+  },
+  {
+    title: 'Kitap Kulübü: Ayın Kitabı Belirlendi',
+    date: '15 Kasım 2025',
+    excerpt: 'Kasım ayı kitap kulübü seçimi yapıldı. Bu ay odak noktamız İbn Haldun\'un Mukaddime\'si.',
+    image: '',
+  },
+  {
+    title: 'Akademik Kadro Genişliyor',
+    date: '20 Kasım 2025',
+    excerpt: 'Yeni dönem için akademik kadromuza iki yeni değerli isim daha katıldı.',
+    image: '',
+  },
+]
+---
+
+<InnerPageLayout
+  title="MTO Bülten - İLİM·BİLME"
+  description="Medeniyet Tasavvuru Okulu bülten, haberler ve duyurular."
+  pageTitle="MTO Bülten"
+  sidebarTitle={ilimBilmeNav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  showBulten={false}
+  currentPath="/ilim-bilme/mto-bulten"
+>
+  <div class="space-y-8">
+    <!-- Filter Controls -->
+    <div class="flex flex-wrap items-center gap-4 bg-lacivert/5 rounded-xl p-4">
+      <!-- Ay Dropdown -->
+      <div class="flex items-center gap-2">
+        <label class="text-sm font-heading font-semibold text-lacivert" for="filter-ay">Ay:</label>
+        <select id="filter-ay" class="bg-white border border-lacivert/20 rounded-lg px-3 py-2 text-sm font-body text-lacivert focus:outline-none focus:ring-2 focus:ring-turkuaz/50">
+          {aylar.map((ay) => (
+            <option value={ay}>{ay}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- Yıl Dropdown -->
+      <div class="flex items-center gap-2">
+        <label class="text-sm font-heading font-semibold text-lacivert" for="filter-yil">Yıl:</label>
+        <select id="filter-yil" class="bg-white border border-lacivert/20 rounded-lg px-3 py-2 text-sm font-body text-lacivert focus:outline-none focus:ring-2 focus:ring-turkuaz/50">
+          {yillar.map((yil) => (
+            <option value={yil}>{yil}</option>
+          ))}
+        </select>
+      </div>
+
+      <!-- Search Input -->
+      <div class="flex-1 min-w-[200px]">
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Bültende ara..."
+            class="w-full bg-white border border-lacivert/20 rounded-lg pl-10 pr-4 py-2 text-sm font-body text-lacivert placeholder:text-lacivert/40 focus:outline-none focus:ring-2 focus:ring-turkuaz/50"
+          />
+          <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-lacivert/40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- News Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {haberler.map((haber) => (
+        <article class="group bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 border border-lacivert/5">
+          <!-- Image Placeholder -->
+          <div class="aspect-video bg-gradient-to-br from-lacivert/10 to-turkuaz/10 relative overflow-hidden">
+            <div class="absolute inset-0 flex items-center justify-center">
+              <svg class="w-10 h-10 text-lacivert/20" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-5">
+            <time class="text-xs font-body text-turuncu font-semibold uppercase tracking-wide">{haber.date}</time>
+            <h3 class="font-heading text-lg font-bold text-lacivert mt-2 mb-2 group-hover:text-turkuaz transition-colors line-clamp-2">
+              {haber.title}
+            </h3>
+            <p class="font-body text-sm text-lacivert/60 line-clamp-3">{haber.excerpt}</p>
+            <a href="#" class="inline-flex items-center gap-1 mt-4 text-sm font-heading font-semibold text-turkuaz hover:text-turkuaz/80 transition-colors">
+              Devamını Oku
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Pagination -->
+    <nav class="flex items-center justify-center gap-2 pt-4">
+      <button class="w-10 h-10 rounded-lg border border-lacivert/20 flex items-center justify-center text-lacivert/40 hover:border-turkuaz hover:text-turkuaz transition-colors" disabled>
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      <button class="w-10 h-10 rounded-lg bg-turkuaz text-white font-heading font-semibold text-sm">1</button>
+      <button class="w-10 h-10 rounded-lg border border-lacivert/20 text-lacivert/60 font-heading font-semibold text-sm hover:border-turkuaz hover:text-turkuaz transition-colors">2</button>
+      <button class="w-10 h-10 rounded-lg border border-lacivert/20 text-lacivert/60 font-heading font-semibold text-sm hover:border-turkuaz hover:text-turkuaz transition-colors">3</button>
+      <button class="w-10 h-10 rounded-lg border border-lacivert/20 text-lacivert/60 font-heading font-semibold text-sm hover:border-turkuaz hover:text-turkuaz transition-colors">4</button>
+      <button class="w-10 h-10 rounded-lg border border-lacivert/20 flex items-center justify-center text-lacivert/60 hover:border-turkuaz hover:text-turkuaz transition-colors">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </nav>
+  </div>
+</InnerPageLayout>

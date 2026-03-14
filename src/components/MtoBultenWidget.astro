@@ -1,0 +1,55 @@
+---
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+
+const bulletinItems = [
+  {
+    image: '/images/mto-web-logo.png',
+    date: '25 Eylül 2025',
+    title: "Medeniyet Tasavvuru Okulu'nun ders programları Güz ve Bahar Dönemi'nde...",
+  },
+  {
+    image: '/images/mto-web-logo.png',
+    date: '25 Eylül 2025',
+    title: "Medeniyet Tasavvuru Okulu'nun ders programları Güz ve Bahar Dönemi'nde...",
+  },
+  {
+    image: '/images/mto-web-logo.png',
+    date: '25 Eylül 2025',
+    title: "Medeniyet Tasavvuru Okulu'nun ders programları Güz ve Bahar Dönemi'nde...",
+  },
+];
+---
+
+<section class={`mt-16 ${className}`}>
+  <h3 class="text-lg font-bold text-lacivert uppercase tracking-wider font-heading border-b border-gray-200 pb-3 mb-6">
+    MTO BÜLTEN
+  </h3>
+  <div class="relative">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="bulten-slider">
+      {bulletinItems.map(item => (
+        <a href="/ilim-bilme/mto-bulten" class="group no-underline block">
+          <div class="aspect-[4/3] bg-gray-200 rounded overflow-hidden mb-3">
+            <img src={item.image} alt={item.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+          </div>
+          <div class="flex items-center gap-1.5 text-xs text-gray-400 mb-1">
+            <svg class="w-3.5 h-3.5 fill-turuncu" viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zM5 8V6h14v2H5z"/></svg>
+            {item.date}
+          </div>
+          <p class="text-sm text-lacivert font-medium group-hover:text-turkuaz transition-colors leading-snug">
+            {item.title}
+          </p>
+        </a>
+      ))}
+    </div>
+    <!-- Arrows -->
+    <button class="absolute -left-10 top-1/3 w-8 h-8 rounded-full border border-gray-300 grid place-items-center text-gray-400 hover:text-turkuaz hover:border-turkuaz transition-colors hidden md:grid" aria-label="Önceki">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+    </button>
+    <button class="absolute -right-10 top-1/3 w-8 h-8 rounded-full border border-gray-300 grid place-items-center text-gray-400 hover:text-turkuaz hover:border-turkuaz transition-colors hidden md:grid" aria-label="Sonraki">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </button>
+  </div>
+</section>

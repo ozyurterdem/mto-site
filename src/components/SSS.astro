@@ -1,60 +1,118 @@
 ---
 const sorular = [
-  { num: 1, q: 'Nasıl Başvuru Yapabilirim?', a: 'Başvuru tarihleri ilan edildiğinde tüm başvurular online olarak yapılmaktadır. Web sitemiz üzerinden başvuru formunu doldurarak kayıt sürecini başlatabilirsiniz.' },
-  { num: 2, q: 'Başvuru Şartları Nelerdir?', a: 'Lisans veya yüksek lisans öğrencisi/mezunu olmak gerekmektedir.' },
-  { num: 3, q: 'Kayıt Sürecinde Mülakat Oluyor Mu?', a: 'Evet, başvuru sonrası online mülakat yapılmaktadır.' },
-  { num: 4, q: 'Eğitimler Nerede Gerçekleşiyor?', a: 'Eğitimler hem yüz yüze hem de online olarak gerçekleştirilmektedir. Detaylı bilgi için iletişim bölümünden bize ulaşabilirsiniz.' },
-  { num: 5, q: 'Program Ücreti Ne Kadardır?', a: 'Program ücreti hakkında güncel bilgi almak için başvuru dönemlerinde web sitemizi takip edebilirsiniz.' },
-  { num: 6, q: 'Dersleri Kaçırdığımda Kayıtlara Erişebilir Miyim?', a: 'Evet, tüm dersler kayıt altına alınmakta ve YouTube kanalımız üzerinden talebelere sunulmaktadır.' },
+  { q: 'Başvurular Ne Zaman Alınıyor?', a: "Her yıl Güz Dönemi'nde (Eylül – Ekim) 1. Kademe Başvurusu alınırken; Bahar Dönemi'nde (Şubat – Mart) Hazırlık Dönemi başvurusu alınmaktadır. Hazırlık Dönemi zorunlu değildir." },
+  { q: 'Başvuru Nereden ve Nasıl Yapılır?', a: 'Başvuru döneminde, erişime açtığımız başvuru form linkine web sitemizden veya sosyal medya hesaplarımızdan ulaşabilirsiniz. Başvurular eksiksiz ve doğru bir şekilde doldurulmalıdır.' },
+  { q: 'Başvuru Şartları Nelerdir?', a: "MTO'ya başvuru yapmak isteyen talebenin başvuru öncesinde 100 Kitap Listesi'nin Birinci Aşaması'nı 4 kalem tekniğiyle okumuş olması gerekir." },
+  { q: 'Başvurularda Yaş Sınırı Var Mı?', a: 'Herhangi bir yaş sınırlaması yoktur. MTO "yaş değil baş" düsturu ile ilerler.' },
+  { q: 'Eğitimin Süresi Ne Kadar?', a: 'Her yıl iki dönemden oluşan MTO toplamda 3 yıllık bir eğitim sunmaktadır. Üç yılı bitiren talebeler süresiz bir şekilde ihtisas dersleri alır.' },
+  { q: 'Eğitim Ücretli Mi?', a: 'Okulumuz ücretli olmayıp; aidiyetin sağlanabilmesi amacıyla kayıt yenileme işlemi sırasında dönemlik 750 TL gönüllü bağış talep edilmektedir.' },
+  { q: 'Dersler Ne Zaman ve Ne Şekilde Gerçekleştirilmektedir?', a: 'Dersler her gün akşam saatlerinde WhatsApp gruplarına atılan link üzerinden online gerçekleşmektedir.' },
+  { q: 'Derslere Zamanında Katılamadım, Sonradan İzleyebilir Miyim?', a: 'Dersler YouTube üzerinden gerçekleştiği için istediğiniz vakitte aynı linkten izleyebilirsiniz.' },
+  { q: 'Derslerden Sınav Olacak Mıyız?', a: 'Okulumuzda herhangi bir sınav uygulanmamaktadır. Talebelerin gelişimi, gönüllü olarak yazdığı yazılar ile tespit edilmektedir.' },
 ];
+
+const ilkUcSoru = sorular.slice(0, 3);
+const kalanSorular = sorular.slice(3);
 ---
 
-<!-- Sade SSS — dokümandaki talebe uygun -->
 <section class="py-20 px-8 lg:px-12 bg-white">
   <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase text-center tracking-wider mb-12 font-bold">
     Sıkça Sorulan Sorular
   </h2>
 
   <div class="max-w-[800px] mx-auto">
-    {sorular.map((s, i) => (
-      <div class:list={['accordion-item border-b border-gray-200', i === 0 && 'is-open']}>
-        <button class="accordion-header flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
+    {/* İlk 3 soru — her zaman görünür */}
+    {ilkUcSoru.map((s, i) => (
+      <div class="sss-item border-b border-gray-200">
+        <button class="sss-toggle flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
           <h4 class="text-[0.95rem] font-medium text-lacivert">
-            <span class="text-turkuaz font-bold mr-2">{s.num}.</span>
+            <span class="text-turkuaz font-bold mr-2">{i + 1}.</span>
             {s.q}
           </h4>
-          <span class="accordion-icon text-xl text-turkuaz font-light transition-transform duration-300 flex-shrink-0 ml-4">+</span>
+          <span class="sss-icon text-xl text-turkuaz font-light transition-transform duration-300 flex-shrink-0 ml-4">+</span>
         </button>
-        <div class:list={['accordion-body pb-5 text-body text-sm leading-relaxed', i !== 0 && 'hidden']}>
+        <div class="sss-body hidden pb-5 text-body text-sm leading-relaxed pl-7">
           {s.a}
         </div>
       </div>
     ))}
+
+    {/* Kalan sorular — collapse */}
+    <div id="sss-more" class="hidden">
+      {kalanSorular.map((s, i) => (
+        <div class="sss-item border-b border-gray-200">
+          <button class="sss-toggle flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
+            <h4 class="text-[0.95rem] font-medium text-lacivert">
+              <span class="text-turkuaz font-bold mr-2">{i + 4}.</span>
+              {s.q}
+            </h4>
+            <span class="sss-icon text-xl text-turkuaz font-light transition-transform duration-300 flex-shrink-0 ml-4">+</span>
+          </button>
+          <div class="sss-body hidden pb-5 text-body text-sm leading-relaxed pl-7">
+            {s.a}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Devamını Gör / Gizle butonu */}
+    <div class="text-center mt-8">
+      <button id="sss-toggle-more" class="inline-flex items-center gap-2 text-turkuaz font-heading font-bold text-sm uppercase tracking-wider hover:text-lacivert transition-colors cursor-pointer bg-transparent border-none">
+        <span id="sss-toggle-text">Tümünü Gör</span>
+        <svg id="sss-toggle-arrow" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </button>
+    </div>
   </div>
 </section>
 
 <script>
-  document.querySelectorAll('.accordion-header').forEach(header => {
-    header.addEventListener('click', () => {
-      const item = header.parentElement!;
-      const isOpen = item.classList.contains('is-open');
+  // Accordion toggle
+  document.querySelectorAll('.sss-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement!;
+      const body = item.querySelector('.sss-body');
+      const icon = item.querySelector('.sss-icon') as HTMLElement;
+      const isOpen = !body?.classList.contains('hidden');
 
-      document.querySelectorAll('.accordion-item').forEach(i => {
-        i.classList.remove('is-open');
-        i.querySelector('.accordion-body')?.classList.add('hidden');
-        const icon = i.querySelector('.accordion-icon');
-        if (icon) (icon as HTMLElement).style.transform = '';
+      // Close all
+      document.querySelectorAll('.sss-item').forEach(i => {
+        i.querySelector('.sss-body')?.classList.add('hidden');
+        const ic = i.querySelector('.sss-icon') as HTMLElement;
+        if (ic) ic.style.transform = '';
       });
 
+      // Open clicked if it was closed
       if (!isOpen) {
-        item.classList.add('is-open');
-        item.querySelector('.accordion-body')?.classList.remove('hidden');
-        const icon = item.querySelector('.accordion-icon');
-        if (icon) (icon as HTMLElement).style.transform = 'rotate(45deg)';
+        body?.classList.remove('hidden');
+        if (icon) icon.style.transform = 'rotate(45deg)';
       }
     });
   });
 
-  const firstOpen = document.querySelector('.accordion-item.is-open .accordion-icon');
-  if (firstOpen) (firstOpen as HTMLElement).style.transform = 'rotate(45deg)';
+  // Show more / less toggle
+  const moreBtn = document.getElementById('sss-toggle-more');
+  const moreSection = document.getElementById('sss-more');
+  const toggleText = document.getElementById('sss-toggle-text');
+  const toggleArrow = document.getElementById('sss-toggle-arrow');
+
+  moreBtn?.addEventListener('click', () => {
+    const isHidden = moreSection?.classList.contains('hidden');
+    if (isHidden) {
+      moreSection?.classList.remove('hidden');
+      if (toggleText) toggleText.textContent = 'Gizle';
+      if (toggleArrow) toggleArrow.style.transform = 'rotate(180deg)';
+    } else {
+      moreSection?.classList.add('hidden');
+      if (toggleText) toggleText.textContent = 'Tümünü Gör';
+      if (toggleArrow) toggleArrow.style.transform = '';
+      // Close any open items in the hidden section
+      moreSection?.querySelectorAll('.sss-item').forEach(i => {
+        i.querySelector('.sss-body')?.classList.add('hidden');
+        const ic = i.querySelector('.sss-icon') as HTMLElement;
+        if (ic) ic.style.transform = '';
+      });
+    }
+  });
 </script>

@@ -1,0 +1,65 @@
+---
+import InnerPageLayout from '../../layouts/InnerPageLayout.astro'
+import ShareButtons from '../../components/ShareButtons.astro'
+import { ilimBilmeNav } from '../../data/navigation'
+
+const sidebarItems = ilimBilmeNav.items.map(item => ({
+  ...item,
+  active: item.href === '/ilim-bilme/hakkimizda'
+}))
+
+const breadcrumbs = [
+  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
+  { label: 'HAKKIMIZDA' }
+]
+---
+
+<InnerPageLayout
+  title="Hakkımızda — MTO"
+  description="Medeniyet Tasavvuru Okulu hakkında bilgi edinin."
+  pageTitle="HAKKIMIZDA"
+  sidebarTitle={ilimBilmeNav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath="/ilim-bilme/hakkimizda"
+>
+  <div class="relative">
+    <!-- Share Buttons (sol taraf) -->
+    <div class="hidden lg:block absolute -left-16 top-0">
+      <ShareButtons />
+    </div>
+
+    <!-- Hero Image Placeholder -->
+    <div class="w-full aspect-video bg-gray-300 rounded mb-10"></div>
+
+    <!-- Title -->
+    <h2 class="font-heading text-3xl md:text-4xl font-bold text-vizon mb-8">
+      İLİM İRFAN HİKMET
+    </h2>
+
+    <!-- Content -->
+    <div class="space-y-6 text-body leading-relaxed">
+      <p class="text-lg">
+        <span class="text-5xl font-heading font-bold text-lacivert float-left mr-3 mt-1 leading-none">H</span>akîkatin İzinde, Yeni Bir Eğitim Modeli. Geleneksel eğitim sistemlerinin bilgiye ulaşmayı kolaylaştırdığı ama hakîkati anlamayı zorlaştırdığı bir çağda, Medeniyet Tasavvuru Okulu yeni bir eğitim modelinin temellerini atar. Medeniyet Tasavvuru talebeleri için öğrenmek; bir kimlik inşâ etmek, düşünce ufkunu genişletmek ve medeniyet bilinci oluşturmaktır. Bu istikâmette Medeniyet Tasavvuru Okulu üç aşamadan oluşan kazanımları amaçlar;
+      </p>
+
+      <div class="space-y-6 mt-8">
+        <div>
+          <h3 class="font-heading text-xl font-bold text-turkuaz mb-2">1- Medeniyet perspektifi kazandırmak,</h3>
+          <p>Medeniyet perspektifini ve dinamiklerini, ruhunu, ideallerini ve ufkunu yitiren toplumlar hem başkalarının kölesi olmaktan hem de yok olmanın eşiğine yuvarlanmaktan kurtulamazlar. Bu doğrultuda Medeniyet Tasavvuru "3T" modelini sunar. Hakikat medeniyetinin yeniden ve adım adım hayata geçirilmesine imkân tanıyabilecek üç aşamalı bir eğitim tasavvuru: <strong>Tevârûs - Temellûk - Temessûl</strong>. Bir medeniyet perspektifini tevarûs etme (öğrenme), temellûk etme (özümseme) ve temessûl etme (örnekleyerek başkalarına iletme) ilişkisidir.</p>
+        </div>
+
+        <div>
+          <h3 class="font-heading text-xl font-bold text-turkuaz mb-2">2- Müslümanca düşünme melekeleri kazandırmak,</h3>
+          <p>Kademe derslerini ve 100 Kitap Listesi'nin sıkıca takip eden talebe, Müslümanca duyma, kavrama ve düşünme melekeleri geliştirir; bütün disiplinleri, sil baştan yeniden inşâ edecek uzun soluklu bir medeniyet tasavvuru yolculuğuna soyunur, zihnini çağdaş hurafeler çöplüğünden arındırarak ümmîleşir.</p>
+        </div>
+
+        <div>
+          <h3 class="font-heading text-xl font-bold text-turkuaz mb-2">3- Dil zevki kazandırmak</h3>
+          <p>Kurucu kavramları olmayan toplumlar, kendi dünyalarını kuramazlar. MTO'da talebe, medeniyetlerin kavram ve düşünce dünyasını tanır, kendi kavramlarını kuşanır ve kendi fenemenolojisini inşâ eder. Bu amaçla farklı kavram ve düşünce hakîkatlerine sahip yazarlar ve düşünürler okunur.</p>
+          <p class="mt-3 text-sm text-body/80 italic">Sezai Karakoç, Cemil Meriç, Ahmed Hamdi Tanpınar, Aliya İzzetbegoviç, Nurettin Topçu, Ivan Illich, Aristo, Turgut Cansever, Marx, Gazali, Arnold Toynbee, Marshall Hodgson, Fuat Köprülü, İbn Haldun, Konfüçyüs, Eflatun, Kant, Hegel, Rene Guenon, Mevlana gibi farklı usul ve metaforları ilke edinmiş düşünürleri talebe öğrenir ve özümser; kavram dünyasını zenginleştirir ve dil zevkini geliştirir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</InnerPageLayout>
