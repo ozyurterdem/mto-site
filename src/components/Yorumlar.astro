@@ -1,31 +1,73 @@
 ---
+// Gerçek yorumlar girildiğinde güncelle
 const yorumlar = [
-  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'Ahmet Yılmaz', unvan: 'Öğrenci', initials: 'AY' },
-  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'Fatma Demir', unvan: 'Mezun', initials: 'FD' },
+  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'Talebe Adı', unvan: 'Öğrenci', initials: 'TA' },
+  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'Talebe Adı', unvan: 'Mezun', initials: 'TA' },
+  { yorum: 'Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.', isim: 'Talebe Adı', unvan: 'Öğrenci', initials: 'TA' },
+  { yorum: 'Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.', isim: 'Talebe Adı', unvan: 'Mezun', initials: 'TA' },
 ];
 ---
 
 <section class="py-20 px-8 lg:px-12 bg-white border-t-4 border-lacivert">
   <div class="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
     <div>
-      <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-8 font-bold">Yorumlar</h2>
+      <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">Görüşler</div>
+      <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-4 font-bold">Talebelerin<br/>Yorumları</h2>
+      <p class="text-body text-sm leading-relaxed mb-6">Programımızdan faydalanan talebelerin değerlendirmeleri.</p>
       <div class="flex gap-3">
-        <button class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all">←</button>
-        <button class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all">→</button>
+        <button id="yorum-prev" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Önceki">←</button>
+        <button id="yorum-next" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Sonraki">→</button>
       </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-      {yorumlar.map(y => (
-        <div class="bg-gray-50 rounded-xl p-8">
-          <p class="text-body text-sm leading-relaxed mb-6">{y.yorum}</p>
-          <div class="font-bold text-lacivert text-sm">{y.isim}</div>
-          <div class="text-vizon text-xs">{y.unvan}</div>
-          <div class="w-12 h-12 rounded-full bg-lacivert text-white grid place-items-center font-bold text-sm mt-3">
-            {y.initials}
+    <div class="relative overflow-hidden">
+      <div id="yorum-track" class="flex transition-transform duration-500 ease-in-out" style="width: 200%;">
+        {yorumlar.map(y => (
+          <div class="w-1/2 flex-shrink-0 px-2.5">
+            <div class="bg-gray-50 rounded-xl p-8 h-full">
+              <svg class="w-8 h-8 fill-turkuaz/20 mb-4" viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg>
+              <p class="text-body text-sm leading-relaxed mb-6">{y.yorum}</p>
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-lacivert text-white grid place-items-center font-bold text-xs">
+                  {y.initials}
+                </div>
+                <div>
+                  <div class="font-bold text-lacivert text-sm">{y.isim}</div>
+                  <div class="text-vizon text-xs">{y.unvan}</div>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<script>
+  const track = document.getElementById('yorum-track');
+  const prevBtn = document.getElementById('yorum-prev');
+  const nextBtn = document.getElementById('yorum-next');
+  
+  if (track && prevBtn && nextBtn) {
+    let current = 0;
+    const total = track.children.length;
+    const perPage = window.innerWidth >= 768 ? 2 : 1;
+    const maxSlide = Math.max(0, total - perPage);
+
+    function updateSlide() {
+      const pct = (current / total) * 100;
+      track.style.transform = `translateX(-${pct}%)`;
+    }
+
+    prevBtn.addEventListener('click', () => {
+      current = current > 0 ? current - 1 : maxSlide;
+      updateSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      current = current < maxSlide ? current + 1 : 0;
+      updateSlide();
+    });
+  }
+</script>
