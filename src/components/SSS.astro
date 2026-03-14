@@ -12,7 +12,6 @@ const sorular = [
 ];
 
 const ilkUcSoru = sorular.slice(0, 3);
-const kalanSorular = sorular.slice(3);
 ---
 
 <section class="py-20 px-8 lg:px-12 bg-white">
@@ -37,32 +36,17 @@ const kalanSorular = sorular.slice(3);
       </div>
     ))}
 
-    {/* Kalan sorular — collapse */}
-    <div id="sss-more" class="hidden">
-      {kalanSorular.map((s, i) => (
-        <div class="sss-item border-b border-gray-200">
-          <button class="sss-toggle flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
-            <h4 class="text-[0.95rem] font-medium text-lacivert">
-              <span class="text-turkuaz font-bold mr-2">{i + 4}.</span>
-              {s.q}
-            </h4>
-            <span class="sss-icon text-xl text-turkuaz font-light transition-transform duration-300 flex-shrink-0 ml-4">+</span>
-          </button>
-          <div class="sss-body hidden pb-5 text-body text-sm leading-relaxed pl-7">
-            {s.a}
-          </div>
-        </div>
-      ))}
-    </div>
-
-    {/* Devamını Gör / Gizle butonu */}
-    <div class="text-center mt-8">
-      <button id="sss-toggle-more" class="inline-flex items-center gap-2 text-turkuaz font-heading font-bold text-sm uppercase tracking-wider hover:text-lacivert transition-colors cursor-pointer bg-transparent border-none">
-        <span id="sss-toggle-text">Tümünü Gör</span>
-        <svg id="sss-toggle-arrow" class="w-4 h-4 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+    {/* SSS Sayfasına Yönlendirme */}
+    <div class="text-center mt-10">
+      <a
+        href="/ilim-bilme/sss"
+        class="inline-flex items-center gap-2 px-8 py-3.5 bg-turkuaz text-lacivert no-underline font-heading font-bold text-sm uppercase tracking-[2px] border-2 border-turkuaz hover:bg-lacivert hover:text-white hover:border-lacivert transition-all duration-300 rounded-lg"
+      >
+        Tüm Soruları Gör
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
-      </button>
+      </a>
     </div>
   </div>
 </section>
@@ -91,28 +75,4 @@ const kalanSorular = sorular.slice(3);
     });
   });
 
-  // Show more / less toggle
-  const moreBtn = document.getElementById('sss-toggle-more');
-  const moreSection = document.getElementById('sss-more');
-  const toggleText = document.getElementById('sss-toggle-text');
-  const toggleArrow = document.getElementById('sss-toggle-arrow');
-
-  moreBtn?.addEventListener('click', () => {
-    const isHidden = moreSection?.classList.contains('hidden');
-    if (isHidden) {
-      moreSection?.classList.remove('hidden');
-      if (toggleText) toggleText.textContent = 'Gizle';
-      if (toggleArrow) toggleArrow.style.transform = 'rotate(180deg)';
-    } else {
-      moreSection?.classList.add('hidden');
-      if (toggleText) toggleText.textContent = 'Tümünü Gör';
-      if (toggleArrow) toggleArrow.style.transform = '';
-      // Close any open items in the hidden section
-      moreSection?.querySelectorAll('.sss-item').forEach(i => {
-        i.querySelector('.sss-body')?.classList.add('hidden');
-        const ic = i.querySelector('.sss-icon') as HTMLElement;
-        if (ic) ic.style.transform = '';
-      });
-    }
-  });
 </script>
