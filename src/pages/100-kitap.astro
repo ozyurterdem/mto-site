@@ -3,112 +3,239 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ScrollTop from '../components/ScrollTop.astro';
-import { hundredBooks, readingCategories, categoryColors, categorySubtitles } from '../data/hundred-books';
+import { hundredBooks, readingCategories, categoryColors, categorySubtitles, categoryNotes } from '../data/hundred-books';
 
-const grouped = readingCategories.map(cat => ({
-  category: cat,
-  subtitle: categorySubtitles[cat],
-  color: categoryColors[cat],
-  books: hundredBooks.filter(b => b.category === cat),
-}));
+const grouped = readingCategories.map(cat => {
+  const allBooks = hundredBooks.filter(b => b.category === cat);
+  const mainBooks = allBooks.filter(b => !b.isReference);
+  const refBooks = allBooks.filter(b => b.isReference);
+  
+  return {
+    category: cat,
+    subtitle: categorySubtitles[cat],
+    color: categoryColors[cat],
+    note: categoryNotes[cat],
+    mainBooks,
+    refBooks,
+    totalCount: allBooks.length,
+  };
+});
+
+const totalMain = hundredBooks.filter(b => !b.isReference).length;
+const totalRef = hundredBooks.filter(b => b.isReference).length;
 ---
 
-<BaseLayout title="100 Kitap Listesi — MTO" description="Medeniyet Tasavvuru Okulu 100 Kitap okuma programı. 5 aşama, {hundredBooks.length} eser.">
+<BaseLayout title="100 Kitap Listesi — MTO" description="Yusuf Kaplan 100 Kitap okuma programı. 5 aşamalı medeniyet tasavvuru okulu, {totalMain} ana eser + {totalRef} referans.">
   <Header />
 
   <!-- Hero -->
-  <section class="relative py-24 px-8 overflow-hidden bg-lacivert text-center">
-    <div class="absolute inset-0 opacity-20">
-      <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1400&q=80" alt="" class="w-full h-full object-cover" />
+  <section class="relative py-24 px-6 overflow-hidden bg-gradient-to-br from-lacivert via-lacivert/95 to-lacivert/90 text-center">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-20"></div>
     </div>
-    <div class="relative z-10 max-w-[800px] mx-auto">
-      <h1 class="font-heading text-white text-[clamp(2.5rem,5vw,4rem)] font-bold uppercase tracking-wider mb-4">100 Kitap</h1>
-      <p class="text-gray-300 text-lg leading-relaxed">
-        Medeniyet Tasavvuru Okulu okuma programı — 5 aşama, {hundredBooks.length} temel eser
+    <div class="relative z-10 max-w-[900px] mx-auto">
+      <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-6">
+        <svg class="w-5 h-5 text-vizon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <span class="text-sm font-medium text-white uppercase tracking-wider">Yusuf Kaplan</span>
+      </div>
+      <h1 class="font-heading text-white text-[clamp(2.5rem,6vw,5rem)] font-bold uppercase tracking-tight mb-4 leading-[0.9]">
+        100 Kitap
+      </h1>
+      <p class="text-vizon/90 text-lg leading-relaxed max-w-[600px] mx-auto mb-8">
+        Medeniyet Tasavvuru Okulu beş aşamalı okuma programı
       </p>
+      <div class="flex flex-wrap justify-center gap-6 text-sm">
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-lg bg-vizon/20 grid place-items-center">
+            <svg class="w-5 h-5 text-vizon" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold text-white">{totalMain}</div>
+            <div class="text-xs text-vizon/70 uppercase tracking-wider">Ana Eser</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-lg bg-vizon/20 grid place-items-center">
+            <svg class="w-5 h-5 text-vizon" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm11 1H6v8l4-2 4 2V6z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold text-white">{totalRef}</div>
+            <div class="text-xs text-vizon/70 uppercase tracking-wider">Referans</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="w-10 h-10 rounded-lg bg-vizon/20 grid place-items-center">
+            <svg class="w-5 h-5 text-vizon" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+              <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <div>
+            <div class="font-heading text-2xl font-bold text-white">{readingCategories.length}</div>
+            <div class="text-xs text-vizon/70 uppercase tracking-wider">Aşama</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Sticky Nav -->
-  <section class="sticky top-20 z-40 bg-white border-b border-gray-200 py-4 px-8">
-    <div class="max-w-[900px] mx-auto flex flex-wrap justify-center gap-3">
+  <section class="sticky top-20 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm py-4 px-6">
+    <div class="max-w-[1100px] mx-auto flex flex-wrap justify-center gap-3">
       {grouped.map((g, i) => (
         <a
           href={`#asama-${i + 1}`}
-          class="flex items-center gap-2 px-4 py-2 rounded-full border text-sm font-medium transition-all hover:-translate-y-0.5 no-underline"
-          style={`border-color: ${g.color}; color: ${g.color};`}
+          class="group flex items-center gap-2 px-4 py-2.5 rounded-xl border-2 text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-md no-underline"
+          style={`border-color: ${g.color}20; color: ${g.color}; background: ${g.color}05;`}
         >
-          <span class="w-2.5 h-2.5 rounded-full" style={`background: ${g.color}`}></span>
-          {g.category}
-          <span class="text-xs opacity-60">({g.books.length})</span>
+          <div class="w-6 h-6 rounded-lg grid place-items-center text-white text-xs font-bold transition-transform group-hover:scale-110" style={`background: ${g.color}`}>
+            {i + 1}
+          </div>
+          <span class="hidden sm:inline">{g.category}</span>
+          <span class="text-xs opacity-60">({g.mainBooks.length}{g.refBooks.length > 0 && `+${g.refBooks.length}`})</span>
         </a>
       ))}
     </div>
   </section>
 
   <!-- Kitap Listesi -->
-  <main class="py-16 px-8 bg-white">
-    <div class="max-w-[900px] mx-auto">
+  <main class="py-16 px-6 bg-gray-50">
+    <div class="max-w-[1100px] mx-auto">
       {grouped.map((g, gi) => (
-        <section id={`asama-${gi + 1}`} class="mb-16 last:mb-0 scroll-mt-40">
+        <section id={`asama-${gi + 1}`} class="mb-20 last:mb-0 scroll-mt-32">
           <!-- Aşama Başlığı -->
-          <div class="flex items-center gap-4 mb-6 pb-4 border-b-2" style={`border-color: ${g.color}`}>
-            <div
-              class="w-10 h-10 rounded-lg grid place-items-center text-white font-heading font-bold text-base flex-shrink-0"
-              style={`background: ${g.color}`}
-            >
-              {gi + 1}
+          <div class="mb-8">
+            <div class="flex items-start gap-4 mb-3">
+              <div
+                class="w-14 h-14 rounded-2xl grid place-items-center text-white font-heading font-bold text-xl flex-shrink-0 shadow-lg"
+                style={`background: linear-gradient(135deg, ${g.color}, ${g.color}dd)`}
+              >
+                {gi + 1}
+              </div>
+              <div class="flex-1">
+                <h2 class="font-heading text-3xl text-lacivert font-bold uppercase tracking-tight mb-1">{g.category}</h2>
+                <p class="text-base font-medium" style={`color: ${g.color}`}>{g.subtitle}</p>
+                <p class="text-sm text-body/60 mt-1">{g.mainBooks.length} ana eser{g.refBooks.length > 0 && ` · ${g.refBooks.length} referans`}</p>
+              </div>
             </div>
-            <div>
-              <h2 class="font-heading text-xl text-lacivert font-bold uppercase tracking-wider">{g.category}</h2>
-              <p class="text-xs text-body">{g.subtitle} · {g.books.length} eser</p>
-            </div>
+
+            {g.note && (
+              <div class="mt-4 p-4 rounded-xl border-2 bg-white" style={`border-color: ${g.color}30`}>
+                <div class="flex items-start gap-3">
+                  <svg class="w-5 h-5 flex-shrink-0 mt-0.5" style={`color: ${g.color}`} fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                  </svg>
+                  <p class="text-sm leading-relaxed text-body">{g.note}</p>
+                </div>
+              </div>
+            )}
           </div>
 
-          <!-- Liste -->
-          <ol class="list-none m-0 p-0">
-            {g.books.map((book, bi) => {
-              const globalIndex = hundredBooks.indexOf(book) + 1;
-              return (
-                <li class="flex items-baseline gap-4 py-3 border-b border-gray-100 last:border-0 hover:bg-gray-50 transition-colors px-2 -mx-2 rounded">
-                  <span
-                    class="text-xs font-bold w-7 text-right flex-shrink-0"
-                    style={`color: ${g.color}`}
+          <!-- Ana Kitaplar -->
+          <div class="grid gap-3 mb-6">
+            {g.mainBooks.map((book) => (
+              <div class="group bg-white rounded-xl border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all p-5">
+                <div class="flex items-start gap-4">
+                  <div
+                    class="w-12 h-12 rounded-lg grid place-items-center text-white font-heading font-bold text-sm flex-shrink-0 shadow-sm"
+                    style={`background: ${g.color}`}
                   >
-                    {globalIndex}.
-                  </span>
+                    {book.number}
+                  </div>
                   <div class="flex-1 min-w-0">
-                    <span class="font-heading font-bold text-lacivert text-[0.95rem]">{book.title}</span>
-                    <span class="text-body text-sm"> — {book.author}</span>
+                    <h3 class="font-heading font-bold text-lacivert text-lg leading-tight mb-1.5 group-hover:text-opacity-80 transition-colors">
+                      {book.title}
+                    </h3>
+                    <div class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-body/80">
+                      {book.author && (
+                        <div class="flex items-center gap-1.5">
+                          <svg class="w-4 h-4 opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+                          </svg>
+                          <span>{book.author}</span>
+                        </div>
+                      )}
+                      {book.publisher && (
+                        <div class="flex items-center gap-1.5">
+                          <svg class="w-4 h-4 opacity-50" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z" />
+                          </svg>
+                          <span class="text-xs">{book.publisher}</span>
+                        </div>
+                      )}
+                    </div>
                     {book.description && (
-                      <span class="text-xs italic opacity-50"> ({book.description})</span>
+                      <div class="mt-2 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-gray-100 text-xs text-body/70 italic">
+                        <svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 20 20">
+                          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                        {book.description}
+                      </div>
                     )}
                   </div>
-                  <span class="text-xs text-vizon flex-shrink-0 hidden sm:block">{book.publisher}</span>
-                </li>
-              );
-            })}
-          </ol>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <!-- Referans Kitaplar -->
+          {g.refBooks.length > 0 && (
+            <div class="mt-8 pt-6 border-t-2" style={`border-color: ${g.color}20`}>
+              <div class="flex items-center gap-2 mb-4">
+                <svg class="w-5 h-5" style={`color: ${g.color}`} fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 5a2 2 0 012-2h10a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm11 1H6v8l4-2 4 2V6z" clip-rule="evenodd" />
+                </svg>
+                <h3 class="font-heading font-bold text-lacivert text-lg uppercase tracking-wide">Referans Kitaplar</h3>
+                <span class="text-xs text-body/50">({g.refBooks.length})</span>
+              </div>
+              <div class="grid sm:grid-cols-2 gap-3">
+                {g.refBooks.map((book) => (
+                  <div class="bg-white/60 rounded-lg border border-gray-200 hover:bg-white hover:shadow-sm transition-all p-4">
+                    <h4 class="font-heading font-semibold text-lacivert text-sm leading-tight mb-1">
+                      {book.title}
+                    </h4>
+                    <div class="text-xs text-body/70 space-y-0.5">
+                      {book.author && <div>👤 {book.author}</div>}
+                      {book.publisher && <div>🏢 {book.publisher}</div>}
+                      {book.description && <div class="italic text-body/50">📌 {book.description}</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       ))}
     </div>
   </main>
 
-  <!-- Stats -->
-  <section class="py-12 px-8 bg-lacivert text-center">
-    <div class="max-w-[800px] mx-auto flex flex-wrap justify-center gap-8">
-      <div>
-        <div class="font-heading text-4xl text-white font-bold">{hundredBooks.length}</div>
-        <div class="text-vizon text-sm uppercase tracking-wider">Toplam Eser</div>
+  <!-- Footer CTA -->
+  <section class="py-16 px-6 bg-gradient-to-br from-lacivert to-lacivert/95 text-center">
+    <div class="max-w-[700px] mx-auto">
+      <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-vizon/20 mb-6">
+        <svg class="w-8 h-8 text-vizon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
       </div>
-      <div>
-        <div class="font-heading text-4xl text-white font-bold">{readingCategories.length}</div>
-        <div class="text-vizon text-sm uppercase tracking-wider">Aşama</div>
-      </div>
-      <div>
-        <div class="font-heading text-4xl text-white font-bold">{new Set(hundredBooks.map(b => b.author)).size}</div>
-        <div class="text-vizon text-sm uppercase tracking-wider">Yazar</div>
-      </div>
+      <h2 class="font-heading text-3xl text-white font-bold mb-4">Medeniyet Tasavvuru Okulu</h2>
+      <p class="text-vizon/90 text-lg leading-relaxed mb-8">
+        Beş aşamalı okuma programı ile medeniyet düşüncesini derinleştirin
+      </p>
+      <a
+        href="/"
+        class="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-vizon text-lacivert font-heading font-bold text-lg hover:-translate-y-0.5 hover:shadow-xl transition-all no-underline"
+      >
+        Ana Sayfa
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        </svg>
+      </a>
     </div>
   </section>
 
