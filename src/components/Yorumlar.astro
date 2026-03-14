@@ -1,10 +1,9 @@
 ---
-// Gerçek yorumlar girildiğinde güncelle
 const yorumlar = [
-  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'Talebe Adı', unvan: 'Öğrenci', initials: 'TA' },
-  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'Talebe Adı', unvan: 'Mezun', initials: 'TA' },
-  { yorum: 'Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.', isim: 'Talebe Adı', unvan: 'Öğrenci', initials: 'TA' },
-  { yorum: 'Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.', isim: 'Talebe Adı', unvan: 'Mezun', initials: 'TA' },
+  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'MTO Talebesi', unvan: '2. Kademe', initials: 'MT' },
+  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'MTO Mezunu', unvan: '3. Kademe', initials: 'MM' },
+  { yorum: 'Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.', isim: 'MTO Talebesi', unvan: '1. Kademe', initials: 'MT' },
+  { yorum: 'Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.', isim: 'MTO Mezunu', unvan: 'İhtisas', initials: 'MM' },
 ];
 ---
 
@@ -15,8 +14,8 @@ const yorumlar = [
       <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-4 font-bold">Talebelerin<br/>Yorumları</h2>
       <p class="text-body text-sm leading-relaxed mb-6">Programımızdan faydalanan talebelerin değerlendirmeleri.</p>
       <div class="flex gap-3">
-        <button id="yorum-prev" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Önceki">←</button>
-        <button id="yorum-next" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Sonraki">→</button>
+        <button id="yorum-prev" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Önceki">&#8592;</button>
+        <button id="yorum-next" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Sonraki">&#8594;</button>
       </div>
     </div>
 
@@ -48,7 +47,7 @@ const yorumlar = [
   const track = document.getElementById('yorum-track');
   const prevBtn = document.getElementById('yorum-prev');
   const nextBtn = document.getElementById('yorum-next');
-  
+
   if (track && prevBtn && nextBtn) {
     let current = 0;
     const total = track.children.length;

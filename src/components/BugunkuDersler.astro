@@ -1,0 +1,78 @@
+---
+import { bugunGun, bugunDersler } from '../data/ders-programi';
+
+const gun = bugunGun();
+const dersler = bugunDersler();
+---
+
+<section class="py-12 px-5 md:px-8 lg:px-12 bg-[#f5f7fa]">
+  <div class="max-w-[1100px] mx-auto">
+
+    <!-- Başlık -->
+    <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
+      <div>
+        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-2">Ders Programı</div>
+        <h2 class="font-heading text-[clamp(1.4rem,2.5vw,2rem)] text-lacivert font-bold">
+          Bugünkü Dersler
+        </h2>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-lg border-2 border-turkuaz grid place-items-center">
+          <svg class="w-5 h-5 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+          </svg>
+        </div>
+        <span class="font-heading font-bold text-lacivert text-lg">{gun}</span>
+      </div>
+    </div>
+
+    {dersler.length === 0 ? (
+      <div class="text-center py-12 text-gray-500">
+        <p class="text-lg">Bugün planlanmış ders bulunmuyor.</p>
+      </div>
+    ) : (
+      <div class="grid gap-3">
+        {dersler.map((d, i) => (
+          <div class="flex items-center gap-4 bg-white rounded-xl px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-300">
+            <!-- Saat -->
+            <div class="flex-shrink-0 w-[70px] text-center">
+              <div class="font-heading font-bold text-lacivert text-lg leading-none">{d.saat}</div>
+            </div>
+
+            <!-- Ayırıcı -->
+            <div class="flex-shrink-0 w-[3px] h-10 rounded-full bg-turkuaz"></div>
+
+            <!-- Ders bilgisi -->
+            <div class="flex-1 min-w-0">
+              <h3 class="font-heading font-semibold text-lacivert text-[15px] leading-snug truncate">{d.ders}</h3>
+              <div class="flex items-center gap-2 mt-1 flex-wrap">
+                {d.hoca !== '-' && (
+                  <span class="text-vizon text-sm">{d.hoca}</span>
+                )}
+                {d.kademeler.map(k => (
+                  <span class="text-[11px] font-heading font-semibold text-turkuaz bg-turkuaz/10 border border-turkuaz/20 rounded-full px-2 py-0.5 whitespace-nowrap">{k}</span>
+                ))}
+              </div>
+            </div>
+
+            <!-- Süre -->
+            <div class="flex-shrink-0 text-right hidden sm:block">
+              <span class="text-xs font-medium text-gray-400 bg-gray-100 rounded-full px-3 py-1">{d.sure}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <!-- Tam program linki -->
+    <div class="text-center mt-8">
+      <a href="/ders-programi" class="inline-flex items-center gap-2 text-turkuaz font-heading font-semibold text-sm uppercase tracking-wider hover:text-mavi transition-colors duration-300">
+        Tüm Ders Programını Gör
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+
+  </div>
+</section>

@@ -1,43 +1,46 @@
 ---
-// Gerçek veriler girildiğinde güncelle
-const egitimler = [
-  { tarih: '15 Mart 2025', hoca: 'Hoca Adı', saat: '14:00', baslik: 'İslam Felsefesine Giriş', aciklama: 'İslam felsefesinin temel kavramları ve düşünce geleneğinin tarihî seyri üzerine kapsamlı bir giriş dersi.', ikon: '📖' },
-  { tarih: '22 Mart 2025', hoca: 'Hoca Adı', saat: '16:00', baslik: 'Medeniyet ve Tasavvur', aciklama: 'Medeniyet kavramının kökenleri, İslam medeniyetinin yeniden inşası ve tasavvur bilincinin oluşumu.', ikon: '🏛️' },
-  { tarih: '29 Mart 2025', hoca: 'Hoca Adı', saat: '10:00', baslik: 'Kavram ve Düşünce', aciklama: 'Kavramların zihin dünyamızdaki yeri, düşünce üretimi ve kavramsal çerçeve oluşturma yöntemleri.', ikon: '💡' },
+const oneCikanlar = [
+  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', gun: 'Salı', saat: '21:30', aciklama: 'İslâm medeniyetinin yeniden inşa ve ihya sürecinin kavramsal çerçevesini oluşturan kurucu ders.', kademeler: 'Tüm Kademeler' },
+  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', gun: 'Pazartesi', saat: '20:00', aciklama: 'Hak Dini Kur\'an Dili tefsirinin sistematik okuması ve çağdaş yorumu.', kademeler: '2-3. Kademe, İhtisas' },
+  { ders: 'Düşünce Tarihi', hoca: 'Tahsin Görgün', gun: 'Pazartesi / Perşembe', saat: '20:00', aciklama: 'İslâm düşünce geleneğinin tarihî seyri, temel kaynakları ve günümüze yansımaları.', kademeler: '1-2. Kademe' },
+  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngörmez', gun: 'Çarşamba', saat: '20:00', aciklama: 'Klasik ve modern siyaset düşüncesinin temel kavramları ve karşılaştırmalı analizi.', kademeler: '2-3. Kademe' },
+  { ders: 'Öncüler', hoca: 'Saadettin Acar', gun: 'Çarşamba', saat: '21:30', aciklama: 'İslâm medeniyetinin öncü şahsiyetleri, düşünce dünyaları ve günümüze mirası.', kademeler: 'Tüm Kademeler' },
+  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', gun: 'Pazartesi', saat: '21:30', aciklama: 'Ses ve nefes eğitimi ile manevî gelişim arasındaki bağın keşfi.', kademeler: 'Tüm Kademeler' },
 ];
 ---
 
 <section id="egitimler" class="py-20 px-8 lg:px-12 bg-gray-50">
   <div class="text-center mb-12">
-    <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">Faaliyetlerimiz</div>
+    <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">2025–2026 Bahar Dönemi</div>
     <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
-      Eğitimlerimiz
+      Öne Çıkan Dersler
     </h2>
+    <div class="w-16 h-[2px] bg-turkuaz mx-auto mt-4"></div>
   </div>
 
-  <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6">
-    {egitimler.map(e => (
+  <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {oneCikanlar.map(e => (
       <div class="bg-white rounded-xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]">
-        <!-- Görsel Alan -->
-        <div class="aspect-video bg-gradient-to-br from-lacivert to-mavi relative flex items-center justify-center">
-          <span class="text-5xl opacity-30">{e.ikon}</span>
-          <span class="absolute -bottom-3 left-4 bg-turkuaz text-white px-3.5 py-1 text-xs font-bold uppercase tracking-wider rounded-sm">
-            {e.tarih}
-          </span>
-        </div>
+        <div class="h-2 bg-gradient-to-r from-turkuaz to-mavi"></div>
         <div class="p-6">
-          <div class="flex justify-between text-xs text-vizon font-medium mb-3">
-            <span>{e.hoca}</span>
-            <span>{e.saat}</span>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-[11px] font-heading font-semibold text-turkuaz bg-turkuaz/10 border border-turkuaz/20 rounded-full px-2.5 py-0.5">{e.kademeler}</span>
+            <span class="text-xs text-vizon font-medium">{e.gun} · {e.saat}</span>
           </div>
-          <h3 class="font-heading text-lg text-lacivert font-bold uppercase mb-3">{e.baslik}</h3>
-          <p class="text-body text-[0.85rem] leading-relaxed mb-4">{e.aciklama}</p>
-          <a href="#" class="text-xs font-bold uppercase tracking-wider text-lacivert no-underline flex items-center gap-1 group">
-            Detaylar
-            <span class="block w-5 h-0.5 bg-lacivert group-hover:w-[30px] group-hover:bg-turkuaz transition-all duration-300"></span>
-          </a>
+          <h3 class="font-heading text-lg text-lacivert font-bold mb-2 leading-snug">{e.ders}</h3>
+          <p class="text-vizon text-sm font-medium mb-3">{e.hoca}</p>
+          <p class="text-body text-[0.85rem] leading-relaxed">{e.aciklama}</p>
         </div>
       </div>
     ))}
+  </div>
+
+  <div class="text-center mt-10">
+    <a href="/ders-programi" class="inline-flex items-center gap-2 px-8 py-3.5 bg-lacivert text-white no-underline font-bold text-sm uppercase tracking-[1.5px] rounded hover:bg-turkuaz transition-all duration-300">
+      Tüm Ders Programını Gör
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </a>
   </div>
 </section>

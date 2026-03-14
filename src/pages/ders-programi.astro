@@ -1,0 +1,232 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ScrollTop from '../components/ScrollTop.astro';
+import { dersProgramlari } from '../data/ders-programi';
+
+// Kademe bazlı istatistikler
+function kademeStats(kp: typeof dersProgramlari[0]) {
+  const hocalar = new Set<string>();
+  let toplamDers = 0;
+  for (const gp of kp.programlar) {
+    for (const d of gp.dersler) {
+      toplamDers++;
+      if (d.hoca !== '-') hocalar.add(d.hoca);
+    }
+  }
+  return { hocaSayisi: hocalar.size, dersSayisi: toplamDers, gunSayisi: kp.programlar.length };
+}
+
+// Gün kısaltmaları
+const gunKisa: Record<string, string> = {
+  'Pazartesi': 'Pzt',
+  'Salı': 'Sal',
+  'Çarşamba': 'Çar',
+  'Perşembe': 'Per',
+  'Cuma': 'Cum',
+  'Cumartesi': 'Cmt',
+  'Pazar': 'Paz',
+};
+---
+
+<BaseLayout title="Ders Programı — MTO">
+  <Header />
+
+  <!-- Hero Bölümü -->
+  <section class="relative pt-28 pb-16 px-5 md:px-8 lg:px-12 bg-lacivert overflow-hidden">
+    <!-- Dekoratif arka plan -->
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute -top-[200px] -right-[200px] w-[500px] h-[500px] bg-turkuaz/[0.08] rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-[100px] -left-[100px] w-[300px] h-[300px] bg-mavi/[0.08] rounded-full blur-3xl"></div>
+    </div>
+
+    <div class="relative max-w-[1100px] mx-auto">
+      <!-- Başlık -->
+      <div class="text-center mb-12">
+        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">2025–2026 Bahar Dönemi</div>
+        <h1 class="font-heading text-[clamp(2rem,3.5vw,3rem)] text-white uppercase tracking-wider font-bold">
+          Ders Programı
+        </h1>
+        <div class="w-20 h-[3px] bg-gradient-to-r from-turkuaz to-mavi mx-auto mt-5 rounded-full"></div>
+        <p class="text-white/50 text-sm mt-4 max-w-[500px] mx-auto">
+          5 kademe, 15 akademisyen, haftanın 7 günü devam eden kapsamlı eğitim programı.
+        </p>
+      </div>
+
+      <!-- Tab butonları -->
+      <div class="flex flex-wrap justify-center gap-3 mb-4" id="tab-buttons">
+        {dersProgramlari.map((kp, i) => {
+          const s = kademeStats(kp);
+          return (
+            <button
+              data-tab={i}
+              class:list={[
+                'tab-btn group relative px-5 py-3 rounded-xl font-heading font-semibold text-sm transition-all duration-300 border-2',
+                i === 0
+                  ? 'bg-turkuaz text-lacivert border-turkuaz shadow-[0_4px_20px_rgba(48,213,225,0.3)]'
+                  : 'bg-white/[0.04] text-white/60 border-white/10 hover:border-turkuaz/50 hover:text-white hover:bg-white/[0.08]',
+              ]}
+            >
+              <span class="block">{kp.kisa}</span>
+              <span class:list={[
+                'text-[10px] font-normal mt-0.5 block opacity-70',
+                i === 0 ? 'text-lacivert/70' : 'text-white/40',
+              ]}>
+                {s.dersSayisi} ders · {s.hocaSayisi} hoca
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- Tab İçerikleri -->
+  <section class="pb-20 px-5 md:px-8 lg:px-12 bg-lacivert">
+    <div class="max-w-[1100px] mx-auto">
+      {dersProgramlari.map((kp, i) => {
+        const s = kademeStats(kp);
+        return (
+          <div
+            data-panel={i}
+            class:list={['tab-panel', i !== 0 && 'hidden']}
+          >
+            <!-- Kademe başlığı + mini istatistikler -->
+            <div class="flex flex-wrap items-center justify-between gap-4 mb-8 pb-6 border-b border-white/[0.12] bg-white/[0.03] rounded-xl px-6 py-5">
+              <div class="flex items-center gap-3">
+                <div class="w-1 h-8 rounded-full bg-turkuaz"></div>
+                <h2 class="text-white font-heading text-xl font-bold">
+                  {kp.kademe}
+                </h2>
+              </div>
+              <div class="flex gap-8">
+                <div class="text-center">
+                  <div class="text-turkuaz font-heading font-bold text-2xl">{s.gunSayisi}</div>
+                  <div class="text-white/50 text-[11px] uppercase tracking-wider font-medium">Gün</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-turuncu font-heading font-bold text-2xl">{s.dersSayisi}</div>
+                  <div class="text-white/50 text-[11px] uppercase tracking-wider font-medium">Ders</div>
+                </div>
+                <div class="text-center">
+                  <div class="text-vizon font-heading font-bold text-2xl">{s.hocaSayisi}</div>
+                  <div class="text-white/50 text-[11px] uppercase tracking-wider font-medium">Hoca</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Gün kartları -->
+            <div class="grid gap-5">
+              {kp.programlar.map((gp) => (
+                <div class="group rounded-2xl border border-white/[0.12] bg-white/[0.05] hover:bg-white/[0.08] hover:border-turkuaz/30 transition-all duration-300 overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.2)]">
+                  <!-- Gün başlığı -->
+                  <div class="flex items-center gap-4 px-6 py-4 bg-white/[0.04] border-b border-white/[0.08]">
+                    <div class="w-12 h-12 rounded-xl bg-turkuaz/20 border-2 border-turkuaz/40 grid place-items-center flex-shrink-0">
+                      <span class="text-turkuaz font-heading font-bold text-sm">{gunKisa[gp.gun]}</span>
+                    </div>
+                    <div class="flex-1">
+                      <h3 class="text-white font-heading font-bold text-base">{gp.gun}</h3>
+                      <span class="text-white/40 text-xs">{gp.dersler.length} ders</span>
+                    </div>
+                    <div class="text-turkuaz/60 text-xs font-heading font-semibold uppercase tracking-wider hidden sm:block">
+                      {gp.dersler[0].saat} – {gp.dersler[gp.dersler.length - 1].saat}
+                    </div>
+                  </div>
+
+                  <!-- Dersler -->
+                  <div class="divide-y divide-white/[0.06]">
+                    {gp.dersler.map((d) => (
+                      <div class="flex items-center gap-4 px-6 py-4 hover:bg-turkuaz/[0.04] transition-colors">
+                        <!-- Saat -->
+                        <div class="flex-shrink-0 w-[64px]">
+                          <div class="text-turkuaz font-heading font-bold text-[15px]">{d.saat}</div>
+                        </div>
+
+                        <!-- Zaman noktası -->
+                        <div class="flex-shrink-0">
+                          <div class="w-3 h-3 rounded-full bg-turkuaz/20 border-2 border-turkuaz shadow-[0_0_6px_rgba(48,213,225,0.3)]"></div>
+                        </div>
+
+                        <!-- Ders bilgisi -->
+                        <div class="flex-1 min-w-0">
+                          <h4 class="text-white text-[15px] font-medium leading-snug">{d.ders}</h4>
+                          {d.hoca !== '-' && (
+                            <p class="text-vizon text-sm mt-0.5">{d.hoca}</p>
+                          )}
+                        </div>
+
+                        <!-- Süre badge -->
+                        <div class="flex-shrink-0 hidden sm:block">
+                          <span class="text-xs font-medium text-white/40 bg-white/[0.08] border border-white/[0.08] rounded-full px-3 py-1">
+                            {d.sure}
+                          </span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Alt bilgi bandı -->
+  <section class="py-8 px-5 md:px-8 bg-gradient-to-r from-mavi to-lacivert">
+    <div class="max-w-[1100px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <h3 class="text-white font-heading font-bold text-lg">Sorularınız mı var?</h3>
+        <p class="text-white/50 text-sm mt-1">Ders programı hakkında detaylı bilgi almak için bize ulaşın.</p>
+      </div>
+      <a
+        href="/#iletisim-bolum"
+        class="inline-flex items-center gap-2 px-8 py-3.5 bg-white text-lacivert no-underline font-bold text-sm uppercase tracking-[1.5px] rounded hover:bg-turkuaz hover:text-white transition-all duration-300 flex-shrink-0"
+      >
+        İletişim
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
+  <ScrollTop />
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.getAttribute('data-tab');
+
+      // Buton stilleri
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('bg-turkuaz', 'text-lacivert', 'border-turkuaz', 'shadow-[0_4px_20px_rgba(48,213,225,0.3)]');
+        b.classList.add('bg-white/[0.04]', 'text-white/60', 'border-white/10');
+        const sub = b.querySelector('span:last-child');
+        if (sub) { sub.classList.remove('text-lacivert/70'); sub.classList.add('text-white/40'); }
+      });
+      btn.classList.remove('bg-white/[0.04]', 'text-white/60', 'border-white/10');
+      btn.classList.add('bg-turkuaz', 'text-lacivert', 'border-turkuaz', 'shadow-[0_4px_20px_rgba(48,213,225,0.3)]');
+      const sub = btn.querySelector('span:last-child');
+      if (sub) { sub.classList.remove('text-white/40'); sub.classList.add('text-lacivert/70'); }
+
+      // Panel fade animasyonu
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.add('hidden'));
+      const panel = document.querySelector(`[data-panel="${idx}"]`) as HTMLElement;
+      if (panel) {
+        panel.classList.remove('hidden');
+        panel.style.opacity = '0';
+        panel.style.transform = 'translateY(10px)';
+        requestAnimationFrame(() => {
+          panel.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          panel.style.opacity = '1';
+          panel.style.transform = 'translateY(0)';
+        });
+      }
+    });
+  });
+</script>
