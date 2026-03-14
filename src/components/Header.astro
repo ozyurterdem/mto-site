@@ -1,12 +1,47 @@
 ---
-const navLinks = [
-  { label: 'Anasayfa', href: '/', active: true },
-  { label: 'Ders Programı', href: '/ders-programi' },
-  { label: 'Akademik', href: '#akademik' },
-  { label: '100 Kitap', href: '/100-kitap' },
-  { label: 'Faaliyetler', href: '#egitimler' },
-  { label: 'Hakkımızda', href: '#hakkimizda' },
-  { label: 'İletişim', href: '#iletisim-bolum' },
+const mainNav = [
+  { label: 'Anasayfa', href: '/' },
+  {
+    label: 'İlim · Bilme',
+    href: '#',
+    children: [
+      [
+        { label: 'Nişangah', href: '/#nisangah' },
+        { label: "MTO'dan Mesaj", href: '/#mto-mesaj' },
+        { label: 'Akademi', href: '/#akademi' },
+        { label: 'Şehir Temsilcilikleri', href: '/#sehir-temsilcilikleri' },
+        { label: 'MTO Bülten', href: '/#mto-bulten' },
+        { label: 'SSS', href: '/#sss' },
+      ],
+      [
+        { label: 'Akademik Takvim', href: '/#akademik-takvim' },
+        { label: 'Akademik Kadro', href: '/#akademik' },
+        { label: 'Ders Programları', href: '/ders-programi' },
+      ],
+    ],
+  },
+  {
+    label: 'İrfan · Bulma',
+    href: '#',
+    children: [
+      [
+        { label: 'Dersler', href: '/#dersler' },
+        { label: '100 Kitap Listesi', href: '/100-kitap' },
+        { label: '4 Kalem Tekniği', href: '/#dort-kalem' },
+      ],
+    ],
+  },
+  {
+    label: 'Hikmet · Olma',
+    href: '#',
+    children: [
+      [
+        { label: 'Eğitimler', href: '/#egitimler' },
+        { label: 'Videolar', href: '/#videolar' },
+      ],
+    ],
+  },
+  { label: 'İletişim', href: '/#iletisim-bolum' },
 ];
 ---
 
@@ -18,21 +53,48 @@ const navLinks = [
     </a>
 
     <!-- Nav Desktop -->
-    <nav class="hidden lg:flex items-center">
-      {navLinks.map((link, i) => (
+    <nav class="hidden lg:flex items-center h-full">
+      {mainNav.map((item, i) => (
         <>
-          <a
-            href={link.href}
-            class:list={[
-              'no-underline text-[13px] font-medium uppercase tracking-[1.2px] py-7 px-4 border-b-[3px] transition-all duration-300 font-body',
-              link.active
-                ? 'text-lacivert border-turkuaz font-bold'
-                : 'text-body border-transparent hover:text-lacivert hover:border-turkuaz',
-            ]}
-          >
-            {link.label}
-          </a>
-          {i < navLinks.length - 1 && (
+          <div class="relative group h-full flex items-center">
+            <a
+              href={item.href}
+              class:list={[
+                'no-underline text-[13px] font-medium uppercase tracking-[1.2px] py-7 px-4 border-b-[3px] transition-all duration-300 font-body flex items-center gap-1',
+                item.href === '/'
+                  ? 'text-lacivert border-turkuaz font-bold'
+                  : 'text-body border-transparent hover:text-lacivert hover:border-turkuaz',
+              ]}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="w-3 h-3 opacity-50 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              )}
+            </a>
+
+            {/* Mega Dropdown */}
+            {item.children && (
+              <div class="absolute top-full left-0 pt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
+                <div class="bg-white/95 backdrop-blur-md border border-gray-200 rounded-lg shadow-xl p-6 min-w-[280px] flex gap-10">
+                  {item.children.map((col) => (
+                    <div class="space-y-1">
+                      {col.map((link) => (
+                        <a
+                          href={link.href}
+                          class="block py-1.5 px-2 text-sm text-body hover:text-turkuaz hover:bg-turkuaz/5 rounded-md transition-colors no-underline font-body whitespace-nowrap"
+                        >
+                          {link.label}
+                        </a>
+                      ))}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+          {i < mainNav.length - 1 && (
             <span class="w-px h-4 bg-gray-200"></span>
           )}
         </>
@@ -41,7 +103,7 @@ const navLinks = [
 
     <!-- Right -->
     <div class="flex items-center gap-3">
-      <!-- Social - küçük, sağa yasık -->
+      <!-- Social -->
       <div class="hidden md:flex gap-1">
         <a href="https://twitter.com/Mtokurumsal" target="_blank" rel="noopener" class="w-6 h-6 rounded-full bg-lacivert grid place-items-center hover:bg-turkuaz transition-colors" aria-label="X">
           <svg class="w-2.5 h-2.5 fill-white" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -60,6 +122,16 @@ const navLinks = [
         </a>
       </div>
 
+      <!-- Search & Language (taslaktaki gibi) -->
+      <button class="hidden lg:grid w-8 h-8 place-items-center text-lacivert hover:text-turkuaz transition-colors" aria-label="Ara">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </button>
+      <div class="hidden lg:flex items-center gap-1.5 text-xs font-medium text-body/60 ml-2">
+        <span class="hover:text-turkuaz cursor-pointer transition-colors">EN</span>
+        <span class="text-gray-300">|</span>
+        <span class="hover:text-turkuaz cursor-pointer transition-colors">AR</span>
+      </div>
+
       <!-- Mobile hamburger -->
       <button class="lg:hidden w-9 h-9 grid place-items-center" id="mobile-toggle" aria-label="Menü">
         <svg class="w-6 h-6 fill-lacivert" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
@@ -69,16 +141,23 @@ const navLinks = [
 
   <!-- Mobile Nav -->
   <nav id="mobile-nav" class="lg:hidden hidden bg-white border-t border-gray-100 px-8 pb-4">
-    {navLinks.map(link => (
-      <a
-        href={link.href}
-        class:list={[
-          'block py-3 text-sm font-medium uppercase tracking-wider border-b border-gray-50 no-underline font-body',
-          link.active ? 'text-turkuaz font-bold' : 'text-body',
-        ]}
-      >
-        {link.label}
-      </a>
+    {mainNav.map(item => (
+      <>
+        <a
+          href={item.href}
+          class:list={[
+            'block py-3 text-sm font-medium uppercase tracking-wider border-b border-gray-50 no-underline font-body',
+            item.href === '/' ? 'text-turkuaz font-bold' : 'text-body',
+          ]}
+        >
+          {item.label}
+        </a>
+        {item.children && item.children.flat().map(sub => (
+          <a href={sub.href} class="block py-2 pl-6 text-sm text-body/70 hover:text-turkuaz no-underline font-body border-b border-gray-50/50">
+            {sub.label}
+          </a>
+        ))}
+      </>
     ))}
   </nav>
 </header>

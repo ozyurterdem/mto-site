@@ -22,7 +22,7 @@ export const categorySubtitles: Record<string, string> = {
   'İkinci Aşama': 'Ders (Usûl)',
   'Üçüncü Aşama': 'Tarih, Medeniyetler Tarihi ve Tarih Felsefesi',
   'Dördüncü Aşama': 'Modernite, Felsefe ve Sanat',
-  'Beşinci Aşama': 'Klasikler',
+  'Beşinci Aşama': 'Kurucu Metinler',
 };
 
 export const categoryColors: Record<string, string> = {

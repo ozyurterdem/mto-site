@@ -1,0 +1,45 @@
+---
+const kalemler = [
+  { hex: '#2E7D32', name: 'Yeşil', role: 'Kilit Kavramlar' },
+  { hex: '#C62828', name: 'Kırmızı', role: 'Önemli Cümleler' },
+  { hex: '#1565C0', name: 'Mavi', role: 'Atlanmaması Gerekenler' },
+  { hex: '#212121', name: 'Siyah', role: 'Kavramlaştırma' },
+];
+---
+
+<section class="py-14 px-5 md:px-8 bg-gray-50" id="dort-kalem">
+  <div class="max-w-[1100px] mx-auto">
+    <div class="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+
+      <!-- Sol: Başlık + Açıklama -->
+      <div class="md:w-1/2">
+        <div class="text-turkuaz text-xs uppercase tracking-[3px] font-medium mb-2">Okuma Metodu</div>
+        <h2 class="font-heading text-[clamp(1.5rem,2.5vw,2rem)] text-lacivert uppercase tracking-wider font-bold mb-4">
+          Dört Kalem Tekniği
+        </h2>
+        <p class="text-body text-[0.95rem] leading-[1.8] mb-5">
+          Kitap okumak pasif bir eylem değildir. Dört renkli kurşun kalemle okuduğunuzda kitap bir resim tablosuna dönüşür, görsel hafıza devreye girer.
+        </p>
+        <a href="/dort-kalem" class="inline-flex items-center gap-2 text-turkuaz font-heading font-bold text-sm uppercase tracking-wider hover:gap-3 transition-all">
+          Detaylı Bilgi
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+        </a>
+      </div>
+
+      <!-- Sağ: 4 Kalem Mini Kartları -->
+      <div class="md:w-1/2 grid grid-cols-2 gap-3">
+        {kalemler.map(k => (
+          <div class="relative bg-white rounded-lg px-4 py-3.5 border border-gray-100 shadow-[0_1px_6px_rgba(0,0,0,0.05)] overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-[2px]" style={`background: ${k.hex}`}></div>
+            <div class="flex items-center gap-2.5 mb-1">
+              <span class="w-2.5 h-2.5 rounded-full flex-shrink-0" style={`background: ${k.hex}`}></span>
+              <span class="font-heading text-lacivert text-sm font-bold">{k.name}</span>
+            </div>
+            <div class="text-[10px] font-bold uppercase tracking-[1px] pl-5" style={`color: ${k.hex}`}>{k.role}</div>
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </div>
+</section>
