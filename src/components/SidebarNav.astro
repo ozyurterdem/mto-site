@@ -10,9 +10,10 @@ interface Props {
   title: string;
   items: NavItem[];
   currentPath?: string;
+  accentColor?: 'vizon' | 'turuncu' | 'mavi';
 }
 
-const { title, items, currentPath = '' } = Astro.props;
+const { title, items, currentPath = '', accentColor = 'vizon' } = Astro.props;
 
 function isActive(item: NavItem): boolean {
   if (item.active) return true;
@@ -20,10 +21,17 @@ function isActive(item: NavItem): boolean {
   if (item.children?.some(c => isActive(c))) return true;
   return false;
 }
+
+// Renk eşlemeleri
+const titleColor = accentColor === 'vizon' ? 'text-vizon' : accentColor === 'turuncu' ? 'text-turuncu' : 'text-mavi';
+const borderColor = accentColor === 'vizon' ? 'border-vizon' : accentColor === 'turuncu' ? 'border-turuncu' : 'border-mavi';
+const activeBg = accentColor === 'vizon' ? 'bg-vizon' : accentColor === 'turuncu' ? 'bg-turuncu' : 'bg-mavi';
+const activeChildText = accentColor === 'vizon' ? 'text-vizon' : accentColor === 'turuncu' ? 'text-turuncu' : 'text-mavi';
+const hoverText = accentColor === 'vizon' ? 'hover:text-vizon' : accentColor === 'turuncu' ? 'hover:text-turuncu' : 'hover:text-mavi';
 ---
 
 <aside class="w-full lg:w-[260px] flex-shrink-0">
-  <h3 class="text-[1.1rem] font-bold tracking-wider uppercase text-vizon border-b-2 border-turkuaz pb-3 mb-4 font-heading">
+  <h3 class:list={['text-[1.1rem] font-bold tracking-wider uppercase border-b-2 pb-3 mb-4 font-heading', titleColor, borderColor]}>
     {title}
   </h3>
   <ul class="list-none space-y-0">
@@ -38,8 +46,8 @@ function isActive(item: NavItem): boolean {
             class:list={[
               'flex items-center gap-2 py-2.5 px-3 text-sm font-medium border-b border-gray-100 no-underline transition-colors',
               active
-                ? 'bg-turuncu text-white'
-                : 'text-lacivert hover:text-turkuaz hover:bg-gray-50',
+                ? `${activeBg} text-white`
+                : `text-lacivert ${hoverText} hover:bg-gray-50`,
             ]}
           >
             {hasChildren ? (
@@ -62,8 +70,8 @@ function isActive(item: NavItem): boolean {
                     class:list={[
                       'block py-2 pl-10 pr-3 text-sm border-b border-gray-50 no-underline transition-colors',
                       isActive(child)
-                        ? 'text-turkuaz font-medium'
-                        : 'text-body hover:text-turkuaz',
+                        ? `${activeChildText} font-medium`
+                        : `text-body ${hoverText}`,
                     ]}
                   >
                     {child.label}

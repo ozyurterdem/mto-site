@@ -1,9 +1,11 @@
 ---
+// Dal renk sistemi: İlim=vizon(#B7A78F), İrfan=turuncu(#E7A54E), Hikmet=mavi(#0D619A)
 const mainNav = [
-  { label: 'Anasayfa', href: '/' },
+  { label: 'Anasayfa', href: '/', color: '' },
   {
     label: 'İlim · Bilme',
     href: '/ilim-bilme',
+    color: 'vizon',
     children: [
       [
         { label: 'Hakkımızda', href: '/ilim-bilme/hakkimizda' },
@@ -25,6 +27,7 @@ const mainNav = [
   {
     label: 'İrfan · Bulma',
     href: '/irfan-bulma',
+    color: 'turuncu',
     children: [
       [
         { label: 'Dersler', href: '/irfan-bulma/dersler' },
@@ -36,6 +39,7 @@ const mainNav = [
   {
     label: 'Hikmet · Olma',
     href: '/hikmet-olma',
+    color: 'mavi',
     children: [
       [
         { label: 'Kamplar', href: '/hikmet-olma/kamplar' },
@@ -47,7 +51,7 @@ const mainNav = [
       ],
     ],
   },
-  { label: 'İletişim', href: '/iletisim' },
+  { label: 'İletişim', href: '/iletisim', color: '' },
 ];
 
 const socialLinks = [
@@ -68,11 +72,22 @@ const socialLinks = [
 
     <!-- Nav Desktop -->
     <nav class="hidden lg:flex items-center h-full">
-      {mainNav.map((item, i) => (
+      {mainNav.map((item, i) => {
+        const borderColor = item.color === 'vizon' ? 'border-vizon' : item.color === 'turuncu' ? 'border-turuncu' : item.color === 'mavi' ? 'border-mavi' : 'border-white';
+        const hoverTextColor = item.color === 'vizon' ? 'hover:text-vizon' : item.color === 'turuncu' ? 'hover:text-turuncu' : item.color === 'mavi' ? 'hover:text-mavi' : 'hover:text-turkuaz';
+        const dropdownHoverText = item.color === 'vizon' ? 'hover:text-vizon' : item.color === 'turuncu' ? 'hover:text-turuncu' : item.color === 'mavi' ? 'hover:text-mavi' : 'hover:text-turkuaz';
+        const dropdownHoverBg = item.color === 'vizon' ? 'hover:bg-vizon/5' : item.color === 'turuncu' ? 'hover:bg-turuncu/5' : item.color === 'mavi' ? 'hover:bg-mavi/5' : 'hover:bg-turkuaz/5';
+        const topBorderColor = item.color === 'vizon' ? 'border-t-vizon' : item.color === 'turuncu' ? 'border-t-turuncu' : item.color === 'mavi' ? 'border-t-mavi' : 'border-t-turkuaz';
+        return (
         <div class="relative group h-full flex items-center">
           <a
             href={item.href}
-            class="no-underline text-[13px] font-semibold uppercase tracking-[1.5px] py-6 px-5 border-b-[3px] border-transparent transition-all duration-300 font-body text-white hover:border-white flex items-center gap-1"
+            class:list={[
+              'no-underline text-[13px] font-semibold uppercase tracking-[1.5px] py-6 px-5 border-b-[3px] border-transparent transition-all duration-300 font-body text-white flex items-center gap-1',
+              `group-hover:${borderColor}`,
+            ]}
+            style={item.color ? `--hover-border: var(--color-${item.color})` : ''}
+            data-color={item.color || ''}
           >
             {item.label}
             {item.children && (
@@ -85,7 +100,10 @@ const socialLinks = [
           {/* Mega Dropdown */}
           {item.children && (
             <div class="absolute top-full left-0 pt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
-              <div class="bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl p-6 min-w-[280px] flex gap-10">
+              <div class:list={[
+                'bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl p-6 min-w-[280px] flex gap-10 border-t-[3px]',
+                topBorderColor,
+              ]}>
                 {item.children.map((col) => (
                   <div class="space-y-1">
                     {col.map((link: any) => (
@@ -94,7 +112,11 @@ const socialLinks = [
                       ) : (
                         <a
                           href={link.href}
-                          class="block py-1.5 px-2 text-sm text-body hover:text-turkuaz hover:bg-turkuaz/5 rounded-md transition-colors no-underline font-body whitespace-nowrap"
+                          class:list={[
+                            'block py-1.5 px-2 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap',
+                            dropdownHoverText,
+                            dropdownHoverBg,
+                          ]}
                         >
                           {link.label}
                         </a>
@@ -106,7 +128,7 @@ const socialLinks = [
             </div>
           )}
         </div>
-      ))}
+      )})}
     </nav>
 
     <!-- Right side: Social + Search + Language -->
@@ -140,23 +162,29 @@ const socialLinks = [
 
   <!-- Mobile Nav -->
   <nav id="mobile-nav" class="lg:hidden hidden bg-white border-t border-gray-100 px-6 pb-4 max-h-[70vh] overflow-y-auto">
-    {mainNav.map(item => (
+    {mainNav.map(item => {
+      const mobileColor = item.color === 'vizon' ? 'text-vizon' : item.color === 'turuncu' ? 'text-turuncu' : item.color === 'mavi' ? 'text-mavi' : 'text-lacivert';
+      const mobileHover = item.color === 'vizon' ? 'hover:text-vizon' : item.color === 'turuncu' ? 'hover:text-turuncu' : item.color === 'mavi' ? 'hover:text-mavi' : 'hover:text-turkuaz';
+      return (
       <>
         <a
           href={item.href}
-          class="block py-3 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 no-underline font-body text-lacivert"
+          class:list={[
+            'block py-3 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 no-underline font-body',
+            mobileColor,
+          ]}
         >
           {item.label}
         </a>
         {item.children && item.children.flat().map((sub: any) => (
           !sub.isHeader && (
-            <a href={sub.href} class="block py-2 pl-6 text-sm text-body/70 hover:text-turkuaz no-underline font-body border-b border-gray-50/50">
+            <a href={sub.href} class:list={['block py-2 pl-6 text-sm text-body/70 no-underline font-body border-b border-gray-50/50', mobileHover]}>
               {sub.label}
             </a>
           )
         ))}
       </>
-    ))}
+    )})}
   </nav>
 </header>
 

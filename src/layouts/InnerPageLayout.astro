@@ -28,6 +28,7 @@ interface Props {
   breadcrumbs: BreadcrumbItem[];
   showBulten?: boolean;
   currentPath?: string;
+  accentColor?: 'vizon' | 'turuncu' | 'mavi';
 }
 
 const {
@@ -39,7 +40,10 @@ const {
   breadcrumbs,
   showBulten = true,
   currentPath = Astro.url.pathname,
+  accentColor = 'vizon',
 } = Astro.props;
+
+const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor === 'turuncu' ? 'text-turuncu' : 'text-mavi';
 ---
 
 <BaseLayout title={title || `${pageTitle} — MTO`} description={description}>
@@ -48,12 +52,12 @@ const {
     <div class="max-w-[1200px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
       <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
         <!-- Sidebar -->
-        <SidebarNav title={sidebarTitle} items={sidebarItems} currentPath={currentPath} />
+        <SidebarNav title={sidebarTitle} items={sidebarItems} currentPath={currentPath} accentColor={accentColor} />
 
         <!-- Content -->
         <div class="flex-1 min-w-0">
           <Breadcrumb items={breadcrumbs} />
-          <h1 class="text-3xl lg:text-4xl font-bold text-vizon uppercase tracking-wide font-heading mt-2 mb-8">
+          <h1 class:list={['text-3xl lg:text-4xl font-bold uppercase tracking-wide font-heading mt-2 mb-8', titleColorClass]}>
             {pageTitle}
           </h1>
           <div class="prose prose-lg max-w-none text-body font-body leading-relaxed">
