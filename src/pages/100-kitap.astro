@@ -20,7 +20,7 @@ const grouped = readingCategories.map(cat => {
   };
 });
 
-const totalMain = hundredBooks.filter(b => !b.isReference).length;
+const totalMain = 100;
 const totalRef = hundredBooks.filter(b => b.isReference).length;
 const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).size;
 

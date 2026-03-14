@@ -2,18 +2,16 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Hero from '../components/Hero.astro';
-import BugunkuDersler from '../components/BugunkuDersler.astro';
 import MtoDanMesaj from '../components/MtoDanMesaj.astro';
+import BugunkuDersler from '../components/BugunkuDersler.astro';
+import KitapBanner from '../components/KitapBanner.astro';
+import VideoSection from '../components/VideoSection.astro';
+import MtoBulten from '../components/MtoBulten.astro';
+import AkademikKadro from '../components/AkademikKadro.astro';
 import Egitimler from '../components/Egitimler.astro';
 import Stats from '../components/Stats.astro';
-import DortKalem from '../components/DortKalem.astro';
-import VideoSection from '../components/VideoSection.astro';
-import KitapBanner from '../components/KitapBanner.astro';
-import MtoBulten from '../components/MtoBulten.astro';
-import CtaBanner from '../components/CtaBanner.astro';
 import SSS from '../components/SSS.astro';
 import Yorumlar from '../components/Yorumlar.astro';
-import Iletisim from '../components/Iletisim.astro';
 import Footer from '../components/Footer.astro';
 import ScrollTop from '../components/ScrollTop.astro';
 ---
@@ -21,18 +19,16 @@ import ScrollTop from '../components/ScrollTop.astro';
 <BaseLayout>
   <Header />
   <Hero />
+  <MtoDanMesaj />
   <BugunkuDersler />
+  <KitapBanner />
+  <VideoSection />
+  <MtoBulten />
+  <AkademikKadro />
   <Egitimler />
   <Stats />
-  <MtoDanMesaj />
-  <DortKalem />
-  <VideoSection />
-  <KitapBanner />
-  <MtoBulten />
-  <CtaBanner />
   <SSS />
   <Yorumlar />
-  <Iletisim />
   <Footer />
   <ScrollTop />
 </BaseLayout>
