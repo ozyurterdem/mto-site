@@ -7,15 +7,15 @@ const stats = [
 ];
 ---
 
-<section class="py-6 px-5 md:px-8 bg-lacivert">
+<section class="py-6 px-5 md:px-8 bg-turkuaz">
   <div class="max-w-[900px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
     {stats.map(s => (
       <div class="stat-item">
-        <div class="w-[44px] h-[44px] mx-auto mb-2 border-2 border-turuncu rounded-lg grid place-items-center">
-          <svg class="w-5 h-5 fill-turuncu" viewBox="0 0 24 24" set:html={s.icon} />
+        <div class="w-[44px] h-[44px] mx-auto mb-2 border-2 border-lacivert/30 rounded-lg grid place-items-center">
+          <svg class="w-5 h-5 fill-lacivert" viewBox="0 0 24 24" set:html={s.icon} />
         </div>
-        <div class="stat-number font-heading text-[1.8rem] text-white font-black" data-target={s.num}>0</div>
-        <div class="text-[0.75rem] font-medium uppercase tracking-[2px] text-vizon">{s.label}</div>
+        <div class="stat-number font-heading text-[1.8rem] text-lacivert font-black" data-target={s.num}>0</div>
+        <div class="text-[0.75rem] font-medium uppercase tracking-[2px] text-lacivert/70">{s.label}</div>
       </div>
     ))}
   </div>
