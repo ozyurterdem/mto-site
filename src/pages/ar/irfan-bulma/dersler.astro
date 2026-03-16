@@ -2,17 +2,19 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro'
 import { getIrfanBulmaNav } from '../../../data/navigation'
 
+import { localePath, t } from '../../../i18n/index';
+
 const locale = 'ar' as const;
 const nav = getIrfanBulmaNav(locale);
 
 const sidebarItems = nav.items.map(item => ({
   ...item,
-  active: item.href === '/irfan-bulma/dersler'
+  active: item.href === localePath(locale, '/irfan-bulma/dersler')
 }))
 
 const breadcrumbs = [
-  { label: 'İRFAN - BULMA', href: '/irfan-bulma' },
-  { label: 'Dersler' }
+  { label: t(locale, 'nav.irfanBulma'), href: localePath(locale, '/irfan-bulma') },
+  { label: t(locale, 'nav.sub.dersler') }
 ]
 
 const guncelDersler = [
@@ -47,11 +49,11 @@ const seminerler = [
   accentColor="turuncu"
   title="Dersler - İRFAN·BULMA"
   description="Medeniyet Tasavvuru Okulu ders programları. Güz ve Bahar Dönemi dersleri."
-  pageTitle="Dersler"
+  pageTitle={t(locale, 'nav.sub.dersler')}
   sidebarTitle={nav.title}
   sidebarItems={sidebarItems}
   breadcrumbs={breadcrumbs}
-  currentPath="/irfan-bulma/dersler"
+  currentPath={localePath(locale, '/irfan-bulma/dersler')}
 >
   <!-- Description -->
   <p class="text-lacivert/70 font-body text-lg mb-10 leading-relaxed">

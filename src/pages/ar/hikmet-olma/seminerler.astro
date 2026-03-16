@@ -2,10 +2,14 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
+import { localePath, t } from '../../../i18n/index';
+
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Seminerler' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.seminerler') },
 ];
 
 const slides = [
@@ -15,18 +19,16 @@ const slides = [
   { id: 4, alt: 'MTO Seminer 4' },
   { id: 5, alt: 'MTO Seminer 5' },
 ];
-const locale = 'ar' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Seminerler"
+  pageTitle={t(locale, 'nav.sub.seminerler')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/seminerler"
+  currentPath={localePath(locale, '/hikmet-olma/seminerler')}
   showBulten={false}
 >
   <!-- Aciklama -->

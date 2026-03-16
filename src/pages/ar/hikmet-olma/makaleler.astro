@@ -2,10 +2,14 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
+import { localePath, t } from '../../../i18n/index';
+
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Makaleler' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.makaleler') },
 ];
 
 const years = [2021, 2022, 2023, 2024, 2025];
@@ -23,18 +27,16 @@ const articles = [
   { title: 'Toplumsal Dönüşüm ve Değerler: İbn Haldun Perspektifi', author: 'Mustafa Eren', city: 'Kayseri', active: false },
   { title: 'İslam Medeniyetinde Bilgi Anlayışı ve Hikmet Geleneği', author: 'Ayşe Nur Polat', city: 'Sivas', active: false },
 ];
-const locale = 'ar' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Makaleler"
+  pageTitle={t(locale, 'nav.sub.makaleler')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/makaleler"
+  currentPath={localePath(locale, '/hikmet-olma/makaleler')}
   showBulten={false}
 >
   <!-- Yil Alt Navigasyon -->

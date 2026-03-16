@@ -2,11 +2,15 @@
 import InnerPageLayout from '../../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../../data/navigation';
 
+import { localePath, t } from '../../../../i18n/index';
+
+const locale = 'en' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Faaliyetler', href: '/hikmet-olma/faaliyetler' },
-  { label: 'Talebe Buluşmaları' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.faaliyetler'), href: localePath(locale, '/hikmet-olma/faaliyetler') },
+  { label: t(locale, 'nav.sub.talebeBulusmalari') },
 ];
 
 const bulusmaTurleri = [
@@ -31,18 +35,16 @@ const photos = Array.from({ length: 8 }, (_, i) => ({
   id: i + 1,
   alt: `MTO Talebe Buluşması ${i + 1}`,
 }));
-const locale = 'en' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Talebe Buluşmaları"
+  pageTitle={t(locale, 'nav.sub.talebeBulusmalari')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/faaliyetler/talebe-bulusmalari"
+  currentPath={localePath(locale, '/hikmet-olma/faaliyetler/talebe-bulusmalari')}
   showBulten={false}
 >
   <!-- Aciklama -->

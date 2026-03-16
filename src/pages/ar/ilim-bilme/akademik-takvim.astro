@@ -2,17 +2,19 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro'
 import { getIlimBilmeNav } from '../../../data/navigation'
 
+import { localePath, t } from '../../../i18n/index';
+
 const locale = 'ar' as const;
 const nav = getIlimBilmeNav(locale);
 
 const sidebarItems = nav.items.map(item => ({
   ...item,
-  active: item.href === '/ilim-bilme/akademik-takvim'
+  active: item.href === localePath(locale, '/ilim-bilme/akademik-takvim')
 }))
 
 const breadcrumbs = [
-  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
-  { label: 'Akademik Takvim' }
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.akademikTakvim') }
 ]
 
 const donemler = [
@@ -27,11 +29,11 @@ const donemler = [
   locale={locale}
   title="Akademik Takvim - İLİM·BİLME"
   description="Medeniyet Tasavvuru Okulu akademik takvimi. Güz ve Bahar dönemleri."
-  pageTitle="Akademik Takvim"
+  pageTitle={t(locale, 'nav.sub.akademikTakvim')}
   sidebarTitle={nav.title}
   sidebarItems={sidebarItems}
   breadcrumbs={breadcrumbs}
-  currentPath="/ilim-bilme/akademik-takvim"
+  currentPath={localePath(locale, '/ilim-bilme/akademik-takvim')}
 >
   <!-- Content -->
   <div class="space-y-8">

@@ -2,17 +2,19 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro'
 import { getIlimBilmeNav } from '../../../data/navigation'
 
+import { localePath, t } from '../../../i18n/index';
+
 const locale = 'ar' as const;
 const nav = getIlimBilmeNav(locale);
 
 const sidebarItems = nav.items.map(item => ({
   ...item,
-  active: item.href === '/ilim-bilme/sehir-temsilcilikleri'
+  active: item.href === localePath(locale, '/ilim-bilme/sehir-temsilcilikleri')
 }))
 
 const breadcrumbs = [
-  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
-  { label: 'Şehir Temsilcilikleri' }
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.sehirTemsilcilikleri') }
 ]
 
 const sehirler = [
@@ -29,11 +31,11 @@ const sehirler = [
   locale={locale}
   title="Şehir Temsilcilikleri - İLİM·BİLME"
   description="Medeniyet Tasavvuru Okulu şehir temsilcilikleri ve iletişim bilgileri."
-  pageTitle="Şehir Temsilcilikleri"
+  pageTitle={t(locale, 'nav.sub.sehirTemsilcilikleri')}
   sidebarTitle={nav.title}
   sidebarItems={sidebarItems}
   breadcrumbs={breadcrumbs}
-  currentPath="/ilim-bilme/sehir-temsilcilikleri"
+  currentPath={localePath(locale, '/ilim-bilme/sehir-temsilcilikleri')}
 >
   <!-- Content -->
   <div class="space-y-10">

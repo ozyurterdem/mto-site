@@ -2,10 +2,14 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
+import { localePath, t } from '../../../i18n/index';
+
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Kulüpler' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.kulupler') },
 ];
 
 const universities = [
@@ -27,8 +31,6 @@ const universities = [
   'Bitlis Eren Üniversitesi',
   '29 Mayıs Üniversitesi',
 ];
-const locale = 'ar' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
@@ -38,7 +40,7 @@ const nav = getHikmetOlmaNav(locale);
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/kulupler"
+  currentPath={localePath(locale, '/hikmet-olma/kulupler')}
   showBulten={false}
 >
   <!-- Aciklama -->

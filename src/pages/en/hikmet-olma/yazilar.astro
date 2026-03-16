@@ -2,10 +2,14 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
+import { localePath, t } from '../../../i18n/index';
+
+const locale = 'en' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Yazılar' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.yazilar') },
 ];
 
 const writings = [
@@ -22,18 +26,16 @@ const writings = [
   { title: 'Sessiz Devrim: Düşüncenin Gücü', author: 'Yusuf Kaplan' },
   { title: 'Hakikat Arayışında İnsan', author: 'Yusuf Kaplan' },
 ];
-const locale = 'en' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Yazılar"
+  pageTitle={t(locale, 'nav.sub.yazilar')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/yazilar"
+  currentPath={localePath(locale, '/hikmet-olma/yazilar')}
   showBulten={false}
 >
   <!-- Yazi Listesi -->

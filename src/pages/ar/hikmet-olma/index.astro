@@ -3,12 +3,14 @@ import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import ShareButtons from '../../../components/ShareButtons.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
-const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA' },
-];
+import { localePath, t } from '../../../i18n/index';
+
 const locale = 'ar' as const;
 const nav = getHikmetOlmaNav(locale);
+const breadcrumbs = [
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma') },
+];
 ---
 
 <InnerPageLayout
@@ -18,7 +20,7 @@ const nav = getHikmetOlmaNav(locale);
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma"
+  currentPath={localePath(locale, '/hikmet-olma')}
   showBulten={false}
 >
   <div class="relative">

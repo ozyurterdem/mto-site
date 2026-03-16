@@ -5,6 +5,8 @@ import Footer from '../../components/Footer.astro';
 import ScrollTop from '../../components/ScrollTop.astro';
 import { hundredBooks, readingCategories, categoryColors, categorySubtitles, categoryNotes } from '../../data/hundred-books';
 
+import { localePath } from '../../i18n/index';
+
 const grouped = readingCategories.map(cat => {
   const allBooks = hundredBooks.filter(b => b.category === cat);
   const mainBooks = allBooks.filter(b => !b.isReference);

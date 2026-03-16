@@ -2,10 +2,14 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../data/navigation';
 
+import { localePath, t } from '../../../i18n/index';
+
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Kamplar' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.kamplar') },
 ];
 
 const years = [2021, 2022, 2023, 2024, 2025];
@@ -71,18 +75,16 @@ const camps = [
     ],
   },
 ];
-const locale = 'ar' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Kamplar"
+  pageTitle={t(locale, 'nav.sub.kamplar')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/kamplar"
+  currentPath={localePath(locale, '/hikmet-olma/kamplar')}
   showBulten={false}
 >
   <!-- Yil Alt Navigasyon -->

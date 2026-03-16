@@ -4,6 +4,8 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import ScrollTop from '../../components/ScrollTop.astro';
 
+import { localePath } from '../../i18n/index';
+
 const kalemler = [
   { color: 'green', hex: '#2E7D32', name: 'Yeşil Kalem', role: 'Kilit Kavramlar', desc: 'Anahtar sözcükler, kilit kavramlar, terimler. Bir sayfada en fazla beş tane. Metnin iskeletini çıkarır.' },
   { color: 'red', hex: '#C62828', name: 'Kırmızı Kalem', role: 'Önemli Cümleler', desc: 'Önemli satırların altını çizin. İki üç önemli kelimeyi daha vurgulu çizerek belirginleştirin.' },

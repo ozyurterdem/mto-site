@@ -2,11 +2,15 @@
 import InnerPageLayout from '../../../../layouts/InnerPageLayout.astro';
 import { getHikmetOlmaNav } from '../../../../data/navigation';
 
+import { localePath, t } from '../../../../i18n/index';
+
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
 const breadcrumbs = [
-  { label: 'Anasayfa', href: '/' },
-  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
-  { label: 'Faaliyetler', href: '/hikmet-olma/faaliyetler' },
-  { label: 'Kitap Tahlili' },
+  { label: t(locale, 'nav.home'), href: '/' },
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.faaliyetler'), href: localePath(locale, '/hikmet-olma/faaliyetler') },
+  { label: t(locale, 'nav.sub.kitapTahlili') },
 ];
 
 const adimlar = [
@@ -14,18 +18,16 @@ const adimlar = [
   { num: '02', baslik: 'Tahlil Oturumu', aciklama: "Cuma günleri 20:00'de gerçekleşen oturumlarda her talebe kitabın bölümlerine dair notlarını ve çıkarımlarını paylaşır." },
   { num: '03', baslik: 'Ortak Çerçeve', aciklama: 'Oturum sonunda hoca rehberliğinde kitabın bütünü değerlendirilir, kavram haritası çıkarılır ve medeniyet perspektifiyle ilişkilendirilir.' },
 ];
-const locale = 'ar' as const;
-const nav = getHikmetOlmaNav(locale);
 ---
 
 <InnerPageLayout
   locale={locale}
   accentColor="mavi"
-  pageTitle="Kitap Tahlili"
+  pageTitle={t(locale, 'nav.sub.kitapTahlili')}
   sidebarTitle={nav.title}
   sidebarItems={nav.items}
   breadcrumbs={breadcrumbs}
-  currentPath="/hikmet-olma/faaliyetler/kitap-tahlili"
+  currentPath={localePath(locale, '/hikmet-olma/faaliyetler/kitap-tahlili')}
   showBulten={false}
 >
   <!-- Aciklama -->

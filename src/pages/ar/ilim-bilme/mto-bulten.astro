@@ -2,17 +2,19 @@
 import InnerPageLayout from '../../../layouts/InnerPageLayout.astro'
 import { getIlimBilmeNav } from '../../../data/navigation'
 
+import { localePath, t } from '../../../i18n/index';
+
 const locale = 'ar' as const;
 const nav = getIlimBilmeNav(locale);
 
 const sidebarItems = nav.items.map(item => ({
   ...item,
-  active: item.href === '/ilim-bilme/mto-bulten'
+  active: item.href === localePath(locale, '/ilim-bilme/mto-bulten')
 }))
 
 const breadcrumbs = [
-  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
-  { label: 'MTO Bülten' }
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.mtoBulten') }
 ]
 
 const aylar = ['Tümü', 'Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
@@ -62,12 +64,12 @@ const haberler = [
   locale={locale}
   title="MTO Bülten - İLİM·BİLME"
   description="Medeniyet Tasavvuru Okulu bülten, haberler ve duyurular."
-  pageTitle="MTO Bülten"
+  pageTitle={t(locale, 'nav.sub.mtoBulten')}
   sidebarTitle={nav.title}
   sidebarItems={sidebarItems}
   breadcrumbs={breadcrumbs}
   showBulten={false}
-  currentPath="/ilim-bilme/mto-bulten"
+  currentPath={localePath(locale, '/ilim-bilme/mto-bulten')}
 >
   <div class="space-y-8">
     <!-- Filter Controls -->
