@@ -1,0 +1,174 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ScrollTop from '../../components/ScrollTop.astro';
+
+const kalemler = [
+  { color: 'green', hex: '#2E7D32', name: 'Yeşil Kalem', role: 'Kilit Kavramlar', desc: 'Anahtar sözcükler, kilit kavramlar, terimler. Bir sayfada en fazla beş tane. Metnin iskeletini çıkarır.' },
+  { color: 'red', hex: '#C62828', name: 'Kırmızı Kalem', role: 'Önemli Cümleler', desc: 'Önemli satırların altını çizin. İki üç önemli kelimeyi daha vurgulu çizerek belirginleştirin.' },
+  { color: 'blue', hex: '#1565C0', name: 'Mavi Kalem', role: 'Atlanmaması Gerekenler', desc: 'Hafifçe, çok bastırmadan işaret koyun. Parantez, yıldız, ok — artık sizin yoğurt yiyişiniz.' },
+  { color: 'black', hex: '#212121', name: 'Siyah Kalem', role: 'Kavramlaştırma', desc: 'Kitabın kenarlarına kendi notlarınızı, tanımlarınızı yazın. Sayfanın üstüne o sayfanın en önemli cümlesini çıkarın.' },
+];
+const locale = 'en' as const;
+---
+
+<BaseLayout locale="en" title="4 Kalem Tekniği — Medeniyet Tasavvuru Okulu" description="Yusuf Kaplan'ın 4 Kalem Tekniği okuma yöntemi. Tüketen okuyucudan üreten okuyucuya geçiş.">
+  <Header locale="en" />
+
+  <!-- Breadcrumb + Başlık -->
+  <section class="pt-28 pb-10 px-5 md:px-8 bg-white">
+    <div class="max-w-[900px] mx-auto">
+      <div class="text-sm text-body/50 mb-4 font-body">
+        <a href="/" class="hover:text-turkuaz transition-colors">Anasayfa</a>
+        <span class="mx-2">/</span>
+        <span class="text-turkuaz">4 Kalem Tekniği</span>
+      </div>
+      <h1 class="font-heading text-[clamp(2rem,4vw,3rem)] text-turuncu uppercase tracking-wider font-bold leading-tight">
+        4 Kalem Tekniği
+      </h1>
+      <div class="w-20 h-[3px] bg-gradient-to-r from-turkuaz to-mavi mt-5 rounded-full"></div>
+    </div>
+  </section>
+
+  <!-- Ana İçerik -->
+  <section class="pb-16 px-5 md:px-8 bg-white">
+    <div class="max-w-[900px] mx-auto">
+
+      <!-- Giriş Metni -->
+      <div class="prose max-w-none mb-14">
+        <p class="text-body text-[1.05rem] leading-[2] mb-6">
+          Görsel kültürün hakim olduğu bu çağda, görsellik, zihni faaliyeti sadece görüntüye indirger; oysa görüntü ayartıcı dolayısıyla zihni melekeleri yoksullaştırıcı bir işlev görür. Yusuf Kaplan "4 Kalem Tekniği" okuma yöntemiyle talebenin zihninde görsel imgelemenin oluşmasını mümkün kılar, böylece estetik ve görsellik, yazılı kültürün içine entegre edilmiş olur. Talebe;
+        </p>
+
+        <ul class="space-y-2 mb-6 list-none pl-0">
+          <li class="flex items-start gap-3">
+            <span class="w-3 h-3 rounded-full mt-1.5 flex-shrink-0" style="background: #2E7D32"></span>
+            <span class="text-body text-[1.05rem] leading-[1.8]"><strong>Yeşil</strong> kurşun kalemle kilit kavramları,</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-3 h-3 rounded-full mt-1.5 flex-shrink-0" style="background: #C62828"></span>
+            <span class="text-body text-[1.05rem] leading-[1.8]"><strong>Kırmızı</strong> kurşun kalemle önemli satırları,</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-3 h-3 rounded-full mt-1.5 flex-shrink-0" style="background: #1565C0"></span>
+            <span class="text-body text-[1.05rem] leading-[1.8]"><strong>Mavi</strong> kurşun kalemle atlanmaması gereken yerleri çizer.</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="w-3 h-3 rounded-full mt-1.5 flex-shrink-0" style="background: #212121"></span>
+            <span class="text-body text-[1.05rem] leading-[1.8]"><strong>Siyah</strong> kurşun kalemle kitabın boş kısımlarına ana başlıkları çıkarır ve önemli olduğunu düşündüğü cümleleri sayfanın üstündeki boş alana yazar.</span>
+          </li>
+        </ul>
+
+        <p class="text-body text-[1.05rem] leading-[2] mb-6">
+          Bu da talebeye estetik zevk kazandıran zihni geliştirici bir manzara sunar.
+        </p>
+
+        <p class="text-body text-[1.05rem] leading-[2] mb-6">
+          Talebe kitaplarda ilerlerken, yeşille çizilen kilit kavramları 15-20 saniye kadar gözden geçirir, ardından kırmızıyla çizilen yerler 10-15 dakika içerisinde hızlıca okur. Alıntılanan en önemli cümlelerin de üzerinde durur ve bu adımların ardından sonraki bölüme geçer. Burada amaç tüketen okuyucudan, üreten, inşâ eden okuyucuya geçmektir.
+        </p>
+
+        <p class="text-body text-[1.05rem] leading-[2] mb-6">
+          İnsan, kelimelerle konuşur, kavramlarla düşünür ve ruh'la bir dünya kurar. Satırlardaki derinleşme, sadırlardaki keşfe dönüşür.
+        </p>
+
+        <p class="text-body text-[1.05rem] leading-[2] mb-6">
+          "4 Kalem Tekniği" bu derinleşmeye ve bu derinleşmeden doğacak olan keşfe yardımcı olur. Mürekkepli kalem, şiddetin simgesi; kurşun kalem, tevazunun simgesidir. En başta talebe, kurşun kalemi tercih ederek bu keşfe tevazûu ile başlar. Aynı zamanda bu teknik, talebeye gözü ve zihni diri tutan, zekâyı geliştiren, hafızayı güçlendiren, okuduklarını hazmettiren, tefrik ve terkip kabiliyetlerini arttıran, sorumluluk bilincini pekiştiren, ahlâkı güzelleştiren, insanı dikkat ve rikkat sahibi yapan, latifleştiren, anlamı ve anlamlandırmayı öğreten bir okuma biçimini sunar.
+        </p>
+      </div>
+
+      <!-- Alıntı -->
+      <div class="mb-14 px-8 py-6 bg-gray-50 border-l-4 border-turuncu rounded-r-lg">
+        <p class="italic text-lacivert font-heading text-[1.1rem] leading-[1.8]">
+          "Tüketen okuyucudan üreten okuyucuya geçiş — tüketen okuyucu nesnedir, üreten okuyucu özleşir."
+        </p>
+      </div>
+
+      <!-- 4 Kalem Kartları -->
+      <h2 class="font-heading text-[clamp(1.4rem,2.5vw,1.8rem)] text-lacivert uppercase tracking-wider font-bold mb-8">
+        Dört Kalem
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-16">
+        {kalemler.map(k => (
+          <div class="group relative bg-white rounded-xl p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] transition-all duration-300 overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-[3px] rounded-t-xl" style={`background: linear-gradient(90deg, ${k.hex}, ${k.hex}dd)`}></div>
+            <div class="w-4 h-4 rounded-full mb-4 shadow-sm" style={`background: ${k.hex}`}></div>
+            <h3 class="font-heading text-lacivert text-lg font-bold mb-1">{k.name}</h3>
+            <div class="text-[11px] font-bold uppercase tracking-[1.5px] mb-3" style={`color: ${k.hex}`}>{k.role}</div>
+            <p class="text-body text-sm leading-relaxed">{k.desc}</p>
+          </div>
+        ))}
+      </div>
+
+      <!-- Demo Sayfa -->
+      <h2 class="font-heading text-[clamp(1.4rem,2.5vw,1.8rem)] text-lacivert uppercase tracking-wider font-bold mb-8">
+        Örnek Uygulama
+      </h2>
+      <div class="max-w-[720px] mx-auto mb-16">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-[0_4px_20px_rgba(0,0,0,0.08)] overflow-hidden">
+          <div class="flex items-center justify-between px-6 py-3.5 bg-gray-50 border-b border-gray-200">
+            <span class="text-[11px] font-bold uppercase tracking-[1.5px] text-gray-400 font-heading">Örnek — İşaretlenmiş Sayfa</span>
+            <div class="flex gap-2 items-center">
+              <span class="w-5 h-5 rounded-full shadow-sm" style="background: #2E7D32" title="Kilit Kavramlar"></span>
+              <span class="w-5 h-5 rounded-full shadow-sm" style="background: #C62828" title="Önemli Cümleler"></span>
+              <span class="w-5 h-5 rounded-full shadow-sm" style="background: #1565C0" title="Atlanmaması Gerekenler"></span>
+              <span class="w-5 h-5 rounded-full shadow-sm" style="background: #212121" title="Kavramlaştırma"></span>
+            </div>
+          </div>
+
+          <div class="relative px-8 py-8 md:px-10 md:py-10">
+            <div class="text-center text-[13px] italic text-gray-400 font-heading pb-4 mb-6 border-b border-dashed border-gray-200">
+              Medeniyetin çöküşü sessizdir — gürültü moderniteye aittir
+            </div>
+
+            <div class="absolute right-3 top-24 text-[11px] text-gray-300 hidden md:block" style="writing-mode: vertical-rl; transform: rotate(180deg);">
+              kavramsal kopuş - medrese krizi
+            </div>
+
+            <div class="space-y-4 text-[15px] leading-[2.1] text-body">
+              <p>
+                Bir <span class="bg-green-50 border-b-2 border-green-600/50 px-0.5 rounded-sm">medeniyet</span> sessizce çöker. Ne bir gürültü duyulur ne bir çığlık. Taşlar yerinde durur ama ruh çekilir.
+                <span class="bg-red-50 border-b-2 border-red-700/50 px-0.5 rounded-sm">İşte bizi vuran da buydu: taşları korumaya çalışırken ruhun gittiğini fark edemedik.</span>
+              </p>
+              <p class="border-l-[3px] border-blue-600/40 pl-4 bg-blue-50/50 py-2 rounded-r">
+                Birincisi, düşünce geleneğimizin kopuşudur. On ikinci yüzyılda başlayan bu kopuş, bizim "bilmek" fiilini nasıl anladığımızı temelden değiştirdi.
+                <span class="bg-green-50 border-b-2 border-green-600/50 px-0.5 rounded-sm">Bilgi</span>,
+                <span class="bg-green-50 border-b-2 border-green-600/50 px-0.5 rounded-sm">irfan</span>dan enformasyana dönüştü;
+                <span class="bg-green-50 border-b-2 border-green-600/50 px-0.5 rounded-sm">hikmet</span>, veriye indirgendi.
+              </p>
+              <p>
+                <span class="bg-red-50 border-b-2 border-red-700/50 px-0.5 rounded-sm">Kadim geleneğimizde <em>bilmek</em>, <em>olmak</em> demekti.</span> Bu ilke kaybolduğunda yalnızca bilgi değil, bilgiyi taşıyacak
+                <span class="bg-green-50 border-b-2 border-green-600/50 px-0.5 rounded-sm">insan tipi</span> de kayboldu.
+              </p>
+            </div>
+          </div>
+
+          <div class="px-6 py-3 bg-gray-50 border-t border-gray-200 text-center text-[11px] text-gray-400 tracking-wider">
+            Dört renkli kalem araçlarıyla kendi notlarınızı ekleyerek okuyun
+          </div>
+        </div>
+      </div>
+
+      <!-- Okuma Türleri -->
+      <h2 class="font-heading text-[clamp(1.4rem,2.5vw,1.8rem)] text-lacivert uppercase tracking-wider font-bold mb-8">
+        Okuma Türleri
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-[720px] mx-auto">
+        <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] transition-all duration-300 text-center">
+          <div class="text-3xl text-lacivert/20 mb-3">↕</div>
+          <h4 class="font-heading text-lacivert text-lg font-bold mb-2">Dikey Okuma</h4>
+          <p class="text-body text-sm leading-relaxed">Ana metinler, kurucu metinler, klasikler. Derinlemesine, satır satır, kavram kavram.</p>
+        </div>
+        <div class="bg-white rounded-xl p-7 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)] transition-all duration-300 text-center">
+          <div class="text-3xl text-lacivert/20 mb-3">↔</div>
+          <h4 class="font-heading text-lacivert text-lg font-bold mb-2">Yatay Okuma</h4>
+          <p class="text-body text-sm leading-relaxed">Ana metinlere götüren, yol açan kitaplar. Haritayı gözünüzün önüne getirecek rehberler.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer locale="en" />
+  <ScrollTop />
+</BaseLayout>

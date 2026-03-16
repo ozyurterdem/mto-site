@@ -1,0 +1,108 @@
+---
+import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
+import ShareButtons from '../../../components/ShareButtons.astro';
+import { getHikmetOlmaNav } from '../../../data/navigation';
+
+const breadcrumbs = [
+  { label: 'Anasayfa', href: '/' },
+  { label: 'HİKMET · OLMA' },
+];
+const locale = 'en' as const;
+const nav = getHikmetOlmaNav(locale);
+---
+
+<InnerPageLayout
+  locale={locale}
+  accentColor="mavi"
+  pageTitle="İLİM İRFAN HİKMET"
+  sidebarTitle={nav.title}
+  sidebarItems={nav.items}
+  breadcrumbs={breadcrumbs}
+  currentPath="/hikmet-olma"
+  showBulten={false}
+>
+  <div class="relative">
+    <!-- Share Buttons (Sol Taraf) -->
+    <div class="hidden lg:block absolute -left-16 top-0">
+      <ShareButtons class="sticky top-32" />
+    </div>
+
+    <!-- Hero Gorsel -->
+    <div class="relative rounded-2xl overflow-hidden mb-10 aspect-[16/7] bg-lacivert">
+      <div class="absolute inset-0 bg-gradient-to-t from-lacivert/80 via-lacivert/30 to-transparent z-10"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-turkuaz/10 to-turuncu/10"></div>
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="text-center z-20">
+          <span class="block font-heading text-white/40 text-sm uppercase tracking-[0.3em] mb-2">Medeniyet Tasavvuru Okulu</span>
+          <h2 class="font-heading text-white text-3xl md:text-5xl font-black uppercase tracking-wide">
+            İlim · İrfan · Hikmet
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-turkuaz to-turuncu mx-auto mt-4 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Icerik -->
+    <div class="space-y-8 text-body text-[1.05rem] leading-[2]">
+      <p>
+        Medeniyet Tasavvuru Okulu, talebesine <strong class="text-lacivert">ilim</strong>, <strong class="text-lacivert">irfan</strong> ve <strong class="text-lacivert">hikmet</strong> yolculugunda rehberlik eden bir okuldur. Bu uc kavram, MTO'nun temelini olusturan ayrilmaz bir butundur.
+      </p>
+
+      <!-- Uc Yol Kartlari -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 my-10 not-prose">
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 text-center">
+          <div class="w-14 h-14 rounded-full bg-turkuaz/10 grid place-items-center mx-auto mb-4">
+            <span class="text-turkuaz font-heading font-black text-xl">1</span>
+          </div>
+          <h3 class="font-heading text-lacivert text-lg font-bold mb-2 uppercase tracking-wide">İlim</h3>
+          <p class="text-body text-sm leading-relaxed">Bilmenin ilk adimi. Okumak, anlamak, sorgulamak. Kavramlari ogrenip zihinsel altyapiyi kurmak.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 text-center">
+          <div class="w-14 h-14 rounded-full bg-turuncu/10 grid place-items-center mx-auto mb-4">
+            <span class="text-turuncu font-heading font-black text-xl">2</span>
+          </div>
+          <h3 class="font-heading text-lacivert text-lg font-bold mb-2 uppercase tracking-wide">İrfan</h3>
+          <p class="text-body text-sm leading-relaxed">Bilginin icesellestirilmesi. Ogrenilenin yasanmasi, tecrube edilmesi, kalbe inmesi.</p>
+        </div>
+
+        <div class="bg-white rounded-xl p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-all duration-300 text-center">
+          <div class="w-14 h-14 rounded-full bg-vizon/20 grid place-items-center mx-auto mb-4">
+            <span class="text-vizon font-heading font-black text-xl">3</span>
+          </div>
+          <h3 class="font-heading text-lacivert text-lg font-bold mb-2 uppercase tracking-wide">Hikmet</h3>
+          <p class="text-body text-sm leading-relaxed">Bilgi ve irfanin butunlesmesi. Gercek anlama, dogruyu gorme ve hayata gecirme kudreti.</p>
+        </div>
+      </div>
+
+      <p>
+        <strong class="text-turkuaz">İlim</strong>, bilmenin ilk adimidir. Okumak, ogrendiklerini sorgulamak ve kavramsal bir altyapi kurmak bu asamanin temelini olusturur. MTO talebesi, 100 Kitap programi ve akademik derslerle bu yolculuga baslar.
+      </p>
+
+      <p>
+        <strong class="text-turuncu">İrfan</strong>, bilginin kalbe inmesi, icesellestirilmesidir. Ogrenilen bilgi yasamla butunlestiginde, tecrube edildigi zaman irfana donusur. MTO'da dersler, halkalar ve seminerler bu donusumun zeminini hazirlar.
+      </p>
+
+      <p>
+        <strong class="text-vizon">Hikmet</strong>, ilim ve irfanin en yuksek mertebesindeki butunlesmedir. Dogru bilgiyi dogru yerde, dogru zamanda, dogru sekilde kullanabilme kudretidir. MTO, talebesini bu nihai hedefe yonlendirir.
+      </p>
+
+      <!-- Alinti -->
+      <blockquote class="border-l-4 border-turkuaz bg-turkuaz/5 px-6 py-4 rounded-r-lg my-10">
+        <p class="italic text-lacivert font-heading text-lg leading-relaxed m-0">
+          "Bilmek, olmak demektir. Olmak icin once bilmek, sonra bulmak, en sonunda da olmak gerekir."
+        </p>
+        <cite class="block text-vizon text-sm mt-2 not-italic font-medium">— Yusuf Kaplan</cite>
+      </blockquote>
+
+      <p>
+        HİKMET · OLMA bolumu, talebelerin akademik kamplar, makaleler, yazilar, kulupler, seminerler ve faaliyetler araciligiyla hikmet yolculugundaki adimlarini icerir. Her bir faaliyet, talebenin ilimden irfana, irfandan hikmete uzanan yolculugunda bir basamak olarak degerlendirilir.
+      </p>
+    </div>
+
+    <!-- Mobil Share Buttons -->
+    <div class="lg:hidden mt-8 pt-6 border-t border-gray-200">
+      <ShareButtons class="flex-row items-center" />
+    </div>
+  </div>
+</InnerPageLayout>

@@ -1,0 +1,86 @@
+---
+import InnerPageLayout from '../../../../layouts/InnerPageLayout.astro';
+import { getHikmetOlmaNav } from '../../../../data/navigation';
+
+const breadcrumbs = [
+  { label: 'Anasayfa', href: '/' },
+  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
+  { label: 'Faaliyetler' },
+];
+
+const activities = [
+  {
+    title: 'Kitap Tahlili',
+    href: '/hikmet-olma/faaliyetler/kitap-tahlili',
+    description: 'Talebelerin okuduklari kitaplari derinlemesine tahlil ettigi, kavramsal cercevesini cikardigi duzenlı bulusmalar.',
+    icon: 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253',
+  },
+  {
+    title: 'İftarlar',
+    href: '/hikmet-olma/faaliyetler/iftarlar',
+    description: 'Ramazan ayinda duzenlenen iftar programlari ile talebelerin bir araya geldigi, sohbet ve paylasim ortamlari.',
+    icon: 'M21 15.546c-.523 0-1.046.151-1.5.454a2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0 2.704 2.704 0 00-3 0 2.704 2.704 0 01-3 0A2.704 2.704 0 003 15.546M9 6v2m3-2v2m3-2v2M9 3h.01M12 3h.01M15 3h.01M21 21v-7a2 2 0 00-2-2H5a2 2 0 00-2 2v7h18z',
+  },
+  {
+    title: 'Talebe Buluşmaları',
+    href: '/hikmet-olma/faaliyetler/talebe-bulusmalari',
+    description: 'Bayram bulusmalari, sehir faaliyetleri ve ozel gunlerde duzenlenen talebe bulusma programlari.',
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+  },
+  {
+    title: 'Halkalar',
+    href: '/hikmet-olma/faaliyetler/halkalar',
+    description: 'Duzenlı olarak bir araya gelinen okuma ve tartisma halkalari. Talebelerin fikir alisverisi yaptigi samimi ortamlar.',
+    icon: 'M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z',
+  },
+];
+const locale = 'ar' as const;
+const nav = getHikmetOlmaNav(locale);
+---
+
+<InnerPageLayout
+  locale={locale}
+  accentColor="mavi"
+  pageTitle="Faaliyetler"
+  sidebarTitle={nav.title}
+  sidebarItems={nav.items}
+  breadcrumbs={breadcrumbs}
+  currentPath="/hikmet-olma/faaliyetler"
+  showBulten={false}
+>
+  <!-- Aciklama -->
+  <div class="mb-10 text-body text-[1.05rem] leading-[2]">
+    <p>
+      MTO, talebesiyle birlikte yola çıkmayı, yolda olmayı ve yol olmayı ilke edinen bir okul olarak iftar programları, halkalar, bayram buluşmaları ve şehir faaliyetleri gibi çeşitli buluşmalarla talebesiyle bir araya gelir.
+    </p>
+    <p class="mt-4">
+      Bu buluşmalar, akademik müfredatın ötesinde talebelerin birbirleriyle bağ kurmasını, düşünce dünyalarını paylaşmasını ve ortak bir medeniyet bilinci oluşturmasını amaçlar. Her faaliyet, MTO'nun "bilmek, bulmak, olmak" ilkesinin yaşama geçirildiği bir alan olarak değerlendirilir.
+    </p>
+  </div>
+
+  <!-- Faaliyet Kartlari -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6 not-prose">
+    {activities.map((activity) => (
+      <a
+        href={activity.href}
+        class="group bg-white rounded-xl p-6 border border-gray-100 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(0,0,0,0.1)] hover:border-turkuaz/30 transition-all duration-300 no-underline"
+      >
+        <div class="w-12 h-12 rounded-xl bg-turkuaz/10 grid place-items-center mb-4 group-hover:bg-turkuaz/20 transition-colors">
+          <svg class="w-6 h-6 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={activity.icon} />
+          </svg>
+        </div>
+        <h3 class="font-heading text-lacivert text-lg font-bold mb-2 group-hover:text-turkuaz transition-colors">
+          {activity.title}
+        </h3>
+        <p class="text-body text-sm leading-relaxed">{activity.description}</p>
+        <div class="mt-4 flex items-center gap-2 text-turkuaz text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
+          <span>Detaylar</span>
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </div>
+      </a>
+    ))}
+  </div>
+</InnerPageLayout>

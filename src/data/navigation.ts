@@ -155,3 +155,39 @@ export function getIlimBilmeNav(locale: Locale = defaultLocale): SidebarNav {
     ],
   };
 }
+
+export function getIrfanBulmaNav(locale: Locale = defaultLocale): SidebarNav {
+  return {
+    title: t(locale, 'innerPage.sidebarTitles.irfanBulma'),
+    color: 'turuncu',
+    items: [
+      { label: t(locale, 'nav.sub.dersler'), href: localePath(locale, '/irfan-bulma/dersler') },
+      { label: t(locale, 'nav.sub.yuzKitap'), href: localePath(locale, '/100-kitap') },
+      { label: t(locale, 'nav.sub.dortKalem'), href: localePath(locale, '/dort-kalem') },
+    ],
+  };
+}
+
+export function getHikmetOlmaNav(locale: Locale = defaultLocale): SidebarNav {
+  return {
+    title: t(locale, 'innerPage.sidebarTitles.hikmetOlma'),
+    color: 'mavi',
+    items: [
+      { label: t(locale, 'nav.sub.kamplar'), href: localePath(locale, '/hikmet-olma/kamplar') },
+      { label: t(locale, 'nav.sub.makaleler'), href: localePath(locale, '/hikmet-olma/makaleler') },
+      { label: t(locale, 'nav.sub.yazilar'), href: localePath(locale, '/hikmet-olma/yazilar') },
+      { label: t(locale, 'nav.sub.kulupler'), href: localePath(locale, '/hikmet-olma/kulupler') },
+      { label: t(locale, 'nav.sub.seminerler'), href: localePath(locale, '/hikmet-olma/seminerler') },
+      {
+        label: t(locale, 'nav.sub.faaliyetler'),
+        href: localePath(locale, '/hikmet-olma/faaliyetler'),
+        children: [
+          { label: t(locale, 'nav.sub.kitapTahlili'), href: localePath(locale, '/hikmet-olma/faaliyetler/kitap-tahlili') },
+          { label: t(locale, 'nav.sub.iftarlar'), href: localePath(locale, '/hikmet-olma/faaliyetler/iftarlar') },
+          { label: t(locale, 'nav.sub.talebeBulusmalari'), href: localePath(locale, '/hikmet-olma/faaliyetler/talebe-bulusmalari') },
+          { label: t(locale, 'nav.sub.halkalar'), href: localePath(locale, '/hikmet-olma/faaliyetler/halkalar') },
+        ],
+      },
+    ],
+  };
+}
