@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "siteTitle": "Medeniyet Tasavvuru Okulu — MTO",
+    "siteDescription": "İslâm medeniyetini yeniden inşa ve ihya sürecinin kavramsal çerçevesi. Bilgi, irfan ve hikmet merkezli eğitim programı."
+  },
+  "nav": {
+    "home": "Anasayfa",
+    "ilimBilme": "İlim · Bilme",
+    "irfanBulma": "İrfan · Bulma",
+    "hikmetOlma": "Hikmet · Olma",
+    "contact": "İletişim",
+    "sub": {
+      "hakkimizda": "Hakkımızda",
+      "nisangah": "Nişangâh",
+      "mtoMesaj": "MTO'dan Mesaj",
+      "sehirTemsilcilikleri": "Şehir Temsilcilikleri",
+      "mtoBulten": "MTO Bülten",
+      "sss": "SSS",
+      "akademi": "Akademi",
+      "akademikTakvim": "Akademik Takvim",
+      "akademikKadro": "Akademik Kadro",
+      "dersProgramlari": "Ders Programları",
+      "dersler": "Dersler",
+      "yuzKitap": "100 Kitap Listesi",
+      "dortKalem": "4 Kalem Tekniği",
+      "kamplar": "Kamplar",
+      "makaleler": "Makaleler",
+      "yazilar": "Yazılar",
+      "kulupler": "Kulüpler",
+      "seminerler": "Seminerler",
+      "faaliyetler": "Faaliyetler",
+      "kitapTahlili": "Kitap Tahlili",
+      "iftarlar": "İftarlar",
+      "talebeBulusmalari": "Talebe Buluşmaları",
+      "halkalar": "Halkalar"
+    }
+  },
+  "hero": {
+    "badge": "Medeniyet Tasavvuru Okulu",
+    "title": "2025–2026 Bahar Dönemi\nEğitimleri Devam Ediyor",
+    "subtitle": "5 kademe, 15 akademisyen, 24 farklı ders ile bilgi, irfan ve hikmet merkezli eğitim programı.",
+    "cta1": "Ders Programı",
+    "cta2": "Akademik Kadro"
+  },
+  "stats": {
+    "akademisyen": "Akademisyen",
+    "kademe": "Kademe",
+    "farklıDers": "Farklı Ders",
+    "gunHafta": "Gün / Hafta"
+  },
+  "mtoDanMesaj": {
+    "badge": "Medeniyet Tasavvuru Okulu",
+    "title": "MTO'dan Mesaj",
+    "p1": "Medeniyet Tasavvuru Okulu, İslâm medeniyetini yeniden inşa ve ihya sürecinin kavramsal çerçevesini oluşturmak amacıyla kurulmuştur. Bilgi, irfan ve hikmet üçlüsünü merkeze alarak, genç nesillere medeniyetimizin temel kavramlarını aktarmayı hedefliyoruz.",
+    "p2": "Amacımız, sadece bilgi aktarmak değil; kavramları özümseyerek hayata geçiren, medeniyetin taşıyıcısı olacak bireyler yetiştirmektir."
+  },
+  "bugunkuDersler": {
+    "badge": "Ders Programı",
+    "title": "Bugünkü Dersler",
+    "noDers": "Bugün planlanmış ders bulunmuyor.",
+    "viewAll": "Tüm Ders Programını Gör"
+  },
+  "kitapBanner": {
+    "title": "100 Kitap",
+    "cta": "Listeyi Gör"
+  },
+  "videoSection": {
+    "badge": "Videolarımız",
+    "title": "YouTube Kanalımız",
+    "viewAll": "Tüm Videoları Gör",
+    "swipeHint": "Kaydırarak keşfet",
+    "prevAria": "Önceki",
+    "nextAria": "Sonraki"
+  },
+  "mtoBulten": {
+    "title": "MTO Bülten",
+    "items": [
+      { "tarih": "Bahar 2026", "baslik": "2025–2026 Bahar Dönemi Başladı", "ozet": "Yeni dönemde 5 kademe, 15 akademisyen ve 24 farklı ders ile eğitimler devam ediyor." },
+      { "tarih": "Bahar 2026", "baslik": "Akademik Kadro Güçleniyor", "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal ve daha birçok değerli akademisyen kadromuzda." },
+      { "tarih": "Bahar 2026", "baslik": "Ders Programı Yayında", "ozet": "Pazartesi'den Pazar'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı." }
+    ]
+  },
+  "akademikKadro": {
+    "badge": "İlim · Bilme",
+    "title": "Akademik Kadro",
+    "subtitle": "Medeniyet bilinciyle hareket eden, ilmî karakter ve düşünme disiplini kazandıran öncüler.",
+    "viewAll": "Tümünü Gör"
+  },
+  "egitimler": {
+    "badge": "2025–2026 Bahar Dönemi",
+    "title": "Eğitimlerimiz",
+    "viewAll": "Tüm Ders Programını Gör"
+  },
+  "sss": {
+    "title": "Sıkça Sorulan Sorular",
+    "viewAll": "Tüm Soruları Gör",
+    "questions": [
+      { "q": "Başvurular Ne Zaman Alınıyor?", "a": "Her yıl Güz Dönemi'nde (Eylül – Ekim) 1. Kademe Başvurusu alınırken; Bahar Dönemi'nde (Şubat – Mart) Hazırlık Dönemi başvurusu alınmaktadır. Hazırlık Dönemi zorunlu değildir." },
+      { "q": "Başvuru Nereden ve Nasıl Yapılır?", "a": "Başvuru döneminde, erişime açtığımız başvuru form linkine web sitemizden veya sosyal medya hesaplarımızdan ulaşabilirsiniz. Başvurular eksiksiz ve doğru bir şekilde doldurulmalıdır." },
+      { "q": "Başvuru Şartları Nelerdir?", "a": "MTO'ya başvuru yapmak isteyen talebenin başvuru öncesinde 100 Kitap Listesi'nin Birinci Aşaması'nı 4 kalem tekniğiyle okumuş olması gerekir." }
+    ]
+  },
+  "yorumlar": {
+    "badge": "Görüşler",
+    "title": "Talebelerin\nYorumları",
+    "subtitle": "Programımızdan faydalanan talebelerin değerlendirmeleri.",
+    "prevAria": "Önceki",
+    "nextAria": "Sonraki",
+    "items": [
+      { "yorum": "MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.", "isim": "MTO Talebesi", "unvan": "2. Kademe", "initials": "MT" },
+      { "yorum": "Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.", "isim": "MTO Mezunu", "unvan": "3. Kademe", "initials": "MM" },
+      { "yorum": "Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.", "isim": "MTO Talebesi", "unvan": "1. Kademe", "initials": "MT" },
+      { "yorum": "Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.", "isim": "MTO Mezunu", "unvan": "İhtisas", "initials": "MM" }
+    ]
+  },
+  "ctaBanner": {
+    "title": "2025–2026 Bahar Dönemi Devam Ediyor",
+    "subtitle": "Ders programını inceleyin, akademik kadromuzu tanıyın.",
+    "cta": "Ders Programı"
+  },
+  "footer": {
+    "navLinks": [
+      { "label": "Anasayfa", "href": "/" },
+      { "label": "Hakkımızda", "href": "/ilim-bilme/hakkimizda" },
+      { "label": "İletişim", "href": "/iletisim" }
+    ],
+    "copyright": "© 2025–2026 Medeniyet Tasavvuru Okulu — Tüm hakları saklıdır.",
+    "designBy": "Design by"
+  },
+  "bultenWidget": {
+    "title": "MTO BÜLTEN"
+  },
+  "innerPage": {
+    "sidebarTitles": {
+      "ilimBilme": "İLİM · BİLME",
+      "irfanBulma": "İRFAN · BULMA",
+      "hikmetOlma": "HİKMET · OLMA"
+    }
+  },
+  "iletisim": {
+    "badge": "Bize Ulaşın",
+    "title": "İletişim",
+    "subtitle": "Sorularınız, önerileriniz ve işbirliği talepleriniz için bizimle iletişime geçebilirsiniz.",
+    "genelIletisim": "Genel İletişim",
+    "kurumsal": "Kurumsal",
+    "formBadge": "İletişim Formu",
+    "formTitle": "Mesaj Gönderin",
+    "formSubtitle": "Formu doldurarak bizimle iletişime geçebilirsiniz. En kısa sürede size dönüş yapacağız.",
+    "labelName": "Ad Soyad",
+    "labelEmail": "E-posta",
+    "labelSubject": "Konu",
+    "labelMessage": "Mesajınız",
+    "placeholderName": "Adınızı giriniz",
+    "placeholderEmail": "E-posta adresiniz",
+    "placeholderSubject": "Konu seçiniz",
+    "placeholderMessage": "Mesajınızı yazınız...",
+    "optGenel": "Genel Bilgi",
+    "optKayit": "Kayıt & Başvuru",
+    "optIsbirligi": "İşbirliği Teklifi",
+    "optTemsilcilik": "Şehir Temsilciliği",
+    "optDiger": "Diğer",
+    "submit": "Gönder",
+    "successMsg": "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.",
+    "sosyalBadge": "Takip Edin",
+    "sosyalTitle": "Sosyal Medya",
+    "sosyalSubtitle": "Bizi sosyal medyada takip edin, güncel kalın."
+  },
+  "hakkimizda": {
+    "title": "Hakkımızda",
+    "breadcrumb1": "İLİM - BİLME",
+    "breadcrumb2": "HAKKIMIZDA",
+    "heroTitle": "İLİM İRFAN HİKMET",
+    "content": {
+      "intro": "Hakîkatin İzinde, Yeni Bir Eğitim Modeli. Geleneksel eğitim sistemlerinin bilgiye ulaşmayı kolaylaştırdığı ama hakîkati anlamayı zorlaştırdığı bir çağda, Medeniyet Tasavvuru Okulu yeni bir eğitim modelinin temellerini atar.",
+      "h1": "1- Medeniyet perspektifi kazandırmak,",
+      "p1": "Medeniyet perspektifini ve dinamiklerini, ruhunu, ideallerini ve ufkunu yitiren toplumlar hem başkalarının kölesi olmaktan hem de yok olmanın eşiğine yuvarlanmaktan kurtulamazlar. Bu doğrultuda Medeniyet Tasavvuru '3T' modelini sunar.",
+      "h2": "2- Müslümanca düşünme melekeleri kazandırmak,",
+      "p2": "Kademe derslerini ve 100 Kitap Listesi'nin sıkıca takip eden talebe, Müslümanca duyma, kavrama ve düşünme melekeleri geliştirir.",
+      "h3": "3- Dil zevki kazandırmak,",
+      "p3": "Kurucu kavramları olmayan toplumlar, kendi dünyalarını kuramazlar. MTO'da talebe, medeniyetlerin kavram ve düşünce dünyasını tanır."
+    }
+  },
+  "days": {
+    "Pazartesi": "Pazartesi",
+    "Salı": "Salı",
+    "Çarşamba": "Çarşamba",
+    "Perşembe": "Perşembe",
+    "Cuma": "Cuma",
+    "Cumartesi": "Cumartesi",
+    "Pazar": "Pazar"
+  }
+}

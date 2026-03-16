@@ -1,19 +1,25 @@
 ---
+import { t, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
 ---
 
 <section class="relative py-20 px-5 md:px-8 overflow-hidden bg-white" style="background-image: url('/images/medrese-mesaj.png'); background-repeat: no-repeat; background-position: right center; background-size: auto 90%;">
   <div class="absolute inset-0 bg-gradient-to-r from-white via-white/80 to-white/10"></div>
   <div class="relative z-10 max-w-[1100px] mx-auto">
     <div class="max-w-2xl text-center lg:text-left">
-      <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">Medeniyet Tasavvuru Okulu</div>
+      <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">{t(locale, 'mtoDanMesaj.badge')}</div>
       <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider mb-8 font-bold">
-        MTO'dan Mesaj
+        {t(locale, 'mtoDanMesaj.title')}
       </h2>
       <p class="text-body text-[1rem] leading-[1.9] mb-6">
-        Medeniyet Tasavvuru Okulu, İslâm medeniyetini yeniden inşa ve ihya sürecinin kavramsal çerçevesini oluşturmak amacıyla kurulmuştur. Bilgi, irfan ve hikmet üçlüsünü merkeze alarak, genç nesillere medeniyetimizin temel kavramlarını aktarmayı hedefliyoruz.
+        {t(locale, 'mtoDanMesaj.p1')}
       </p>
       <p class="text-body text-[1rem] leading-[1.9]">
-        Amacımız, sadece bilgi aktarmak değil; kavramları özümseyerek hayata geçiren, medeniyetin taşıyıcısı olacak bireyler yetiştirmektir.
+        {t(locale, 'mtoDanMesaj.p2')}
       </p>
     </div>
   </div>

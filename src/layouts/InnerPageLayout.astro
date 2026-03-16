@@ -6,6 +6,7 @@ import ScrollTop from '../components/ScrollTop.astro';
 import SidebarNav from '../components/SidebarNav.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import MtoBultenWidget from '../components/MtoBultenWidget.astro';
+import { defaultLocale, type Locale } from '../i18n/index';
 
 interface NavItem {
   label: string;
@@ -29,6 +30,7 @@ interface Props {
   showBulten?: boolean;
   currentPath?: string;
   accentColor?: 'vizon' | 'turuncu' | 'mavi';
+  locale?: Locale;
 }
 
 const {
@@ -41,13 +43,14 @@ const {
   showBulten = true,
   currentPath = Astro.url.pathname,
   accentColor = 'vizon',
+  locale = defaultLocale,
 } = Astro.props;
 
 const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor === 'turuncu' ? 'text-turuncu' : 'text-mavi';
 ---
 
-<BaseLayout title={title || `${pageTitle} — MTO`} description={description}>
-  <Header />
+<BaseLayout locale={locale} title={title || `${pageTitle} — MTO`} description={description} basePath="/">
+  <Header locale={locale} />
   <main class="min-h-screen">
     <div class="max-w-[1200px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
       <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
@@ -64,11 +67,11 @@ const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor ===
             <slot />
           </div>
 
-          {showBulten && <MtoBultenWidget />}
+          {showBulten && <MtoBultenWidget locale={locale} />}
         </div>
       </div>
     </div>
   </main>
-  <Footer />
+  <Footer locale={locale} />
   <ScrollTop />
 </BaseLayout>

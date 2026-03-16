@@ -1,6 +1,8 @@
 // Navigasyon verileri — Header ve Sidebar'da merkezi olarak kullanılır
 // Dal renk sistemi: İlim=vizon, İrfan=turuncu, Hikmet=mavi
 
+import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+
 // ─── Tip tanımları ───
 export interface NavItem {
   label: string;
@@ -128,3 +130,28 @@ export const hikmetOlmaNav: SidebarNav = {
     },
   ],
 };
+
+// ─── Locale-aware sidebar getter'ları ───
+export function getIlimBilmeNav(locale: Locale = defaultLocale): SidebarNav {
+  return {
+    title: t(locale, 'innerPage.sidebarTitles.ilimBilme'),
+    color: 'vizon',
+    items: [
+      { label: t(locale, 'nav.sub.hakkimizda'), href: localePath(locale, '/ilim-bilme/hakkimizda') },
+      { label: t(locale, 'nav.sub.nisangah'), href: localePath(locale, '/ilim-bilme/nisangah') },
+      { label: t(locale, 'nav.sub.mtoMesaj'), href: localePath(locale, '/ilim-bilme/mto-mesaj') },
+      {
+        label: t(locale, 'nav.sub.akademi'),
+        href: '#',
+        children: [
+          { label: t(locale, 'nav.sub.akademikTakvim'), href: localePath(locale, '/ilim-bilme/akademik-takvim') },
+          { label: t(locale, 'nav.sub.akademikKadro'), href: localePath(locale, '/ilim-bilme/akademik-kadro') },
+          { label: t(locale, 'nav.sub.dersProgramlari'), href: localePath(locale, '/ders-programi') },
+        ],
+      },
+      { label: t(locale, 'nav.sub.sehirTemsilcilikleri'), href: localePath(locale, '/ilim-bilme/sehir-temsilcilikleri') },
+      { label: t(locale, 'nav.sub.mtoBulten'), href: localePath(locale, '/ilim-bilme/mto-bulten') },
+      { label: t(locale, 'nav.sub.sss'), href: localePath(locale, '/ilim-bilme/sss') },
+    ],
+  };
+}

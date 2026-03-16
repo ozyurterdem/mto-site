@@ -1,0 +1,86 @@
+---
+import InnerPageLayout from '../../../layouts/InnerPageLayout.astro';
+import { hikmetOlmaNav } from '../../../data/navigation';
+
+const breadcrumbs = [
+  { label: 'Anasayfa', href: '/' },
+  { label: 'HİKMET · OLMA', href: '/hikmet-olma' },
+  { label: 'Faaliyetler', href: '/hikmet-olma/faaliyetler' },
+  { label: 'Talebe Buluşmaları' },
+];
+
+const bulusmaTurleri = [
+  {
+    baslik: 'Bayram Buluşmaları',
+    aciklama: 'Ramazan ve Kurban bayramlarında farklı şehirlerdeki MTO talebelerinin bir araya geldiği geleneksel buluşmalar.',
+    icon: 'M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z',
+  },
+  {
+    baslik: 'Şehir Faaliyetleri',
+    aciklama: 'İstanbul, Ankara, Konya ve diğer şehirlerdeki MTO temsilcilikleri aracılığıyla düzenlenen yerel buluşmalar.',
+    icon: 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z',
+  },
+  {
+    baslik: 'Dönem Sonu Buluşmaları',
+    aciklama: 'Her akademik dönemin sonunda tüm kademe talebelerini bir araya getiren kapanış ve değerlendirme programları.',
+    icon: 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2',
+  },
+];
+
+const photos = Array.from({ length: 8 }, (_, i) => ({
+  id: i + 1,
+  alt: `MTO Talebe Buluşması ${i + 1}`,
+}));
+---
+
+<InnerPageLayout
+  accentColor="mavi"
+  pageTitle="Talebe Buluşmaları"
+  sidebarTitle={hikmetOlmaNav.title}
+  sidebarItems={hikmetOlmaNav.items}
+  breadcrumbs={breadcrumbs}
+  currentPath="/hikmet-olma/faaliyetler/talebe-bulusmalari"
+  showBulten={false}
+>
+  <!-- Aciklama -->
+  <div class="mb-10 text-body text-[1.05rem] leading-[2]">
+    <p>
+      MTO, eğitimi yalnızca bir öğrenim sürecine indirgemez; aynı zamanda talebeler arasında derin bir kardeşlik ve dayanışma ruhu inşa etmeyi hedefler. Bu doğrultuda bayram buluşmaları, şehir faaliyetleri ve özel günlerde düzenlenen çeşitli programlarla talebeler bir araya getirilir.
+    </p>
+    <p class="mt-4">
+      Bu buluşmalar, akademik ortamın dışında talebelerin birbirini daha iyi tanımasına, paylaşımda bulunmasına ve ortak bir medeniyet ülküsü etrafında kenetlenmesine zemin hazırlar.
+    </p>
+  </div>
+
+  <!-- Bulusma Turleri -->
+  <div class="not-prose grid grid-cols-1 md:grid-cols-3 gap-5 mb-10">
+    {bulusmaTurleri.map(tur => (
+      <div class="bg-white rounded-xl border border-gray-100 shadow-sm p-5">
+        <div class="w-10 h-10 rounded-lg bg-turkuaz/10 grid place-items-center mb-3">
+          <svg class="w-5 h-5 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d={tur.icon} />
+          </svg>
+        </div>
+        <h3 class="font-heading text-lacivert font-bold text-sm uppercase tracking-wide mb-2">{tur.baslik}</h3>
+        <p class="text-body text-sm leading-relaxed">{tur.aciklama}</p>
+      </div>
+    ))}
+  </div>
+
+  <!-- Fotograf Grid -->
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 not-prose">
+    {photos.map((photo) => (
+      <div class="group relative aspect-square rounded-xl overflow-hidden bg-lacivert/5 hover:shadow-lg transition-all duration-300">
+        <div class="absolute inset-0 bg-gradient-to-br from-turkuaz/10 via-lacivert/5 to-mavi/10 flex items-center justify-center">
+          <div class="text-center opacity-60 group-hover:opacity-100 transition-opacity">
+            <svg class="w-8 h-8 text-lacivert/30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <span class="text-lacivert/40 text-[10px] font-heading uppercase tracking-widest">{photo.alt}</span>
+          </div>
+        </div>
+        <div class="absolute inset-0 bg-lacivert/0 group-hover:bg-lacivert/20 transition-colors duration-300"></div>
+      </div>
+    ))}
+  </div>
+</InnerPageLayout>

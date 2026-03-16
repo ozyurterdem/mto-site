@@ -1,12 +1,18 @@
 ---
+import { t, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
 const youtubeKanalUrl = 'https://www.youtube.com/@mtokurumsal/featured';
 
 const videolar = [
   { id: '1pnE0vSnaSw', baslik: 'Medeniyet Tasavvuru Okulu', tur: 'short' },
-  { id: '69PACEdf68E', baslik: 'Almanya\'nın Hayatta Tutunma Metodu | Yusuf Kaplan', tur: 'short' },
-
+  { id: '69PACEdf68E', baslik: "Almanya'nın Hayatta Tutunma Metodu | Yusuf Kaplan", tur: 'short' },
   { id: '1JDF7xdvhG4', baslik: '#MTO Talebeleri İçin Hoş Bir Tevafuk', tur: 'short' },
-  { id: 'CdyHN_4w2vc', baslik: 'Yusuf Kaplan Müjdeyi Verdi! MTO\'da Yeni Süreç | Kürsü', tur: 'video' },
+  { id: 'CdyHN_4w2vc', baslik: "Yusuf Kaplan Müjdeyi Verdi! MTO'da Yeni Süreç | Kürsü", tur: 'video' },
 ];
 ---
 
@@ -15,9 +21,9 @@ const videolar = [
     <!-- Başlık -->
     <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-10">
       <div>
-        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">Videolarımız</div>
+        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">{t(locale, 'videoSection.badge')}</div>
         <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
-          YouTube Kanalımız
+          {t(locale, 'videoSection.title')}
         </h2>
         <div class="w-16 h-[3px] bg-turkuaz mt-4 rounded-full"></div>
       </div>
@@ -28,7 +34,7 @@ const videolar = [
         class="inline-flex items-center gap-2 px-7 py-3 bg-lacivert text-white no-underline font-bold text-sm uppercase tracking-[1.5px] rounded hover:bg-turkuaz transition-all duration-300 self-start md:self-auto"
       >
         <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-        Tüm Videoları Gör
+        {t(locale, 'videoSection.viewAll')}
       </a>
     </div>
 
@@ -38,7 +44,7 @@ const videolar = [
       <button
         id="video-prev"
         class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-11 h-11 rounded-full bg-lacivert text-white shadow-lg grid place-items-center opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-turkuaz hover:scale-110 disabled:opacity-0 disabled:pointer-events-none"
-        aria-label="Önceki"
+        aria-label={t(locale, 'videoSection.prevAria')}
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
@@ -63,7 +69,6 @@ const videolar = [
               rel="noopener noreferrer"
               class="group/card flex-shrink-0 w-[280px] md:w-[300px] snap-start rounded-xl overflow-hidden bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-1 no-underline block"
             >
-              {/* Thumbnail */}
               <div class="relative aspect-video bg-lacivert overflow-hidden">
                 <img
                   src={thumb}
@@ -71,13 +76,11 @@ const videolar = [
                   class="w-full h-full object-cover group-hover/card:scale-105 transition-transform duration-500"
                   loading="lazy"
                 />
-                {/* Play overlay */}
                 <div class="absolute inset-0 bg-black/30 opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 grid place-items-center">
                   <div class="w-14 h-14 rounded-full bg-turkuaz/90 grid place-items-center shadow-lg">
                     <svg class="w-6 h-6 fill-white ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                   </div>
                 </div>
-                {/* Tür badge */}
                 {v.tur === 'short' && (
                   <div class="absolute top-3 left-3 px-2.5 py-1 bg-red-600 text-white text-[10px] font-bold uppercase tracking-wider rounded-sm flex items-center gap-1">
                     <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg>
@@ -85,7 +88,6 @@ const videolar = [
                   </div>
                 )}
               </div>
-              {/* Başlık */}
               <div class="p-4">
                 <h3 class="font-heading text-[13px] text-lacivert font-bold leading-snug uppercase tracking-wide line-clamp-2 group-hover/card:text-turkuaz transition-colors duration-300">
                   {v.baslik}
@@ -100,7 +102,7 @@ const videolar = [
       <button
         id="video-next"
         class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-11 h-11 rounded-full bg-lacivert text-white shadow-lg grid place-items-center opacity-0 group-hover/slider:opacity-100 transition-all duration-300 hover:bg-turkuaz hover:scale-110 disabled:opacity-0 disabled:pointer-events-none"
-        aria-label="Sonraki"
+        aria-label={t(locale, 'videoSection.nextAria')}
       >
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -114,18 +116,16 @@ const videolar = [
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4M16 17H4m0 0l4 4m-4-4l4-4"/>
         </svg>
-        Kaydırarak keşfet
+        {t(locale, 'videoSection.swipeHint')}
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* Scrollbar gizle */
   #video-slider::-webkit-scrollbar {
     display: none;
   }
-  /* line-clamp */
   .line-clamp-2 {
     display: -webkit-box;
     -webkit-line-clamp: 2;

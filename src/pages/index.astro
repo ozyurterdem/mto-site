@@ -12,23 +12,33 @@ import Egitimler from '../components/Egitimler.astro';
 import Stats from '../components/Stats.astro';
 import SSS from '../components/SSS.astro';
 import Yorumlar from '../components/Yorumlar.astro';
+import CtaBanner from '../components/CtaBanner.astro';
 import Footer from '../components/Footer.astro';
 import ScrollTop from '../components/ScrollTop.astro';
+import { t } from '../i18n/index';
+
+const locale = 'tr' as const;
 ---
 
-<BaseLayout>
-  <Header />
-  <Hero />
-  <MtoDanMesaj />
-  <BugunkuDersler />
-  <KitapBanner />
-  <VideoSection />
-  <MtoBulten />
-  <AkademikKadro />
-  <Egitimler />
-  <Stats />
-  <SSS />
-  <Yorumlar />
-  <Footer />
+<BaseLayout
+  locale={locale}
+  title={t(locale, 'meta.siteTitle')}
+  description={t(locale, 'meta.siteDescription')}
+  basePath="/"
+>
+  <Header locale={locale} />
+  <Hero locale={locale} />
+  <MtoDanMesaj locale={locale} />
+  <BugunkuDersler locale={locale} />
+  <KitapBanner locale={locale} />
+  <VideoSection locale={locale} />
+  <MtoBulten locale={locale} />
+  <AkademikKadro locale={locale} />
+  <Egitimler locale={locale} />
+  <Stats locale={locale} />
+  <SSS locale={locale} />
+  <Yorumlar locale={locale} />
+  <CtaBanner locale={locale} />
+  <Footer locale={locale} />
   <ScrollTop />
 </BaseLayout>

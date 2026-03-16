@@ -1,4 +1,10 @@
 ---
+import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
 ---
 
 <section id="kitap" class="relative min-h-[240px] flex items-center justify-center text-center overflow-hidden">
@@ -9,12 +15,12 @@
     <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full border border-lacivert/10"></div>
   </div>
   <div class="relative z-10">
-    <h2 class="font-heading text-[clamp(2.2rem,4vw,3.2rem)] text-lacivert uppercase mb-5 font-black tracking-wider">100 Kitap</h2>
+    <h2 class="font-heading text-[clamp(2.2rem,4vw,3.2rem)] text-lacivert uppercase mb-5 font-black tracking-wider">{t(locale, 'kitapBanner.title')}</h2>
     <a
-      href="/100-kitap"
+      href={localePath(locale, '/100-kitap')}
       class="inline-block px-10 py-4 bg-lacivert text-white no-underline font-bold text-sm uppercase tracking-[2px] rounded hover:bg-white hover:text-lacivert transition-all duration-300"
     >
-      Listeyi Gör
+      {t(locale, 'kitapBanner.cta')}
     </a>
   </div>
 </section>

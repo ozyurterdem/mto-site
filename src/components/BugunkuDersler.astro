@@ -1,8 +1,17 @@
 ---
 import { bugunGun, bugunDersler } from '../data/ders-programi';
+import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
 
-const gun = bugunGun();
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
+const gunTR = bugunGun();
 const dersler = bugunDersler();
+
+// Gün adını locale'e göre çevir
+const gun = t(locale, `days.${gunTR}`) !== `days.${gunTR}` ? t(locale, `days.${gunTR}`) : gunTR;
 ---
 
 <section class="py-12 px-5 md:px-8 lg:px-12 bg-[#f5f7fa]">
@@ -11,9 +20,9 @@ const dersler = bugunDersler();
     <!-- Başlık -->
     <div class="flex items-center justify-between mb-8 flex-wrap gap-4">
       <div>
-        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-2">Ders Programı</div>
+        <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-2">{t(locale, 'bugunkuDersler.badge')}</div>
         <h2 class="font-heading text-[clamp(1.4rem,2.5vw,2rem)] text-lacivert font-bold">
-          Bugünkü Dersler
+          {t(locale, 'bugunkuDersler.title')}
         </h2>
       </div>
       <div class="flex items-center gap-3">
@@ -28,11 +37,11 @@ const dersler = bugunDersler();
 
     {dersler.length === 0 ? (
       <div class="text-center py-12 text-gray-500">
-        <p class="text-lg">Bugün planlanmış ders bulunmuyor.</p>
+        <p class="text-lg">{t(locale, 'bugunkuDersler.noDers')}</p>
       </div>
     ) : (
       <div class="grid gap-3">
-        {dersler.map((d, i) => (
+        {dersler.map((d) => (
           <div class="flex items-center gap-4 bg-white rounded-xl px-5 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:shadow-[0_4px_16px_rgba(0,0,0,0.1)] transition-shadow duration-300">
             <!-- Saat -->
             <div class="flex-shrink-0 w-[70px] text-center">
@@ -49,7 +58,7 @@ const dersler = bugunDersler();
                 {d.hoca !== '-' && (
                   <span class="text-vizon text-sm">{d.hoca}</span>
                 )}
-                {d.kademeler.map(k => (
+                {d.kademeler.map((k: string) => (
                   <span class="text-[11px] font-heading font-semibold text-turkuaz bg-turkuaz/10 border border-turkuaz/20 rounded-full px-2 py-0.5 whitespace-nowrap">{k}</span>
                 ))}
               </div>
@@ -66,8 +75,8 @@ const dersler = bugunDersler();
 
     <!-- Tam program linki -->
     <div class="text-center mt-8">
-      <a href="/ders-programi" class="inline-flex items-center gap-2 text-turkuaz font-heading font-semibold text-sm uppercase tracking-wider hover:text-mavi transition-colors duration-300">
-        Tüm Ders Programını Gör
+      <a href={localePath(locale, '/ders-programi')} class="inline-flex items-center gap-2 text-turkuaz font-heading font-semibold text-sm uppercase tracking-wider hover:text-mavi transition-colors duration-300">
+        {t(locale, 'bugunkuDersler.viewAll')}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
         </svg>

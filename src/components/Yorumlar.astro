@@ -1,21 +1,25 @@
 ---
-const yorumlar = [
-  { yorum: 'MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.', isim: 'MTO Talebesi', unvan: '2. Kademe', initials: 'MT' },
-  { yorum: 'Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.', isim: 'MTO Mezunu', unvan: '3. Kademe', initials: 'MM' },
-  { yorum: 'Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.', isim: 'MTO Talebesi', unvan: '1. Kademe', initials: 'MT' },
-  { yorum: 'Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.', isim: 'MTO Mezunu', unvan: 'İhtisas', initials: 'MM' },
-];
+import { t, tArray, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
+const yorumlar = tArray(locale, 'yorumlar.items') as { yorum: string; isim: string; unvan: string; initials: string }[];
 ---
 
 <section class="py-20 px-8 lg:px-12 bg-white border-t-4 border-lacivert">
   <div class="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-12 items-start">
     <div>
-      <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">Görüşler</div>
-      <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-4 font-bold">Talebelerin<br/>Yorumları</h2>
-      <p class="text-body text-sm leading-relaxed mb-6">Programımızdan faydalanan talebelerin değerlendirmeleri.</p>
+      <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">{t(locale, 'yorumlar.badge')}</div>
+      <h2 class="font-heading text-[2.4rem] text-lacivert uppercase tracking-wider mb-4 font-bold"
+        set:html={t(locale, 'yorumlar.title').replace(/\n/g, '<br/>')}
+      />
+      <p class="text-body text-sm leading-relaxed mb-6">{t(locale, 'yorumlar.subtitle')}</p>
       <div class="flex gap-3">
-        <button id="yorum-prev" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Önceki">&#8592;</button>
-        <button id="yorum-next" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label="Sonraki">&#8594;</button>
+        <button id="yorum-prev" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label={t(locale, 'yorumlar.prevAria')}>&#8592;</button>
+        <button id="yorum-next" class="w-11 h-11 border-2 border-gray-200 rounded-full bg-transparent cursor-pointer text-lg text-body hover:border-turkuaz hover:text-turkuaz transition-all" aria-label={t(locale, 'yorumlar.nextAria')}>&#8594;</button>
       </div>
     </div>
 
@@ -56,7 +60,7 @@ const yorumlar = [
 
     function updateSlide() {
       const pct = (current / total) * 100;
-      track.style.transform = `translateX(-${pct}%)`;
+      (track as HTMLElement).style.transform = `translateX(-${pct}%)`;
     }
 
     prevBtn.addEventListener('click', () => {

@@ -1,8 +1,11 @@
 ---
+import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
+
 interface Props {
   class?: string;
+  locale?: Locale;
 }
-const { class: className = '' } = Astro.props;
+const { class: className = '', locale = defaultLocale } = Astro.props;
 
 const bulletinItems = [
   {
@@ -25,12 +28,12 @@ const bulletinItems = [
 
 <section class={`mt-16 ${className}`}>
   <h3 class="text-lg font-bold text-lacivert uppercase tracking-wider font-heading border-b border-gray-200 pb-3 mb-6">
-    MTO BÜLTEN
+    {t(locale, 'bultenWidget.title')}
   </h3>
   <div class="relative">
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="bulten-slider">
       {bulletinItems.map(item => (
-        <a href="/ilim-bilme/mto-bulten" class="group no-underline block">
+        <a href={localePath(locale, '/ilim-bilme/mto-bulten')} class="group no-underline block">
           <div class="aspect-[4/3] bg-gray-200 rounded overflow-hidden mb-3">
             <img src={item.image} alt={item.title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
           </div>
@@ -44,7 +47,6 @@ const bulletinItems = [
         </a>
       ))}
     </div>
-    <!-- Arrows -->
     <button class="absolute -left-10 top-1/3 w-8 h-8 rounded-full border border-gray-300 grid place-items-center text-gray-400 hover:text-turkuaz hover:border-turkuaz transition-colors hidden md:grid" aria-label="Önceki">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
     </button>

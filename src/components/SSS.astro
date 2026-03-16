@@ -1,27 +1,22 @@
 ---
-const sorular = [
-  { q: 'Başvurular Ne Zaman Alınıyor?', a: "Her yıl Güz Dönemi'nde (Eylül – Ekim) 1. Kademe Başvurusu alınırken; Bahar Dönemi'nde (Şubat – Mart) Hazırlık Dönemi başvurusu alınmaktadır. Hazırlık Dönemi zorunlu değildir." },
-  { q: 'Başvuru Nereden ve Nasıl Yapılır?', a: 'Başvuru döneminde, erişime açtığımız başvuru form linkine web sitemizden veya sosyal medya hesaplarımızdan ulaşabilirsiniz. Başvurular eksiksiz ve doğru bir şekilde doldurulmalıdır.' },
-  { q: 'Başvuru Şartları Nelerdir?', a: "MTO'ya başvuru yapmak isteyen talebenin başvuru öncesinde 100 Kitap Listesi'nin Birinci Aşaması'nı 4 kalem tekniğiyle okumuş olması gerekir." },
-  { q: 'Başvurularda Yaş Sınırı Var Mı?', a: 'Herhangi bir yaş sınırlaması yoktur. MTO "yaş değil baş" düsturu ile ilerler.' },
-  { q: 'Eğitimin Süresi Ne Kadar?', a: 'Her yıl iki dönemden oluşan MTO toplamda 3 yıllık bir eğitim sunmaktadır. Üç yılı bitiren talebeler süresiz bir şekilde ihtisas dersleri alır.' },
-  { q: 'Eğitim Ücretli Mi?', a: 'Okulumuz ücretli olmayıp; aidiyetin sağlanabilmesi amacıyla kayıt yenileme işlemi sırasında dönemlik 750 TL gönüllü bağış talep edilmektedir.' },
-  { q: 'Dersler Ne Zaman ve Ne Şekilde Gerçekleştirilmektedir?', a: 'Dersler her gün akşam saatlerinde WhatsApp gruplarına atılan link üzerinden online gerçekleşmektedir.' },
-  { q: 'Derslere Zamanında Katılamadım, Sonradan İzleyebilir Miyim?', a: 'Dersler YouTube üzerinden gerçekleştiği için istediğiniz vakitte aynı linkten izleyebilirsiniz.' },
-  { q: 'Derslerden Sınav Olacak Mıyız?', a: 'Okulumuzda herhangi bir sınav uygulanmamaktadır. Talebelerin gelişimi, gönüllü olarak yazdığı yazılar ile tespit edilmektedir.' },
-];
+import { t, tArray, localePath, defaultLocale, type Locale } from '../i18n/index';
 
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
+const sorular = tArray(locale, 'sss.questions');
 const ilkUcSoru = sorular.slice(0, 3);
 ---
 
 <section class="py-20 px-8 lg:px-12 bg-white">
   <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase text-center tracking-wider mb-12 font-bold">
-    Sıkça Sorulan Sorular
+    {t(locale, 'sss.title')}
   </h2>
 
   <div class="max-w-[800px] mx-auto">
-    {/* İlk 3 soru — her zaman görünür */}
-    {ilkUcSoru.map((s, i) => (
+    {ilkUcSoru.map((s: { q: string; a: string }, i: number) => (
       <div class="sss-item border-b border-gray-200">
         <button class="sss-toggle flex items-center justify-between w-full py-5 cursor-pointer hover:text-turkuaz transition-colors bg-transparent border-none text-left font-body">
           <h4 class="text-[0.95rem] font-medium text-lacivert">
@@ -36,13 +31,12 @@ const ilkUcSoru = sorular.slice(0, 3);
       </div>
     ))}
 
-    {/* SSS Sayfasına Yönlendirme */}
     <div class="text-center mt-10">
       <a
-        href="/ilim-bilme/sss"
+        href={localePath(locale, '/ilim-bilme/sss')}
         class="inline-flex items-center gap-2 px-8 py-3.5 bg-turkuaz text-lacivert no-underline font-heading font-bold text-sm uppercase tracking-[2px] border-2 border-turkuaz hover:bg-lacivert hover:text-white hover:border-lacivert transition-all duration-300 rounded-lg"
       >
-        Tüm Soruları Gör
+        {t(locale, 'sss.viewAll')}
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
         </svg>
@@ -52,7 +46,6 @@ const ilkUcSoru = sorular.slice(0, 3);
 </section>
 
 <script>
-  // Accordion toggle
   document.querySelectorAll('.sss-toggle').forEach(btn => {
     btn.addEventListener('click', () => {
       const item = btn.parentElement!;
@@ -60,19 +53,16 @@ const ilkUcSoru = sorular.slice(0, 3);
       const icon = item.querySelector('.sss-icon') as HTMLElement;
       const isOpen = !body?.classList.contains('hidden');
 
-      // Close all
       document.querySelectorAll('.sss-item').forEach(i => {
         i.querySelector('.sss-body')?.classList.add('hidden');
         const ic = i.querySelector('.sss-icon') as HTMLElement;
         if (ic) ic.style.transform = '';
       });
 
-      // Open clicked if it was closed
       if (!isOpen) {
         body?.classList.remove('hidden');
         if (icon) icon.style.transform = 'rotate(45deg)';
       }
     });
   });
-
 </script>

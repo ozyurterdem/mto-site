@@ -1,19 +1,26 @@
 ---
+import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
 const oneCikanlar = [
-  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', gun: 'Salı', saat: '21:30', kademeler: 'Tüm Kademeler', renk: '#E7A54E' },
-  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', gun: 'Pazartesi', saat: '20:00', kademeler: '2-3. Kademe, İhtisas', renk: '#B7A78F' },
-  { ders: 'Düşünce Tarihi', hoca: 'Tahsin Görgün', gun: 'Pazartesi / Perşembe', saat: '20:00', kademeler: '1-2. Kademe', renk: '#0D619A' },
-  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngörmez', gun: 'Çarşamba', saat: '20:00', kademeler: '2-3. Kademe', renk: '#30D5E1' },
-  { ders: 'Öncüler', hoca: 'Saadettin Acar', gun: 'Çarşamba', saat: '21:30', kademeler: 'Tüm Kademeler', renk: '#E7A54E' },
-  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', gun: 'Pazartesi', saat: '21:30', kademeler: 'Tüm Kademeler', renk: '#B7A78F' },
+  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', gun: 'Salı', saat: '21:30', kademeler: 'Tüm Kademeler' },
+  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', gun: 'Pazartesi', saat: '20:00', kademeler: '2-3. Kademe, İhtisas' },
+  { ders: 'Düşünce Tarihi', hoca: 'Tahsin Görgün', gun: 'Pazartesi / Perşembe', saat: '20:00', kademeler: '1-2. Kademe' },
+  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngörmez', gun: 'Çarşamba', saat: '20:00', kademeler: '2-3. Kademe' },
+  { ders: 'Öncüler', hoca: 'Saadettin Acar', gun: 'Çarşamba', saat: '21:30', kademeler: 'Tüm Kademeler' },
+  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', gun: 'Pazartesi', saat: '21:30', kademeler: 'Tüm Kademeler' },
 ];
 ---
 
 <section id="egitimler" class="py-20 px-8 lg:px-12 bg-gray-50">
   <div class="text-center mb-14">
-    <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">2025–2026 Bahar Dönemi</div>
+    <div class="text-turkuaz text-sm uppercase tracking-[3px] font-medium mb-3">{t(locale, 'egitimler.badge')}</div>
     <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
-      Eğitimlerimiz
+      {t(locale, 'egitimler.title')}
     </h2>
     <div class="w-16 h-[3px] bg-turkuaz mx-auto mt-4 rounded-full"></div>
   </div>
@@ -21,10 +28,10 @@ const oneCikanlar = [
   <div class="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
     {oneCikanlar.map(e => (
       <div class="group bg-white rounded-xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]">
-        <!-- Görsel alan — koyu arka plan + sol kenar renk çizgisi -->
+        <!-- Görsel alan -->
         <div class="relative aspect-[4/3] bg-lacivert overflow-hidden">
           <!-- Sol kenar renk çizgisi -->
-          <div class="absolute left-0 top-0 bottom-0 w-1.5" style={`background: ${e.renk}`}></div>
+          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-turuncu"></div>
           <!-- Dekoratif daire -->
           <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full border border-white/5"></div>
           <div class="absolute right-12 bottom-8 w-20 h-20 rounded-full border border-white/5"></div>
@@ -32,12 +39,9 @@ const oneCikanlar = [
           <div class="absolute inset-0 flex items-center justify-center opacity-10">
             <img src="/images/medrese-icon.png" alt="" class="w-24 h-24 object-contain" />
           </div>
-          <!-- Hoca adı badge — sol alt -->
+          <!-- Hoca adı badge -->
           <div class="absolute left-4 bottom-4">
-            <span
-              class="inline-block px-4 py-1.5 text-xs font-heading font-bold text-white uppercase tracking-wider rounded-sm"
-              style={`background: ${e.renk}`}
-            >
+            <span class="inline-block px-4 py-1.5 text-xs font-heading font-bold text-white uppercase tracking-wider rounded-sm bg-turuncu">
               {e.hoca}
             </span>
           </div>
@@ -48,7 +52,7 @@ const oneCikanlar = [
             <h3 class="font-heading text-[15px] text-lacivert font-bold leading-snug uppercase tracking-wide flex-1">
               {e.ders}
             </h3>
-            <span class="text-xs text-body/50 font-body whitespace-nowrap mt-0.5">{e.gun}</span>
+            <span class="text-xs text-body/50 font-body whitespace-nowrap mt-0.5">{e.gun.split(' / ').map(g => t(locale, `days.${g}`)).join(' / ')}</span>
           </div>
         </div>
       </div>
@@ -56,8 +60,8 @@ const oneCikanlar = [
   </div>
 
   <div class="text-center mt-12">
-    <a href="/ders-programi" class="inline-flex items-center gap-2 px-8 py-3.5 bg-lacivert text-white no-underline font-bold text-sm uppercase tracking-[1.5px] rounded hover:bg-turkuaz transition-all duration-300">
-      Tüm Ders Programını Gör
+    <a href={localePath(locale, '/ders-programi')} class="inline-flex items-center gap-2 px-8 py-3.5 bg-lacivert text-white no-underline font-bold text-sm uppercase tracking-[1.5px] rounded hover:bg-turkuaz transition-all duration-300">
+      {t(locale, 'egitimler.viewAll')}
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
       </svg>

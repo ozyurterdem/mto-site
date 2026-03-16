@@ -1,0 +1,67 @@
+---
+import InnerPageLayout from '../../../layouts/InnerPageLayout.astro'
+import { getIlimBilmeNav } from '../../../data/navigation'
+import { t, tArray, localePath } from '../../../i18n/index'
+
+const locale = 'en' as const;
+const nav = getIlimBilmeNav(locale);
+
+const sidebarItems = nav.items.map(item => ({
+  ...item,
+  active: item.href === localePath(locale, '/ilim-bilme/sss')
+}))
+
+const breadcrumbs = [
+  { label: t(locale, 'hakkimizda.breadcrumb1'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.sss') }
+]
+
+const sorular = tArray(locale, 'sss.questions') as { q: string; a: string }[];
+---
+
+<InnerPageLayout
+  locale={locale}
+  title={`${t(locale, 'sss.title')} — MTO`}
+  description={t(locale, 'meta.siteDescription')}
+  pageTitle={t(locale, 'sss.title').toUpperCase()}
+  sidebarTitle={nav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  showBulten={false}
+  currentPath={localePath(locale, '/ilim-bilme/sss')}
+>
+  <div class="space-y-3" id="faq-accordion">
+    {sorular.map((item, i) => (
+      <div class="faq-item bg-gray-50 rounded-lg overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-100 transition-colors">
+          <span class="text-sm font-medium text-body">
+            <span class="text-turkuaz font-bold mr-1">{i + 1}-</span> {item.q}
+          </span>
+          <svg class="faq-icon w-5 h-5 text-gray-400 flex-shrink-0 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12M6 12h12"/>
+          </svg>
+        </button>
+        <div class="faq-content hidden px-6 pb-4">
+          <p class="text-sm text-body/80 leading-relaxed">{item.a}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</InnerPageLayout>
+
+<script>
+  document.querySelectorAll('.faq-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const content = item?.querySelector('.faq-content');
+      const icon = btn.querySelector('.faq-icon');
+      const isOpen = !content?.classList.contains('hidden');
+      document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+      document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotate-45'));
+      if (!isOpen) {
+        content?.classList.remove('hidden');
+        icon?.classList.add('rotate-45');
+      }
+    });
+  });
+</script>

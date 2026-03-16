@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "siteTitle": "School of Civilization Vision — MTO",
+    "siteDescription": "The conceptual framework for rebuilding and reviving Islamic civilization. An education program centered on knowledge, wisdom and enlightenment."
+  },
+  "nav": {
+    "home": "Home",
+    "ilimBilme": "Knowledge · Learning",
+    "irfanBulma": "Wisdom · Discovery",
+    "hikmetOlma": "Enlightenment · Being",
+    "contact": "Contact",
+    "sub": {
+      "hakkimizda": "About Us",
+      "nisangah": "Vision",
+      "mtoMesaj": "Message from MTO",
+      "sehirTemsilcilikleri": "City Representatives",
+      "mtoBulten": "MTO Newsletter",
+      "sss": "FAQ",
+      "akademi": "Academy",
+      "akademikTakvim": "Academic Calendar",
+      "akademikKadro": "Academic Staff",
+      "dersProgramlari": "Course Schedule",
+      "dersler": "Courses",
+      "yuzKitap": "100 Book List",
+      "dortKalem": "4 Pen Technique",
+      "kamplar": "Camps",
+      "makaleler": "Articles",
+      "yazilar": "Writings",
+      "kulupler": "Clubs",
+      "seminerler": "Seminars",
+      "faaliyetler": "Activities",
+      "kitapTahlili": "Book Analysis",
+      "iftarlar": "Iftar Events",
+      "talebeBulusmalari": "Student Gatherings",
+      "halkalar": "Study Circles"
+    }
+  },
+  "hero": {
+    "badge": "School of Civilization Vision",
+    "title": "Spring Semester 2025–2026\nTraining Continues",
+    "subtitle": "5 levels, 15 academics, 24 different courses — an education program centered on knowledge, wisdom and enlightenment.",
+    "cta1": "Course Schedule",
+    "cta2": "Academic Staff"
+  },
+  "stats": {
+    "akademisyen": "Academics",
+    "kademe": "Levels",
+    "farklıDers": "Courses",
+    "gunHafta": "Days / Week"
+  },
+  "mtoDanMesaj": {
+    "badge": "School of Civilization Vision",
+    "title": "Message from MTO",
+    "p1": "The School of Civilization Vision was founded to establish the conceptual framework for rebuilding and reviving Islamic civilization. Centering on the triad of knowledge, wisdom and enlightenment, we aim to convey the foundational concepts of our civilization to new generations.",
+    "p2": "Our goal is not merely to transfer knowledge, but to cultivate individuals who internalize concepts and bring them to life — individuals who will be the bearers of civilization."
+  },
+  "bugunkuDersler": {
+    "badge": "Course Schedule",
+    "title": "Today's Lessons",
+    "noDers": "No lessons scheduled for today.",
+    "viewAll": "View Full Course Schedule"
+  },
+  "kitapBanner": {
+    "title": "100 Books",
+    "cta": "View the List"
+  },
+  "videoSection": {
+    "badge": "Our Videos",
+    "title": "Our YouTube Channel",
+    "viewAll": "View All Videos",
+    "swipeHint": "Swipe to explore",
+    "prevAria": "Previous",
+    "nextAria": "Next"
+  },
+  "mtoBulten": {
+    "title": "MTO Newsletter",
+    "items": [
+      { "tarih": "Spring 2026", "baslik": "Spring Semester 2025–2026 Has Begun", "ozet": "The new semester continues with 5 levels, 15 academics and 24 different courses." },
+      { "tarih": "Spring 2026", "baslik": "Academic Staff Grows Stronger", "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal and many more distinguished academics join our faculty." },
+      { "tarih": "Spring 2026", "baslik": "Course Schedule Published", "ozet": "Our intensive course schedule, running every day from Monday to Sunday, is now published on our website." }
+    ]
+  },
+  "akademikKadro": {
+    "badge": "Knowledge · Learning",
+    "title": "Academic Staff",
+    "subtitle": "Pioneers who act with civilizational awareness and cultivate scholarly character and disciplined thinking.",
+    "viewAll": "View All"
+  },
+  "egitimler": {
+    "badge": "Spring Semester 2025–2026",
+    "title": "Our Courses",
+    "viewAll": "View Full Course Schedule"
+  },
+  "sss": {
+    "title": "Frequently Asked Questions",
+    "viewAll": "View All Questions",
+    "questions": [
+      { "q": "When Are Applications Accepted?", "a": "1st Level applications are accepted during the Fall Semester (September – October) each year, while the Preparatory Period applications are accepted during the Spring Semester (February – March). The Preparatory Period is not mandatory." },
+      { "q": "How and Where Can I Apply?", "a": "During the application period, you can access the application form link from our website or social media accounts. Applications must be filled out completely and accurately." },
+      { "q": "What Are the Application Requirements?", "a": "Students wishing to apply to MTO must have read the First Stage of the 100 Books List using the 4-pen technique prior to applying." }
+    ]
+  },
+  "yorumlar": {
+    "badge": "Testimonials",
+    "title": "Student\nReviews",
+    "subtitle": "Evaluations from students who have benefited from our program.",
+    "prevAria": "Previous",
+    "nextAria": "Next",
+    "items": [
+      { "yorum": "Thanks to the MTO program, my perspective on the concept of civilization has completely changed. The depth of the academic staff and the richness of the course content are truly impressive.", "isim": "MTO Student", "unvan": "Level 2", "initials": "MT" },
+      { "yorum": "It was a program that developed my conceptual thinking ability and broadened my horizons. It contributed greatly to both my academic and personal growth.", "isim": "MTO Graduate", "unvan": "Level 3", "initials": "MM" },
+      { "yorum": "I have never seen another program that addresses the triad of knowledge, wisdom and enlightenment so holistically. MTO is a true school of civilization.", "isim": "MTO Student", "unvan": "Level 1", "initials": "MT" },
+      { "yorum": "Every lesson delves deep into concepts. It is an educational approach that starts from the foundations, not the surface.", "isim": "MTO Graduate", "unvan": "Specialization", "initials": "MM" }
+    ]
+  },
+  "ctaBanner": {
+    "title": "Spring Semester 2025–2026 Is Ongoing",
+    "subtitle": "Explore the course schedule and meet our academic staff.",
+    "cta": "Course Schedule"
+  },
+  "footer": {
+    "navLinks": [
+      { "label": "Home", "href": "/en/" },
+      { "label": "About Us", "href": "/en/ilim-bilme/hakkimizda" },
+      { "label": "Contact", "href": "/en/iletisim" }
+    ],
+    "copyright": "© 2025–2026 School of Civilization Vision — All rights reserved.",
+    "designBy": "Design by"
+  },
+  "bultenWidget": {
+    "title": "MTO NEWSLETTER"
+  },
+  "innerPage": {
+    "sidebarTitles": {
+      "ilimBilme": "KNOWLEDGE · LEARNING",
+      "irfanBulma": "WISDOM · DISCOVERY",
+      "hikmetOlma": "ENLIGHTENMENT · BEING"
+    }
+  },
+  "iletisim": {
+    "badge": "Contact Us",
+    "title": "Contact",
+    "subtitle": "For your questions, suggestions and collaboration requests, please get in touch with us.",
+    "genelIletisim": "General Contact",
+    "kurumsal": "Corporate",
+    "formBadge": "Contact Form",
+    "formTitle": "Send a Message",
+    "formSubtitle": "Fill out the form to contact us. We will get back to you as soon as possible.",
+    "labelName": "Full Name",
+    "labelEmail": "Email",
+    "labelSubject": "Subject",
+    "labelMessage": "Your Message",
+    "placeholderName": "Enter your name",
+    "placeholderEmail": "Your email address",
+    "placeholderSubject": "Select a subject",
+    "placeholderMessage": "Write your message...",
+    "optGenel": "General Information",
+    "optKayit": "Registration & Application",
+    "optIsbirligi": "Collaboration Proposal",
+    "optTemsilcilik": "City Representation",
+    "optDiger": "Other",
+    "submit": "Send",
+    "successMsg": "Your message has been sent successfully. We will get back to you shortly.",
+    "sosyalBadge": "Follow Us",
+    "sosyalTitle": "Social Media",
+    "sosyalSubtitle": "Follow us on social media and stay updated."
+  },
+  "hakkimizda": {
+    "title": "About Us",
+    "breadcrumb1": "KNOWLEDGE - LEARNING",
+    "breadcrumb2": "ABOUT US",
+    "heroTitle": "KNOWLEDGE WISDOM ENLIGHTENMENT",
+    "content": {
+      "intro": "In Pursuit of Truth, A New Education Model. In an age where traditional education systems make it easier to access information but harder to understand truth, the School of Civilization Vision lays the foundations of a new education model. For MTO students, learning means building an identity, expanding the horizon of thought, and forming civilizational consciousness. In this direction, the School of Civilization Vision aims for achievements consisting of three stages;",
+      "h1": "1- To cultivate a civilizational perspective,",
+      "p1": "Societies that lose their civilizational perspective and dynamics, spirit, ideals and horizon cannot escape being enslaved by others or teetering on the brink of extinction. In this direction, the School of Civilization Vision presents the '3T' model. A three-stage educational vision that can enable the step-by-step realization of the civilization of truth: Tevârûs - Temellûk - Temessûl.",
+      "h2": "2- To develop Islamic thinking faculties,",
+      "p2": "The student who closely follows the level courses and the 100 Book List develops faculties of Islamic hearing, comprehension and thinking; embarks on a long-term civilizational vision journey to rebuild all disciplines from scratch.",
+      "h3": "3- To cultivate a taste for language,",
+      "p3": "Societies without founding concepts cannot build their own worlds. At MTO, students learn the conceptual and intellectual world of civilizations, embrace their own concepts and build their own phenomenology."
+    }
+  },
+  "days": {
+    "Pazartesi": "Monday",
+    "Salı": "Tuesday",
+    "Çarşamba": "Wednesday",
+    "Perşembe": "Thursday",
+    "Cuma": "Friday",
+    "Cumartesi": "Saturday",
+    "Pazar": "Sunday"
+  }
+}

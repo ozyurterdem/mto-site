@@ -1,21 +1,24 @@
 ---
-const haberler = [
-  { tarih: 'Bahar 2026', baslik: '2025–2026 Bahar Dönemi Başladı', ozet: 'Yeni dönemde 5 kademe, 15 akademisyen ve 24 farklı ders ile eğitimler devam ediyor.' },
-  { tarih: 'Bahar 2026', baslik: 'Akademik Kadro Güçleniyor', ozet: 'Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal ve daha birçok değerli akademisyen kadromuzda.' },
-  { tarih: 'Bahar 2026', baslik: 'Ders Programı Yayında', ozet: 'Pazartesi\'den Pazar\'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı.' },
-];
+import { t, tArray, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+
+const haberler = tArray(locale, 'mtoBulten.items');
 ---
 
 <section class="py-20 px-5 md:px-8 bg-gray-50">
   <div class="max-w-[1100px] mx-auto">
     <div class="text-center mb-12">
       <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
-        MTO Bülten
+        {t(locale, 'mtoBulten.title')}
       </h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {haberler.map(h => (
+      {haberler.map((h: { tarih: string; baslik: string; ozet: string }) => (
         <div class="block bg-white rounded-xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]">
           <div class="text-xs text-turkuaz font-medium uppercase tracking-wider mb-3">{h.tarih}</div>
           <h3 class="font-heading text-lg text-lacivert font-bold mb-3">

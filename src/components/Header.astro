@@ -1,20 +1,78 @@
 ---
 import { socialLinks } from '../data/social-links';
-import { headerNav } from '../data/navigation';
+import { t, locales, localePath, getConfig, type Locale, defaultLocale } from '../i18n/index';
 
-// Renk yardımcıları
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
+const dir = getConfig(locale).dir;
+
+// Dal renk sistemi
 const colorMap: Record<string, { border: string; hoverText: string; hoverBg: string; topBorder: string; mobileText: string }> = {
   vizon:   { border: 'border-vizon',   hoverText: 'hover:text-vizon',   hoverBg: 'hover:bg-vizon/5',   topBorder: 'border-t-vizon',   mobileText: 'text-vizon' },
   turuncu: { border: 'border-turuncu', hoverText: 'hover:text-turuncu', hoverBg: 'hover:bg-turuncu/5', topBorder: 'border-t-turuncu', mobileText: 'text-turuncu' },
   mavi:    { border: 'border-mavi',    hoverText: 'hover:text-mavi',    hoverBg: 'hover:bg-mavi/5',    topBorder: 'border-t-mavi',    mobileText: 'text-mavi' },
 };
 const defaultColors = { border: 'border-white', hoverText: 'hover:text-turkuaz', hoverBg: 'hover:bg-turkuaz/5', topBorder: 'border-t-turkuaz', mobileText: 'text-lacivert' };
+
+// Nav yapısını locale'e göre üret
+const headerNav = [
+  { label: t(locale, 'nav.home'), href: localePath(locale, '/'), color: '' },
+  {
+    label: t(locale, 'nav.ilimBilme'),
+    href: localePath(locale, '/ilim-bilme'),
+    color: 'vizon',
+    children: [[
+      { label: t(locale, 'nav.sub.hakkimizda'),         href: localePath(locale, '/ilim-bilme/hakkimizda') },
+      { label: t(locale, 'nav.sub.nisangah'),            href: localePath(locale, '/ilim-bilme/nisangah') },
+      { label: t(locale, 'nav.sub.mtoMesaj'),            href: localePath(locale, '/ilim-bilme/mto-mesaj') },
+      { label: t(locale, 'nav.sub.sehirTemsilcilikleri'),href: localePath(locale, '/ilim-bilme/sehir-temsilcilikleri') },
+      { label: t(locale, 'nav.sub.mtoBulten'),           href: localePath(locale, '/ilim-bilme/mto-bulten') },
+      { label: t(locale, 'nav.sub.sss'),                 href: localePath(locale, '/ilim-bilme/sss') },
+    ], [
+      { label: t(locale, 'nav.sub.akademi'), href: '#', isHeader: true },
+      { label: t(locale, 'nav.sub.akademikTakvim'), href: localePath(locale, '/ilim-bilme/akademik-takvim') },
+      { label: t(locale, 'nav.sub.akademikKadro'),  href: localePath(locale, '/ilim-bilme/akademik-kadro') },
+      { label: t(locale, 'nav.sub.dersProgramlari'),href: localePath(locale, '/ders-programi') },
+    ]],
+  },
+  {
+    label: t(locale, 'nav.irfanBulma'),
+    href: localePath(locale, '/irfan-bulma'),
+    color: 'turuncu',
+    children: [[
+      { label: t(locale, 'nav.sub.dersler'),  href: localePath(locale, '/irfan-bulma/dersler') },
+      { label: t(locale, 'nav.sub.yuzKitap'), href: localePath(locale, '/100-kitap') },
+      { label: t(locale, 'nav.sub.dortKalem'),href: localePath(locale, '/dort-kalem') },
+    ]],
+  },
+  {
+    label: t(locale, 'nav.hikmetOlma'),
+    href: localePath(locale, '/hikmet-olma'),
+    color: 'mavi',
+    children: [[
+      { label: t(locale, 'nav.sub.kamplar'),   href: localePath(locale, '/hikmet-olma/kamplar') },
+      { label: t(locale, 'nav.sub.makaleler'), href: localePath(locale, '/hikmet-olma/makaleler') },
+      { label: t(locale, 'nav.sub.yazilar'),   href: localePath(locale, '/hikmet-olma/yazilar') },
+      { label: t(locale, 'nav.sub.kulupler'),  href: localePath(locale, '/hikmet-olma/kulupler') },
+      { label: t(locale, 'nav.sub.seminerler'),href: localePath(locale, '/hikmet-olma/seminerler') },
+      { label: t(locale, 'nav.sub.faaliyetler'),href: localePath(locale, '/hikmet-olma/faaliyetler') },
+    ]],
+  },
+  { label: t(locale, 'nav.contact'), href: localePath(locale, '/iletisim'), color: '' },
+];
+
+// Dil switcher için mevcut sayfanın yolu (locale prefix'siz)
+const rawPath = Astro.url.pathname
+  .replace(/^\/(en|ar)(\/|$)/, '/')
+  .replace(/\/+$/, '') || '/';
 ---
 
 <header class="sticky top-0 z-50 bg-turkuaz shadow-md">
   <div class="max-w-[1400px] mx-auto flex items-center justify-between px-6 lg:px-10 h-[75px]">
     <!-- Logo -->
-    <a href="/" class="flex items-center gap-3 no-underline flex-shrink-0">
+    <a href={localePath(locale, '/')} class="flex items-center gap-3 no-underline flex-shrink-0">
       <img src="/images/mto-web-logo.png" alt="MTO Logo" class="h-14 w-auto object-contain" />
     </a>
 
@@ -23,62 +81,59 @@ const defaultColors = { border: 'border-white', hoverText: 'hover:text-turkuaz',
       {headerNav.map((item) => {
         const c = colorMap[item.color || ''] || defaultColors;
         return (
-        <div class="relative group h-full flex items-center">
-          <a
-            href={item.href}
-            class:list={[
-              'no-underline text-[13px] font-semibold uppercase tracking-[1.5px] py-6 px-5 border-b-[3px] border-transparent transition-all duration-300 font-body text-white flex items-center gap-1',
-              `group-hover:${c.border}`,
-            ]}
-            data-color={item.color || ''}
-          >
-            {item.label}
-            {item.children && (
-              <svg class="w-3 h-3 opacity-70 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            )}
-          </a>
+          <div class="relative group h-full flex items-center">
+            <a
+              href={item.href}
+              class:list={[
+                'no-underline text-[13px] font-semibold uppercase tracking-[1.5px] py-6 px-4 border-b-[3px] border-transparent transition-all duration-300 font-body text-white flex items-center gap-1',
+                `group-hover:${c.border}`,
+              ]}
+            >
+              {item.label}
+              {item.children && (
+                <svg class="w-3 h-3 opacity-70 transition-transform duration-200 group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                </svg>
+              )}
+            </a>
 
-          {/* Mega Dropdown */}
-          {item.children && (
-            <div class="absolute top-full left-0 pt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
-              <div class:list={[
-                'bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl p-6 min-w-[280px] flex gap-10 border-t-[3px]',
-                c.topBorder,
-              ]}>
-                {item.children.map((col) => (
-                  <div class="space-y-1">
-                    {col.map((link) => (
-                      link.isHeader ? (
-                        <span class="block py-1.5 px-2 text-sm font-bold text-lacivert font-body">{link.label}</span>
-                      ) : (
-                        <a
-                          href={link.href}
-                          class:list={[
-                            'block py-1.5 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap',
-                            link.isSubItem ? 'pl-5 pr-2' : 'px-2',
-                            c.hoverText,
-                            c.hoverBg,
-                          ]}
-                        >
-                          {link.isSubItem && <span class="text-xs opacity-40 mr-1">›</span>}
-                          {link.label}
-                        </a>
-                      )
-                    ))}
-                  </div>
-                ))}
+            {item.children && (
+              <div class="absolute top-full left-0 pt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
+                <div class:list={[
+                  'bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl p-6 flex gap-10 border-t-[3px]',
+                  c.topBorder,
+                ]}>
+                  {item.children.map((col) => (
+                    <div class="space-y-1 min-w-[160px]">
+                      {col.map((link) => (
+                        link.isHeader ? (
+                          <span class="block py-1.5 px-2 text-sm font-bold text-lacivert font-body">{link.label}</span>
+                        ) : (
+                          <a
+                            href={link.href}
+                            class:list={[
+                              'block py-1.5 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap px-2',
+                              c.hoverText,
+                              c.hoverBg,
+                            ]}
+                          >
+                            {link.label}
+                          </a>
+                        )
+                      ))}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )})}
+            )}
+          </div>
+        );
+      })}
     </nav>
 
-    <!-- Right side: Social + Search + Language -->
+    <!-- Sağ: Sosyal + Dil Switcher + Hamburger -->
     <div class="flex items-center gap-3">
-      <!-- Social Icons -->
+      <!-- Sosyal ikonlar -->
       <div class="hidden md:flex gap-1.5">
         {socialLinks.map(social => (
           <a href={social.href} target="_blank" rel="noopener" class="w-8 h-8 rounded-full border border-white/40 grid place-items-center hover:bg-white/20 transition-colors" aria-label={social.label}>
@@ -87,48 +142,81 @@ const defaultColors = { border: 'border-white', hoverText: 'hover:text-turkuaz',
         ))}
       </div>
 
-      <!-- Search -->
-      <button class="hidden lg:grid w-8 h-8 place-items-center text-white hover:text-white/70 transition-colors" aria-label="Ara">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-      </button>
-
-      <!-- Language -->
-      <div class="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-white/80 ml-1">
-        <span class="hover:text-white cursor-pointer transition-colors">EN</span>
-        <span class="hover:text-white cursor-pointer transition-colors">AR</span>
+      <!-- Dil Switcher -->
+      <div class="hidden lg:flex items-center gap-1 bg-white/10 rounded-full px-2 py-1">
+        {locales.map(loc => {
+          const cfg = getConfig(loc);
+          const isActive = loc === locale;
+          return (
+            <a
+              href={localePath(loc, rawPath)}
+              class:list={[
+                'text-[11px] font-bold px-2 py-0.5 rounded-full transition-all duration-200 no-underline',
+                isActive
+                  ? 'bg-white text-turkuaz'
+                  : 'text-white/70 hover:text-white',
+              ]}
+              aria-label={cfg.label}
+            >
+              {cfg.shortLabel}
+            </a>
+          );
+        })}
       </div>
 
-      <!-- Mobile hamburger -->
+      <!-- Mobil hamburger -->
       <button class="lg:hidden w-9 h-9 grid place-items-center" id="mobile-toggle" aria-label="Menü">
         <svg class="w-6 h-6 fill-white" viewBox="0 0 24 24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
       </button>
     </div>
   </div>
 
-  <!-- Mobile Nav -->
+  <!-- Mobil Nav -->
   <nav id="mobile-nav" class="lg:hidden hidden bg-white border-t border-gray-100 px-6 pb-4 max-h-[70vh] overflow-y-auto">
+    <!-- Mobil dil switcher -->
+    <div class="flex gap-2 py-3 border-b border-gray-100">
+      {locales.map(loc => {
+        const cfg = getConfig(loc);
+        const isActive = loc === locale;
+        return (
+          <a
+            href={localePath(loc, rawPath)}
+            class:list={[
+              'text-xs font-bold px-3 py-1 rounded-full no-underline transition-all',
+              isActive
+                ? 'bg-turkuaz text-white'
+                : 'bg-gray-100 text-body hover:bg-gray-200',
+            ]}
+          >
+            {cfg.shortLabel}
+          </a>
+        );
+      })}
+    </div>
+
     {headerNav.map(item => {
       const c = colorMap[item.color || ''] || defaultColors;
       return (
-      <>
-        <a
-          href={item.href}
-          class:list={[
-            'block py-3 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 no-underline font-body',
-            c.mobileText,
-          ]}
-        >
-          {item.label}
-        </a>
-        {item.children && item.children.flat().map((sub) => (
-          !sub.isHeader && (
-            <a href={sub.href} class:list={['block py-2 pl-6 text-sm text-body/70 no-underline font-body border-b border-gray-50/50', c.hoverText]}>
-              {sub.label}
-            </a>
-          )
-        ))}
-      </>
-    )})}
+        <>
+          <a
+            href={item.href}
+            class:list={[
+              'block py-3 text-sm font-semibold uppercase tracking-wider border-b border-gray-50 no-underline font-body',
+              c.mobileText,
+            ]}
+          >
+            {item.label}
+          </a>
+          {item.children && item.children.flat().map((sub) => (
+            !sub.isHeader && (
+              <a href={sub.href} class:list={['block py-2 pl-6 text-sm text-body/70 no-underline font-body border-b border-gray-50/50', c.hoverText]}>
+                {sub.label}
+              </a>
+            )
+          ))}
+        </>
+      );
+    })}
   </nav>
 </header>
 

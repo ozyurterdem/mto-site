@@ -1,4 +1,10 @@
 ---
+import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+const { locale = defaultLocale } = Astro.props;
 ---
 
 <section class="relative py-16 px-5 md:px-8 overflow-hidden bg-gradient-to-r from-mavi to-lacivert">
@@ -6,15 +12,15 @@
   <div class="max-w-[1100px] mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
     <div>
       <h2 class="font-heading text-2xl md:text-3xl text-white uppercase tracking-wider font-bold">
-        2025–2026 Bahar Dönemi Devam Ediyor
+        {t(locale, 'ctaBanner.title')}
       </h2>
-      <p class="text-white/60 text-sm mt-2">Ders programını inceleyin, akademik kadromuzu tanıyın.</p>
+      <p class="text-white/60 text-sm mt-2">{t(locale, 'ctaBanner.subtitle')}</p>
     </div>
     <a
-      href="/ders-programi"
+      href={localePath(locale, '/ders-programi')}
       class="inline-block px-10 py-4 bg-white text-lacivert no-underline font-bold text-sm uppercase tracking-[2px] rounded hover:bg-turkuaz hover:text-white transition-all duration-300 flex-shrink-0"
     >
-      Ders Programı
+      {t(locale, 'ctaBanner.cta')}
     </a>
   </div>
 </section>
