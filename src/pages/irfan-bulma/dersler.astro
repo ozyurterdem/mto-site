@@ -13,29 +13,29 @@ const breadcrumbs = [
 ]
 
 const guncelDersler = [
-  { ders: 'Düşünce Tarihi 1', hoca: 'Tahsin Görgün', highlight: false },
-  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', highlight: false },
-  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', highlight: false },
-  { ders: 'İslâm İlimler Tasavvuru', hoca: 'Asım Cüneyd Köksal', highlight: true },
-  { ders: 'Telkinden Tekniğe: Romanın Eleştirel Tarihi', hoca: 'Özlem Fedai', highlight: false },
-  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', highlight: false },
-  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngöremez', highlight: false },
-  { ders: 'Yapay Zekâ, İslâm ve Etik', hoca: 'Ahmet Dağ', highlight: false },
-  { ders: 'Öncüler', hoca: 'Saadettin Acar', highlight: false },
-  { ders: 'Düşünce Tarihi 2', hoca: 'Tahsin Görgün', highlight: false },
-  { ders: 'Ehli Sünnetin Tarihi Rolü', hoca: 'Abdulkadir Turan', highlight: false },
-  { ders: 'İslam Sanat Tasavvuru', hoca: 'Ömer Lekesiz', highlight: false },
-  { ders: 'Klasikten Çağdaşa Batı Düşüncesinin Serüveni', hoca: 'Kasım Küçükalp', highlight: false },
-  { ders: "Felsefe'nin Düşüncesi, Düşünce'nin Felsefesi", hoca: 'Ahmet Dağ', highlight: false },
-  { ders: 'İktisadî İlâhiyât', hoca: 'Melih Oktay', highlight: false },
+  { ders: 'Düşünce Tarihi 1', hoca: 'Tahsin Görgün', highlight: false, aciklama: `Antik Yunan'dan Ortaçağ İslâm dünyasına uzanan düşünce geleneğinin temel kavramları, dönüm noktaları ve büyük düşünürlerin katkıları ele alınmaktadır. Felsefî düşüncenin doğuşu, gelişimi ve İslâm medeniyetindeki yansımaları incelenir.` },
+  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', highlight: false, aciklama: `Elmalılı Muhammed Hamdi Yazır'ın "Hak Dini Kur'ân Dili" adlı tefsiri üzerinden Kur'ân-ı Kerîm'in anlam katmanları, dil incelikleri ve tefsir usûlü çalışılmaktadır. Modern dönemin en kapsamlı Türkçe tefsir eserlerinden biri sistematik olarak okunur.` },
+  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', highlight: false, aciklama: `Ses ve nefes arasındaki kadim ilişkiyi keşfeden bu ders, İslâm medeniyetinin musiki geleneğini, makam teorisini ve sesin insanın iç dünyasındaki dönüştürücü etkisini ele alır. Nefes disiplinleri ve ses eğitimi pratik olarak çalışılır.` },
+  { ders: 'İslâm İlimler Tasavvuru', hoca: 'Asım Cüneyd Köksal', highlight: true, aciklama: `İslâm medeniyetinin ilim anlayışını, ilimlerin tasnifini ve bilgi teorisini inceler. Fıkıh, kelâm, tasavvuf, felsefe gibi ilimlerin birbirleriyle ilişkisi ve İslâm ilim geleneğinin bütüncül yapısı üzerinde durulur.` },
+  { ders: 'Telkinden Tekniğe: Romanın Eleştirel Tarihi', hoca: 'Özlem Fedai', highlight: false, aciklama: `Roman sanatının Batı ve Doğu edebiyatlarındaki gelişim serüveni eleştirel bir perspektifle ele alınır. Anlatı teknikleri, roman teorisi ve büyük romancıların eserleri üzerinden edebiyat ve toplum ilişkisi incelenir.` },
+  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', highlight: false, aciklama: `İslâm medeniyetinin kurucu dinamiklerini, tarihsel süreçteki fetihlerini ve medeniyet tasavvurunu ele alan kapsamlı bir ders. Medeniyetin yeniden inşası için gerekli kavramsal çerçeve ve stratejik düşünce modelleri tartışılır.` },
+  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngörmez', highlight: false, aciklama: `Klasik ve modern siyaset teorilerini, devlet felsefesini ve iktidar kavramını inceler. İslâm siyaset düşüncesinden Batı siyaset felsefesine uzanan geniş bir perspektifle siyasetin temel kavramları ele alınır.` },
+  { ders: 'Yapay Zekâ, İslâm ve Etik', hoca: 'Ahmet Dağ', highlight: false, aciklama: `Yapay zekâ teknolojilerinin felsefî ve etik boyutlarını İslâm düşüncesi perspektifinden değerlendirir. Makine öğrenmesi, bilinç problemi, irade ve sorumluluk kavramları İslâmî bir çerçevede tartışılır.` },
+  { ders: 'Öncüler', hoca: 'Saadettin Acar', highlight: false, aciklama: `İslâm medeniyetinin kurucu şahsiyetlerini, öncü düşünürlerini ve onların fikirlerinin bugüne uzanan etkilerini inceler. Her hafta bir öncü şahsiyet ve onun düşünce dünyası ele alınır.` },
+  { ders: 'Düşünce Tarihi 2', hoca: 'Tahsin Görgün', highlight: false, aciklama: `Modern dönem düşünce tarihini, Aydınlanma'dan günümüze uzanan felsefî akımları ve bunların İslâm dünyasındaki yansımalarını inceler. Modernite, postmodernite ve küreselleşme süreçleri eleştirel bir perspektifle ele alınır.` },
+  { ders: 'Ehli Sünnetin Tarihi Rolü', hoca: 'Abdulkadir Turan', highlight: false, aciklama: `Ehli Sünnet geleneğinin İslâm tarihindeki belirleyici rolünü, itikadî ve fıkhî çerçevesini, toplumsal ve siyasî etkilerini inceler. Tarihsel süreçte Ehli Sünnet'in medeniyetin inşasındaki katkıları ele alınır.` },
+  { ders: 'İslam Sanat Tasavvuru', hoca: 'Ömer Lekesiz', highlight: false, aciklama: `İslâm sanatının temel ilkeleri, estetik anlayışı ve metafizik temelleri üzerinde durulur. Hat, tezhip, mimari, edebiyat gibi alanlardaki sanat tasavvuru ve güzellik anlayışı incelenir.` },
+  { ders: 'Klasikten Çağdaşa Batı Düşüncesinin Serüveni', hoca: 'Kasım Küçükalp', highlight: false, aciklama: `Antik Yunan'dan günümüze Batı düşüncesinin temel kavramlarını, kırılma noktalarını ve dönüşümlerini inceler. Rasyonalizm, empirizm, idealizm, varoluşçuluk gibi akımlar eleştirel bir gözle değerlendirilir.` },
+  { ders: "Felsefe'nin Düşüncesi, Düşünce'nin Felsefesi", hoca: 'Ahmet Dağ', highlight: false, aciklama: `Felsefenin kendisi üzerine düşünmeyi ve düşüncenin felsefî temellerini sorgular. Metafelsefe, epistemoloji ve ontoloji arasındaki ilişkiler derinlemesine incelenir.` },
+  { ders: 'İktisadî İlâhiyât', hoca: 'Melih Oktay', highlight: false, aciklama: `İktisadın metafizik ve teolojik temellerini inceler. İslâm iktisadının temel kavramları, faiz, zekât, mülkiyet gibi konular ilâhiyat perspektifinden ele alınır. Modern iktisat teorileri ile İslâmî iktisat anlayışı karşılaştırmalı olarak değerlendirilir.` },
 ]
 
 const seminerler = [
-  { ders: 'Sinirbilim ve Fıtrat Düzeni', hoca: 'Samira Yusifova' },
-  { ders: 'Şiirin Şuuru: Şuurun Şiiri', hoca: 'Celal Fedai' },
-  { ders: 'Sosyal Teori', hoca: 'Bengül Güngöremez' },
-  { ders: "Rahle'den Rıhle'ye: Siyer-i Nebi", hoca: 'Ayşe Akdağ' },
-  { ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi' },
+  { ders: 'Sinirbilim ve Fıtrat Düzeni', hoca: 'Samira Yusifova', aciklama: `İnsan beyninin işleyişi, sinir sistemi ve fıtrat kavramı arasındaki ilişkiyi bilimsel veriler ışığında inceler. Nörobilimin bulguları İslâmî fıtrat anlayışı perspektifinden değerlendirilir.` },
+  { ders: 'Şiirin Şuuru: Şuurun Şiiri', hoca: 'Celal Fedai', aciklama: `Şiirin bilinç ve şuur kavramlarıyla ilişkisini, İslâm edebiyat geleneğinde şiirin rolünü ve şairlerin düşünce dünyasını inceler. Klasik ve modern şiir örnekleri üzerinden şiirin dönüştürücü gücü ele alınır.` },
+  { ders: 'Sosyal Teori', hoca: 'Bengül Güngörmez', aciklama: `Toplumsal yapıları, kurumları ve ilişkileri anlamaya yönelik klasik ve çağdaş sosyal teorileri inceler. Toplum, birey, kültür ve modernite kavramları farklı kuramcıların perspektifinden ele alınır.` },
+  { ders: "Rahle'den Rıhle'ye: Siyer-i Nebi", hoca: 'Ayşe Akdağ', aciklama: `Hz. Peygamber'in hayatını, ilim meclislerinden (rahle) hayat yolculuğuna (rıhle) uzanan bir perspektifle ele alır. Siyer ilminin metodolojisi ve Peygamber'in örnek yaşantısı detaylı olarak incelenir.` },
+  { ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi', aciklama: `Varlık felsefesinin temel sorunlarını, metafizik düşüncenin İslâm ve Batı geleneğindeki gelişimini inceler. Ontoloji, kozmoloji ve teoloji arasındaki ilişkiler derinlemesine tartışılır.` },
 ]
 ---
 
@@ -74,14 +74,26 @@ const seminerler = [
   <div id="tab-guncel" class="tab-content">
     <div class="divide-y divide-lacivert/10">
       {guncelDersler.map((item) => (
-        <div class={`py-4 flex items-baseline gap-2 ${item.highlight ? 'bg-turkuaz/5 -mx-4 px-4 rounded-lg' : ''}`}>
-          <span class={`font-body text-base ${item.highlight ? 'text-turkuaz font-semibold' : 'text-lacivert/80'}`}>
-            {item.ders}
-          </span>
-          <span class="text-lacivert/30 font-body">&bull;</span>
-          <span class={`font-body text-sm ${item.highlight ? 'text-turkuaz/80' : 'text-lacivert/50'}`}>
-            {item.hoca}
-          </span>
+        <div class={`ders-accordion ${item.highlight ? 'bg-turkuaz/5 -mx-4 px-4 rounded-lg' : ''}`}>
+          <button class="ders-toggle w-full py-4 flex items-center justify-between gap-3 text-left cursor-pointer group">
+            <div class="flex items-baseline gap-2 min-w-0">
+              <span class={`font-body text-base ${item.highlight ? 'text-turkuaz font-semibold' : 'text-lacivert/80 group-hover:text-turkuaz'} transition-colors`}>
+                {item.ders}
+              </span>
+              <span class="text-lacivert/30 font-body">&bull;</span>
+              <span class={`font-body text-sm ${item.highlight ? 'text-turkuaz/80' : 'text-lacivert/50'}`}>
+                {item.hoca}
+              </span>
+            </div>
+            <svg class="ders-chevron w-5 h-5 text-lacivert/30 group-hover:text-turkuaz flex-shrink-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="ders-content hidden">
+            <div class="pb-4 pl-0 pr-8">
+              <p class="text-lacivert/60 text-sm leading-relaxed border-l-2 border-turkuaz/30 pl-4">{item.aciklama}</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
@@ -99,42 +111,65 @@ const seminerler = [
     <h3 class="font-heading text-2xl font-bold text-lacivert mb-6 tracking-wide">MTO SEMİNER</h3>
     <div class="divide-y divide-lacivert/10">
       {seminerler.map((item) => (
-        <div class="py-4 flex items-baseline gap-2">
-          <span class="font-body text-base text-lacivert/80">{item.ders}</span>
-          <span class="text-lacivert/30 font-body">&bull;</span>
-          <span class="font-body text-sm text-lacivert/50">{item.hoca}</span>
+        <div class="ders-accordion">
+          <button class="ders-toggle w-full py-4 flex items-center justify-between gap-3 text-left cursor-pointer group">
+            <div class="flex items-baseline gap-2 min-w-0">
+              <span class="font-body text-base text-lacivert/80 group-hover:text-turkuaz transition-colors">{item.ders}</span>
+              <span class="text-lacivert/30 font-body">&bull;</span>
+              <span class="font-body text-sm text-lacivert/50">{item.hoca}</span>
+            </div>
+            <svg class="ders-chevron w-5 h-5 text-lacivert/30 group-hover:text-turkuaz flex-shrink-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+          <div class="ders-content hidden">
+            <div class="pb-4 pl-0 pr-8">
+              <p class="text-lacivert/60 text-sm leading-relaxed border-l-2 border-turkuaz/30 pl-4">{item.aciklama}</p>
+            </div>
+          </div>
         </div>
       ))}
     </div>
   </div>
 
-  <!-- Tab Switching Script -->
+  <!-- Tab Switching + Accordion Script -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Tab switching
       const tabs = document.querySelectorAll('.tab-btn');
       const contents = document.querySelectorAll('.tab-content');
 
       tabs.forEach(tab => {
         tab.addEventListener('click', () => {
           const target = tab.getAttribute('data-tab');
-
-          // Reset all tabs
           tabs.forEach(t => {
             t.classList.remove('active-tab', 'bg-lacivert', 'text-white');
             t.classList.add('bg-gray-200', 'text-lacivert/60');
           });
-
-          // Activate clicked tab
           tab.classList.add('active-tab', 'bg-lacivert', 'text-white');
           tab.classList.remove('bg-gray-200', 'text-lacivert/60');
+          contents.forEach(content => content.classList.add('hidden'));
+          document.getElementById(`tab-${target}`)?.classList.remove('hidden');
+        });
+      });
 
-          // Toggle content
-          contents.forEach(content => {
+      // Accordion
+      document.querySelectorAll('.ders-toggle').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const accordion = btn.closest('.ders-accordion');
+          if (!accordion) return;
+          const content = accordion.querySelector('.ders-content') as HTMLElement;
+          const chevron = accordion.querySelector('.ders-chevron') as HTMLElement;
+          if (!content || !chevron) return;
+
+          const isOpen = !content.classList.contains('hidden');
+
+          if (isOpen) {
             content.classList.add('hidden');
-          });
-          const targetContent = document.getElementById(`tab-${target}`);
-          if (targetContent) {
-            targetContent.classList.remove('hidden');
+            chevron.style.transform = 'rotate(0deg)';
+          } else {
+            content.classList.remove('hidden');
+            chevron.style.transform = 'rotate(180deg)';
           }
         });
       });
