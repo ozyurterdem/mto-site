@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        turkuaz: '#30D5E1',
+        turkuaz: '#0288D1',
         mavi: '#0D619A',
         vizon: '#B7A78F',
         turuncu: '#E7A54E',
