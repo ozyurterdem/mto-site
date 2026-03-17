@@ -8,7 +8,8 @@ const sidebarItems = ilimBilmeNav.items.map(item => ({
 }))
 
 const breadcrumbs = [
-  { label: 'İLİM - BİLME', href: '/ilim-bilme' },
+  { label: 'ANASAYFA', href: '/' },
+  { label: 'İLİM · BİLME', href: '/ilim-bilme' },
   { label: 'Şehir Temsilcilikleri' }
 ]
 
@@ -35,25 +36,17 @@ const sehirler = [
   <!-- Content -->
   <div class="space-y-10">
     <!-- Description -->
-    <div class="prose prose-lg max-w-none font-body text-lacivert/80">
-      <p>
-        Temsilciliklerimizin bulunduğu şehirler aşağıda verilmiştir. İletişime geçmek için
-        <a href="mailto:mtokurumsal@gmail.com" class="text-turkuaz hover:text-turkuaz/80 font-semibold underline underline-offset-2">
-          mtokurumsal@gmail.com
-        </a>
-        mail adresinden yönlendirme talep edebilirsiniz.
-      </p>
-    </div>
+    <p class="text-lacivert/70 font-body text-lg leading-relaxed">
+      Temsilciliklerimizin bulunduğu şehirler;
+    </p>
 
-    <!-- Cities Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {[0, 1, 2].map((colIndex) => (
-        <div class="space-y-4">
-          {sehirler.map((sehir) => (
-            <div class="flex items-center gap-3 p-4 bg-lacivert/5 rounded-xl hover:bg-turkuaz/10 transition-colors group">
-              <span class="font-heading font-semibold text-lacivert">{sehir}</span>
-            </div>
-          ))}
+    <!-- Cities List -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-1">
+      {sehirler.map((sehir, i) => (
+        <div class="flex items-center gap-3 py-3 border-b border-gray-100">
+          <span class="w-5 text-right text-vizon/50 text-xs font-heading font-bold">{i + 1}</span>
+          <div class="w-[3px] h-4 rounded-full bg-vizon/30"></div>
+          <span class="font-body text-lacivert text-[0.95rem]">{sehir}</span>
         </div>
       ))}
     </div>
