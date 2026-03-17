@@ -3,6 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import ScrollTop from '../components/ScrollTop.astro';
+import SidebarNav from '../components/SidebarNav.astro';
+import { irfanBulmaNav } from '../data/navigation';
+
+const sidebarItems = irfanBulmaNav.items.map(item => ({
+  ...item,
+  active: item.href === '/dort-kalem'
+}));
 
 const kalemler = [
   { color: 'green', hex: '#2E7D32', name: 'Yeşil Kalem', role: 'Kilit Kavramlar', desc: 'Anahtar sözcükler, kilit kavramlar, terimler. Bir sayfada en fazla beş tane. Metnin iskeletini çıkarır.' },
@@ -32,7 +39,12 @@ const kalemler = [
 
   <!-- Ana İçerik -->
   <section class="pb-16 px-5 md:px-8 bg-white">
-    <div class="max-w-[900px] mx-auto">
+    <div class="max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16">
+      <!-- Sidebar -->
+      <SidebarNav title={irfanBulmaNav.title} items={sidebarItems} currentPath="/dort-kalem" accentColor="turuncu" />
+
+      <!-- İçerik -->
+      <div class="flex-1 min-w-0">
 
       <!-- Giriş Metni -->
       <div class="prose max-w-none mb-14">
@@ -165,6 +177,7 @@ const kalemler = [
         </div>
       </div>
 
+      </div>
     </div>
   </section>
 
