@@ -1,5 +1,5 @@
 ---
-import { bugunGun, bugunDersler } from '../data/ders-programi';
+import { bugunGun, bugunDersler, bugunTatilMi } from '../data/ders-programi';
 import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
 
 interface Props {
@@ -7,8 +7,9 @@ interface Props {
 }
 const { locale = defaultLocale } = Astro.props;
 
+const tatil = bugunTatilMi();
 const gunTR = bugunGun();
-const dersler = bugunDersler();
+const dersler = tatil ? [] : bugunDersler();
 
 // Gün adını locale'e göre çevir
 const gun = t(locale, `days.${gunTR}`) !== `days.${gunTR}` ? t(locale, `days.${gunTR}`) : gunTR;
@@ -35,7 +36,17 @@ const gun = t(locale, `days.${gunTR}`) !== `days.${gunTR}` ? t(locale, `days.${g
       </div>
     </div>
 
-    {dersler.length === 0 ? (
+    {tatil ? (
+      <div class="text-center py-12 bg-white rounded-2xl shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+        <div class="text-4xl mb-4">🌙</div>
+        <h3 class="font-heading font-bold text-lacivert text-xl mb-2">{tatil.aciklama}</h3>
+        <p class="text-vizon text-base mb-1">Derslerimize ara verilmiştir.</p>
+        <p class="text-turkuaz font-heading font-semibold text-sm">
+          Dersler <span class="text-lacivert">{tatil.donusTarihi}</span> tarihinde tekrar başlayacaktır.
+        </p>
+        <p class="text-vizon/70 text-sm mt-4">Hayırlı bayramlar 🤲</p>
+      </div>
+    ) : dersler.length === 0 ? (
       <div class="text-center py-12 text-gray-500">
         <p class="text-lg">{t(locale, 'bugunkuDersler.noDers')}</p>
       </div>

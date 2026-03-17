@@ -290,6 +290,36 @@ export const dersProgramlari: KademeProgrami[] = [
   },
 ];
 
+// Tatil dönemleri — dersler bu tarihlerde yapılmaz
+export interface TatilDonemi {
+  baslangic: string; // YYYY-MM-DD
+  bitis: string;     // YYYY-MM-DD (dahil)
+  aciklama: string;
+  donusTarihi: string; // Gösterilecek metin
+}
+
+export const tatilDonemleri: TatilDonemi[] = [
+  {
+    baslangic: '2026-03-14',
+    bitis: '2026-03-22',
+    aciklama: 'Ramazan Bayramı Tatili',
+    donusTarihi: '23 Mart 2026 Pazartesi',
+  },
+];
+
+export function bugunTatilMi(): TatilDonemi | null {
+  const now = new Date();
+  const tr = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+  const bugun = tr.toISOString().slice(0, 10); // YYYY-MM-DD
+
+  for (const tatil of tatilDonemleri) {
+    if (bugun >= tatil.baslangic && bugun <= tatil.bitis) {
+      return tatil;
+    }
+  }
+  return null;
+}
+
 // Bugün Türkiye saatine göre hangi gün?
 const gunler = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
 
