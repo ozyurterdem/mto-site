@@ -46,30 +46,49 @@ const hoverText = accentColor === 'vizon' ? 'hover:text-vizon' : accentColor ===
       const active = isActive(item);
       const hasChildren = item.children && item.children.length > 0;
       const childActive = hasChildren && item.children!.some(c => isActive(c));
+      const isToggle = hasChildren && (item.href === '#' || !item.href);
+      const showChildren = childActive || active;
       return (
         <li>
-          <a
-            href={item.href}
-            class:list={[
-              'flex items-center gap-2 py-2.5 px-3 text-sm font-medium border-b border-gray-100 no-underline transition-colors',
-              active
-                ? `${activeBg} text-white`
-                : `text-lacivert ${hoverText} hover:bg-gray-50`,
-            ]}
-          >
-            {hasChildren ? (
-              <svg class:list={['w-2.5 h-2.5 flex-shrink-0 transition-transform', childActive ? 'rotate-90' : '']} fill="currentColor" viewBox="0 0 8 12">
+          {isToggle ? (
+            <button
+              class:list={[
+                'sidebar-toggle w-full flex items-center gap-2 py-2.5 px-3 text-sm font-medium border-b border-gray-100 transition-colors cursor-pointer text-left',
+                active
+                  ? `${activeBg} text-white`
+                  : `text-lacivert ${hoverText} hover:bg-gray-50`,
+              ]}
+              data-open={showChildren ? 'true' : 'false'}
+            >
+              <svg class:list={['sidebar-chevron w-2.5 h-2.5 flex-shrink-0 transition-transform duration-200', showChildren ? 'rotate-90' : '']} fill="currentColor" viewBox="0 0 8 12">
                 <path d="M0 0l8 6-8 6z"/>
               </svg>
-            ) : (
-              <svg class="w-2.5 h-2.5 flex-shrink-0 opacity-60" fill="currentColor" viewBox="0 0 8 12">
-                <path d="M0 0l8 6-8 6z"/>
-              </svg>
-            )}
-            {item.label}
-          </a>
-          {hasChildren && (childActive || active) && (
-            <ul class="list-none">
+              {item.label}
+            </button>
+          ) : (
+            <a
+              href={item.href}
+              class:list={[
+                'flex items-center gap-2 py-2.5 px-3 text-sm font-medium border-b border-gray-100 no-underline transition-colors',
+                active
+                  ? `${activeBg} text-white`
+                  : `text-lacivert ${hoverText} hover:bg-gray-50`,
+              ]}
+            >
+              {hasChildren ? (
+                <svg class:list={['w-2.5 h-2.5 flex-shrink-0 transition-transform', childActive ? 'rotate-90' : '']} fill="currentColor" viewBox="0 0 8 12">
+                  <path d="M0 0l8 6-8 6z"/>
+                </svg>
+              ) : (
+                <svg class="w-2.5 h-2.5 flex-shrink-0 opacity-60" fill="currentColor" viewBox="0 0 8 12">
+                  <path d="M0 0l8 6-8 6z"/>
+                </svg>
+              )}
+              {item.label}
+            </a>
+          )}
+          {hasChildren && (
+            <ul class:list={['list-none sidebar-children', !showChildren && 'hidden']}>
               {item.children!.map(child => (
                 <li>
                   <a
@@ -92,3 +111,15 @@ const hoverText = accentColor === 'vizon' ? 'hover:text-vizon' : accentColor ===
     })}
   </ul>
 </aside>
+
+<script>
+  document.querySelectorAll('.sidebar-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const children = btn.parentElement?.querySelector('.sidebar-children');
+      const chevron = btn.querySelector('.sidebar-chevron');
+      if (!children) return;
+      children.classList.toggle('hidden');
+      chevron?.classList.toggle('rotate-90');
+    });
+  });
+</script>
