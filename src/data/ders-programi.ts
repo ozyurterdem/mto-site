@@ -17,7 +17,56 @@ export interface KademeProgrami {
 }
 
 export const dersProgramlari: KademeProgrami[] = [
-  {
+{
+    kademe: 'Hazırlık',
+    kisa: 'Hazırlık',
+    programlar: [
+      {
+        gun: 'Pazartesi',
+        dersler: [
+          { saat: '21:30', ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Salı',
+        dersler: [
+          { saat: '21:30', ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Çarşamba',
+        dersler: [
+          { saat: '21:30', ders: 'Öncüler', hoca: 'Saadettin Acar', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Perşembe',
+        dersler: [
+          { saat: '21:30', ders: 'Bugünün Fotoğraflarıyla Dört Şehrin Hikayesi: 1-Kudüs', hoca: 'Ömer Lekesiz', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Cuma',
+        dersler: [
+          { saat: '20:00', ders: 'Kitap Tahlili', hoca: '-', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Cumartesi',
+        dersler: [
+          { saat: '20:00', ders: 'MTO Seminer / MTO Makale', hoca: '-', sure: '90 dk' },
+        ],
+      },
+      {
+        gun: 'Pazar',
+        dersler: [
+          { saat: '20:00', ders: 'Sinirbilim ve Fıtrat Düzeni', hoca: 'Samira Yusifova', sure: '90 dk' },
+        ],
+      },
+    ],
+  }
+  },
+{
     kademe: '1. Kademe 2. Dönem',
     kisa: '1. Kademe',
     programlar: [
@@ -73,9 +122,9 @@ export const dersProgramlari: KademeProgrami[] = [
           { saat: '20:00', ders: 'Sosyal Teori', hoca: 'Bengül Güngörmez', sure: '90 dk' },
         ],
       },
-    ],
+    ]
   },
-  {
+{
     kademe: '2. Kademe 2. Dönem',
     kisa: '2. Kademe',
     programlar: [
@@ -128,9 +177,9 @@ export const dersProgramlari: KademeProgrami[] = [
           { saat: '21:30', ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi', sure: '90 dk' },
         ],
       },
-    ],
+    ]
   },
-  {
+{
     kademe: '3. Kademe 2. Dönem',
     kisa: '3. Kademe',
     programlar: [
@@ -183,9 +232,9 @@ export const dersProgramlari: KademeProgrami[] = [
           { saat: '21:30', ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi', sure: '90 dk' },
         ],
       },
-    ],
+    ]
   },
-  {
+{
     kademe: 'İhtisas 2. Dönem',
     kisa: 'İhtisas',
     programlar: [
@@ -238,55 +287,7 @@ export const dersProgramlari: KademeProgrami[] = [
           { saat: '21:30', ders: 'Metafiziğin Temelleri, Temellerin Metafiziği', hoca: 'İbrahim Bahçi', sure: '90 dk' },
         ],
       },
-    ],
-  },
-  {
-    kademe: 'Hazırlık',
-    kisa: 'Hazırlık',
-    programlar: [
-      {
-        gun: 'Pazartesi',
-        dersler: [
-          { saat: '21:30', ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Salı',
-        dersler: [
-          { saat: '21:30', ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Çarşamba',
-        dersler: [
-          { saat: '21:30', ders: 'Öncüler', hoca: 'Saadettin Acar', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Perşembe',
-        dersler: [
-          { saat: '21:30', ders: 'Bugünün Fotoğraflarıyla Dört Şehrin Hikayesi: 1-Kudüs', hoca: 'Ömer Lekesiz', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Cuma',
-        dersler: [
-          { saat: '20:00', ders: 'Kitap Tahlili', hoca: '-', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Cumartesi',
-        dersler: [
-          { saat: '20:00', ders: 'MTO Seminer / MTO Makale', hoca: '-', sure: '90 dk' },
-        ],
-      },
-      {
-        gun: 'Pazar',
-        dersler: [
-          { saat: '20:00', ders: 'Sinirbilim ve Fıtrat Düzeni', hoca: 'Samira Yusifova', sure: '90 dk' },
-        ],
-      },
-    ],
+    ]
   },
 ];
 
