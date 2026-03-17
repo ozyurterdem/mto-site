@@ -18,14 +18,8 @@ const breadcrumbs = [
   { label: 'Ders Programı' },
 ];
 
-// Gün kısaltmaları
-const gunKisa: Record<string, string> = {
-  'Pazartesi': 'Pzt', 'Salı': 'Sal', 'Çarşamba': 'Çar',
-  'Perşembe': 'Per', 'Cuma': 'Cum', 'Cumartesi': 'Cmt', 'Pazar': 'Paz',
-};
-
-// Kademe renkleri — açıktan koyuya
-const kademeColors = ['#7EC8E3', '#4DA8DA', '#0288D1', '#0277BD', '#01579B'];
+// Kademe renkleri — vizon tonları açıktan koyuya
+const kademeColors = ['#D4C5AD', '#C4B394', '#B7A78F', '#A08E74', '#8A7A64'];
 
 // Kademe istatistikleri önceden hesapla
 const kademeStats = dersProgramlari.map(kp => {
@@ -54,11 +48,30 @@ const kademeStats = dersProgramlari.map(kp => {
   showBulten={false}
 >
 
-  <p class="text-lacivert/70 font-body text-lg mb-12 leading-relaxed">
+  <p class="text-lacivert/70 font-body text-lg mb-8 leading-relaxed">
     Medeniyet Tasavvuru Okulu 2025–2026 Bahar Dönemi ders programları. 5 kademe, haftanın 7 günü devam eden kapsamlı eğitim programı.
   </p>
 
-  <!-- Kademe Bölümleri — 100 kitap aşama stili -->
+  <!-- Sticky Kademe Nav -->
+  <div class="sticky top-20 z-30 bg-white/95 backdrop-blur-md border border-gray-200/80 rounded-xl shadow-sm py-3 px-4 mb-12">
+    <div class="flex flex-wrap justify-center gap-2">
+      {dersProgramlari.map((kp, i) => (
+        <a
+          href={`#kademe-${i + 1}`}
+          class="kademe-nav group flex items-center gap-2 px-3 py-1.5 rounded-lg text-sm font-medium transition-all hover:shadow-md no-underline"
+          data-kademe={i + 1}
+          style={`color: ${kademeColors[i]};`}
+        >
+          <div class="w-6 h-6 rounded-md grid place-items-center text-white text-[10px] font-bold transition-all group-hover:scale-110" style={`background: ${kademeColors[i]}`}>
+            {i + 1}
+          </div>
+          <span class="hidden md:inline font-heading font-bold text-lacivert text-[0.75rem]">{kp.kisa}</span>
+        </a>
+      ))}
+    </div>
+  </div>
+
+  <!-- Kademe Bölümleri -->
   {dersProgramlari.map((kp, ki) => {
     const color = kademeColors[ki];
     const stats = kademeStats[ki];
@@ -103,9 +116,6 @@ const kademeStats = dersProgramlari.map(kp => {
 
                 {/* Gün başlığı */}
                 <div class="flex items-center gap-3 px-5 py-3 border-b border-gray-50">
-                  <div class="w-9 h-9 rounded-lg grid place-items-center flex-shrink-0" style={`background: ${color}12`}>
-                    <span class="font-heading font-bold text-xs" style={`color: ${color}`}>{gunKisa[gp.gun]}</span>
-                  </div>
                   <div class="flex-1">
                     <span class="font-heading font-bold text-lacivert text-sm">{gp.gun}</span>
                     <span class="text-lacivert/30 text-xs ml-2">{gp.dersler.length} ders</span>
