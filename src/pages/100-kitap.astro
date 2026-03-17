@@ -131,29 +131,10 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
           {/* ══════ Aşama Header — Editorial ══════ */}
           <div class="mb-12 relative">
             <div class="flex items-start gap-6 md:gap-8">
-              {/* Aşama numarası — minimal typographic */}
-              <div class="relative flex-shrink-0">
-                <div class="relative">
-                  <span class="block font-heading text-[4.5rem] md:text-[6rem] font-black leading-none tracking-tighter" style={`color: ${g.color}18`}>
-                    {gi + 1}
-                  </span>
-                  <span class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading text-2xl md:text-3xl font-black" style={`color: ${g.color}`}>
-                    {gi + 1}
-                  </span>
-                </div>
-                {/* Dikey dekoratif çizgi */}
-                <div class="hidden md:flex flex-col items-center mt-4 gap-1">
-                  <div class="w-px h-12 bg-gradient-to-b" style={`background: linear-gradient(to bottom, ${g.color}40, transparent)`}></div>
-                </div>
-              </div>
-
-              <div class="flex-1 pt-3 md:pt-5">
-                {/* Üst etiket */}
+              <div class="flex-1">
+                {/* Üst dekoratif çizgi */}
                 <div class="flex items-center gap-3 mb-2">
                   <div class="h-px flex-1 max-w-[40px]" style={`background: ${g.color}50`}></div>
-                  <span class="text-[0.65rem] font-heading font-bold uppercase tracking-[0.25em]" style={`color: ${g.color}90`}>
-                    {gi + 1}. Aşama
-                  </span>
                 </div>
 
                 <h2 class="font-heading text-2xl md:text-[2.5rem] text-lacivert font-black leading-tight mb-1">{g.category}</h2>
@@ -176,7 +157,7 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
             </div>
 
             {g.note && (
-              <div class="mt-8 md:ml-[6.5rem] relative pl-5 py-4 pr-5 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-100">
+              <div class="mt-8  relative pl-5 py-4 pr-5 rounded-xl bg-white/80 backdrop-blur-sm border border-gray-100">
                 <div class="absolute left-0 top-3 bottom-3 w-[3px] rounded-full" style={`background: ${g.color}60`}></div>
                 <p class="text-[0.82rem] leading-relaxed text-lacivert/60 italic">{g.note}</p>
               </div>
@@ -184,7 +165,7 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
           </div>
 
           {/* ══════ Kitap Listesi — Editorial Premium ══════ */}
-          <div class="md:ml-[6.5rem]">
+          <div class="">
             {/* Üst bar */}
             <div class="flex items-center justify-between mb-4 px-1">
               <div class="flex items-center gap-2">
@@ -258,7 +239,7 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
 
           {/* ══════ Referans Kitaplar ══════ */}
           {g.refBooks.length > 0 && (
-            <div class="mt-8 md:ml-[6.5rem]">
+            <div class="mt-8 ">
               <details class="group/ref">
                 <summary class="flex items-center gap-3 cursor-pointer list-none py-3 px-5 rounded-xl bg-white/60 backdrop-blur-sm border border-dashed border-gray-200 hover:border-gray-300 hover:bg-white transition-all duration-200 select-none">
                   <svg class="w-3.5 h-3.5 transition-transform duration-300 group-open/ref:rotate-90 text-vizon/60" fill="currentColor" viewBox="0 0 20 20">
