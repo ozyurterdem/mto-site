@@ -197,9 +197,9 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
             {/* Kitap satırları */}
             <div class="space-y-1.5">
               {g.mainBooks.map((book, bi) => (
-                <div class="book-row group relative rounded-xl transition-all duration-300 hover:shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
+                <div class="book-row group relative rounded-xl transition-all duration-300 hover:shadow-[0_4px_24px_rgba(183,167,143,0.15)]">
                   {/* Ana container */}
-                  <div class="relative flex items-center gap-4 md:gap-5 px-5 py-4 rounded-xl bg-white border border-gray-100/80 group-hover:border-gray-200 transition-all duration-300">
+                  <div class="relative flex items-center gap-4 md:gap-5 px-5 py-4 rounded-xl bg-white border border-gray-100/80 group-hover:border-vizon/30 transition-all duration-300">
 
                     {/* Sol dekoratif accent — her zaman görünür, hover'da genişler */}
                     <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-6 group-hover:h-10 rounded-r-full transition-all duration-300 opacity-40 group-hover:opacity-100" style={`background: ${g.color}`}></div>
