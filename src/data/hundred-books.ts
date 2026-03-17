@@ -26,11 +26,11 @@ export const categorySubtitles: Record<string, string> = {
 };
 
 export const categoryColors: Record<string, string> = {
-  'Birinci Aşama': '#F5C88A',
-  'İkinci Aşama': '#E7A54E',
-  'Üçüncü Aşama': '#D4872A',
-  'Dördüncü Aşama': '#B56A14',
-  'Beşinci Aşama': '#8C4E0A',
+  'Birinci Aşama': '#F7D49B',
+  'İkinci Aşama': '#F0BE6E',
+  'Üçüncü Aşama': '#E7A54E',
+  'Dördüncü Aşama': '#E08E30',
+  'Beşinci Aşama': '#D98818',
 };
 
 export const categoryNotes: Record<string, string> = {
