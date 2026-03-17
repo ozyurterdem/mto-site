@@ -15,7 +15,7 @@ module.exports = {
         body: '#4D4D4D',
       },
       fontFamily: {
-        heading: ['Jost', 'Futura', 'sans-serif'],
+        heading: ['Roboto', 'sans-serif'],
         body: ['Roboto', 'sans-serif'],
       },
     },
