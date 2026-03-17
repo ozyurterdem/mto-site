@@ -64,9 +64,8 @@ export const dersProgramlari: KademeProgrami[] = [
         ],
       },
     ],
-  }
   },
-{
+  {
     kademe: '1. Kademe 2. Dönem',
     kisa: '1. Kademe',
     programlar: [
