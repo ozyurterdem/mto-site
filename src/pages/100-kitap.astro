@@ -103,12 +103,9 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
   </section>
 
   <!-- Kitap Listesi -->
-  <main class="relative py-20 px-6 overflow-hidden">
-    {/* Arka plan dokusu */}
-    <div class="absolute inset-0 bg-[#FAFAF8]"></div>
-    <div class="absolute inset-0 opacity-[0.015]" style="background-image: url('data:image/svg+xml,<svg width=%2240%22 height=%2240%22 xmlns=%22http://www.w3.org/2000/svg%22><circle cx=%2220%22 cy=%2220%22 r=%221%22 fill=%22%23000%22/></svg>');"></div>
-
-    <div class="relative max-w-[1200px] mx-auto flex flex-col lg:flex-row gap-10 lg:gap-16">
+  <main class="min-h-screen">
+    <div class="max-w-[1200px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
+      <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
       <!-- Sidebar -->
       <SidebarNav title={irfanBulmaNav.title} items={sidebarItems} currentPath="/100-kitap" accentColor="turuncu" />
 
@@ -289,6 +286,7 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
           )}
         </section>
       ))}
+      </div>
       </div>
     </div>
   </main>
