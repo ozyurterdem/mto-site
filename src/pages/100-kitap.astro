@@ -137,6 +137,24 @@ const totalAuthors = new Set(hundredBooks.map(b => b.author).filter(Boolean)).si
 
       <!-- İçerik -->
       <div class="flex-1 min-w-0">
+
+      <!-- Giriş Metni -->
+      <div class="mb-20">
+        <div class="prose max-w-none text-body font-body leading-relaxed">
+          <p class="text-[1.05rem] leading-[2] mb-6">
+            "100 Kitap Listesi" pedagojik ilkeler göz önünde bulundurularak 10 yılda Yusuf Kaplan tarafından hazırlanan beş aşamalı bir listedir. Okuma Listesi'nin ilk aşaması talebeye genel bir medeniyet perspektifi çizerek dert sahibi yapmayı amaçlar. İkinci aşamayla birlikte daha da derinleşerek usûl kitapları; üçüncü aşamada tarih ve tarih felsefesi; dördüncü aşamada çağdaş düşünce ve düşünce tarihi kitaplarının yanında sanat ve edebiyat kitapları; beşinci aşamada ise İslâm, Doğu ve Batı medeniyetlerinin klasik metinleri yer almaktadır.
+          </p>
+
+          <p class="text-[1.05rem] leading-[2] mb-6">
+            Okumak'tan maksat, bilmek değil, olmak'tır. Bilmek, ilim yolculuğunun, olmak'sa hikmet yolculuğunun meyvesidir. Bu bağlamda 3 tür okumadan bahsedilir. Birinci okuma, "Kitab-ı hakikati" okumaktır. Bütün bilme, okuma ya da yaşama çabalarının kalkış noktası ve varış noktası Marifetullah'tır. İkinci okuma "kâinatı" okumak, üçüncü okuma ise "kişinin kendisini" okumasıdır.
+          </p>
+
+          <p class="text-[1.05rem] leading-[2] mb-6">
+            Başka bir bağlamda da 2 eksenli okumadan bahsedilebilir; yatay ve dikey okuma. Yatay okuma genelden özele doğru ana kaynaklara götürecek, değişik seviyelerdeki giriş okumalarıdır. Dikey okuma ise pergelin sabit ayağını kendi medeniyet ilkelerimize ve ruh köklerimize basarak, pergelin hareketli ayağıyla bütün medeniyetlerin kurucu metinlerini hazmederek, özümseyerek, tartışarak ve nihayetinde aşma çabası ortaya koyacak bir ruhla ve donanımla okumaya soyunmaktır.
+          </p>
+        </div>
+      </div>
+
       {grouped.map((g, gi) => (
         <section id={`asama-${gi + 1}`} class="mb-32 last:mb-0 scroll-mt-24">
 
