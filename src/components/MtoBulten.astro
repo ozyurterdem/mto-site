@@ -6,27 +6,74 @@ interface Props {
 }
 const { locale = defaultLocale } = Astro.props;
 
-const haberler = tArray(locale, 'mtoBulten.items');
+const haberler = tArray(locale, 'mtoBulten.items') as Array<{ tarih: string; baslik: string; ozet: string; gorsel?: string }>;
+const oneChikan = haberler[0];
+const digerHaberler = haberler.slice(1);
 ---
 
-<section class="py-20 px-5 md:px-8 bg-gray-50">
-  <div class="max-w-[1100px] mx-auto">
-    <div class="text-center mb-12">
-      <h2 class="font-heading text-[clamp(1.8rem,3vw,2.6rem)] text-lacivert uppercase tracking-wider font-bold">
-        {t(locale, 'mtoBulten.title')}
-      </h2>
-    </div>
+<section class="py-20 px-4 sm:px-8 lg:px-12 bg-gray-50">
+  <div class="max-w-[1200px] mx-auto">
+    <!-- Başlık -->
+    <h2 class="font-heading text-[clamp(1.6rem,3vw,2.4rem)] text-lacivert uppercase tracking-[4px] font-bold text-center mb-12">
+      {t(locale, 'mtoBulten.title')}
+    </h2>
 
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {haberler.map((h: { tarih: string; baslik: string; ozet: string }) => (
-        <div class="block bg-white rounded-xl p-6 shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_24px_rgba(0,0,0,0.1)]">
-          <div class="text-xs text-turkuaz font-medium uppercase tracking-wider mb-3">{h.tarih}</div>
-          <h3 class="font-heading text-lg text-lacivert font-bold mb-3">
-            {h.baslik}
+    <div class="flex flex-col lg:flex-row gap-8">
+      <!-- Sol: Öne çıkan haber -->
+      {oneChikan && (
+        <div class="lg:w-1/2 group">
+          <div class="rounded-lg overflow-hidden bg-[#E8EEF4] h-[300px] sm:h-[360px] mb-5">
+            <img
+              src={oneChikan.gorsel || '/images/medrese-mesaj.png'}
+              alt={oneChikan.baslik}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+          <div class="text-xs text-turkuaz font-medium uppercase tracking-wider mb-2">{oneChikan.tarih}</div>
+          <h3 class="font-heading text-xl sm:text-2xl text-lacivert font-bold leading-snug mb-2 group-hover:text-turkuaz transition-colors duration-300">
+            {oneChikan.baslik}
           </h3>
-          <p class="text-body text-sm leading-relaxed">{h.ozet}</p>
+          <div class="w-10 h-[3px] bg-turkuaz rounded-full mb-3"></div>
+          <p class="text-body text-sm leading-relaxed">{oneChikan.ozet}</p>
         </div>
-      ))}
+      )}
+
+      <!-- Sağ: Haber listesi -->
+      <div class="lg:w-1/2 flex flex-col">
+        {digerHaberler.map((h, i) => (
+          <div class:list={[
+            "group flex gap-4 py-5",
+            i !== digerHaberler.length - 1 && "border-b border-gray-200"
+          ]}>
+            <div class="flex-1 min-w-0">
+              <div class="text-[10px] text-turkuaz font-medium uppercase tracking-wider mb-1.5">{h.tarih}</div>
+              <h4 class="font-heading text-[15px] text-lacivert font-bold leading-snug mb-2 group-hover:text-turkuaz transition-colors duration-300">
+                {h.baslik}
+              </h4>
+              <p class="text-body/70 text-xs leading-relaxed line-clamp-2">
+                {h.ozet}
+              </p>
+            </div>
+            <div class="w-20 h-20 flex-shrink-0 rounded-md overflow-hidden bg-[#E8EEF4]">
+              <img
+                src={h.gorsel || '/images/medrese-icon.png'}
+                alt={h.baslik}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

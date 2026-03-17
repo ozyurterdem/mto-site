@@ -6,7 +6,7 @@ import ScrollTop from '../components/ScrollTop.astro';
 import SidebarNav from '../components/SidebarNav.astro';
 import Breadcrumb from '../components/Breadcrumb.astro';
 import MtoBultenWidget from '../components/MtoBultenWidget.astro';
-import { defaultLocale, type Locale } from '../i18n/index';
+import { defaultLocale, t, localePath, type Locale } from '../i18n/index';
 
 interface NavItem {
   label: string;
@@ -48,6 +48,13 @@ const {
   locale = defaultLocale,
 } = Astro.props;
 
+// Breadcrumb'a otomatik "Anasayfa" ekle (eksikse)
+const homeLabel = t(locale, 'nav.home');
+const homeHref = localePath(locale, '/');
+const firstLabel = breadcrumbs[0]?.label?.toUpperCase();
+const hasHome = firstLabel === 'ANASAYFA' || firstLabel === 'HOME' || firstLabel === homeLabel.toUpperCase() || firstLabel === 'الرئيسية';
+const finalBreadcrumbs = hasHome ? breadcrumbs : [{ label: homeLabel, href: homeHref }, ...breadcrumbs];
+
 const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor === 'turuncu' ? 'text-turuncu' : 'text-mavi';
 ---
 
@@ -61,7 +68,7 @@ const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor ===
 
         <!-- Content -->
         <div class="flex-1 min-w-0">
-          <Breadcrumb items={breadcrumbs} />
+          <Breadcrumb items={finalBreadcrumbs} />
           <h1 class:list={['text-3xl lg:text-4xl font-bold uppercase tracking-wide font-heading mt-2 mb-8', titleColorClass]}>
             {pageTitle}
           </h1>

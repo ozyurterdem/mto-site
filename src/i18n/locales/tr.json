@@ -46,7 +46,7 @@
     "akademisyen": "Akademisyen",
     "kademe": "Kademe",
     "farklıDers": "Farklı Ders",
-    "gunHafta": "Gün / Hafta"
+    "gunHafta": "Makale"
   },
   "mtoDanMesaj": {
     "badge": "Medeniyet Tasavvuru Okulu",
@@ -77,7 +77,9 @@
     "items": [
       { "tarih": "Bahar 2026", "baslik": "2025–2026 Bahar Dönemi Başladı", "ozet": "Yeni dönemde 5 kademe, 15 akademisyen ve 24 farklı ders ile eğitimler devam ediyor." },
       { "tarih": "Bahar 2026", "baslik": "Akademik Kadro Güçleniyor", "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal ve daha birçok değerli akademisyen kadromuzda." },
-      { "tarih": "Bahar 2026", "baslik": "Ders Programı Yayında", "ozet": "Pazartesi'den Pazar'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı." }
+      { "tarih": "Bahar 2026", "baslik": "Ders Programı Yayında", "ozet": "Pazartesi'den Pazar'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı." },
+      { "tarih": "Bahar 2026", "baslik": "100 Kitap Listesi Güncellendi", "ozet": "Medeniyet tasavvurunun temel kaynaklarını içeren 100 Kitap listemiz yeni eserlerle zenginleştirildi." },
+      { "tarih": "Bahar 2026", "baslik": "Şehir Temsilcilikleri Büyüyor", "ozet": "MTO şehir temsilcilikleri yeni illere yayılıyor, yerel eğitim halkaları oluşturuluyor." }
     ]
   },
   "akademikKadro": {
@@ -89,7 +91,7 @@
   "egitimler": {
     "badge": "2025–2026 Bahar Dönemi",
     "title": "Eğitimlerimiz",
-    "viewAll": "Tüm Ders Programını Gör"
+    "viewAll": "Tüm Dersleri Gör"
   },
   "sss": {
     "title": "Sıkça Sorulan Sorular",
@@ -167,7 +169,7 @@
   },
   "hakkimizda": {
     "title": "Hakkımızda",
-    "breadcrumb1": "İLİM - BİLME",
+    "breadcrumb1": "İLİM · BİLME",
     "breadcrumb2": "HAKKIMIZDA",
     "heroTitle": "İLİM İRFAN HİKMET",
     "content": {

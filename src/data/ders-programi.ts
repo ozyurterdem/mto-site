@@ -13,6 +13,7 @@ export interface GunProgrami {
 export interface KademeProgrami {
   kademe: string;
   kisa: string;
+  makaleSayisi: number;
   programlar: GunProgrami[];
 }
 
@@ -20,6 +21,7 @@ export const dersProgramlari: KademeProgrami[] = [
 {
     kademe: 'Hazırlık',
     kisa: 'Hazırlık',
+    makaleSayisi: 10,
     programlar: [
       {
         gun: 'Pazartesi',
@@ -68,6 +70,7 @@ export const dersProgramlari: KademeProgrami[] = [
   {
     kademe: '1. Kademe 2. Dönem',
     kisa: '1. Kademe',
+    makaleSayisi: 15,
     programlar: [
       {
         gun: 'Pazartesi',
@@ -126,6 +129,7 @@ export const dersProgramlari: KademeProgrami[] = [
 {
     kademe: '2. Kademe 2. Dönem',
     kisa: '2. Kademe',
+    makaleSayisi: 12,
     programlar: [
       {
         gun: 'Pazartesi',
@@ -181,6 +185,7 @@ export const dersProgramlari: KademeProgrami[] = [
 {
     kademe: '3. Kademe 2. Dönem',
     kisa: '3. Kademe',
+    makaleSayisi: 8,
     programlar: [
       {
         gun: 'Pazartesi',
@@ -236,6 +241,7 @@ export const dersProgramlari: KademeProgrami[] = [
 {
     kademe: 'İhtisas 2. Dönem',
     kisa: 'İhtisas',
+    makaleSayisi: 6,
     programlar: [
       {
         gun: 'Pazartesi',

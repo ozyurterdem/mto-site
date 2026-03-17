@@ -27,14 +27,14 @@ const headerNav = [
       { label: t(locale, 'nav.sub.hakkimizda'),         href: localePath(locale, '/ilim-bilme/hakkimizda') },
       { label: t(locale, 'nav.sub.nisangah'),            href: localePath(locale, '/ilim-bilme/nisangah') },
       { label: t(locale, 'nav.sub.mtoMesaj'),            href: localePath(locale, '/ilim-bilme/mto-mesaj') },
-      { label: t(locale, 'nav.sub.akademi'), href: '#', hasSubmenu: true, subItems: [
-        { label: t(locale, 'nav.sub.akademikTakvim'), href: localePath(locale, '/ilim-bilme/akademik-takvim') },
-        { label: t(locale, 'nav.sub.akademikKadro'),  href: localePath(locale, '/ilim-bilme/akademik-kadro') },
-        { label: t(locale, 'nav.sub.dersProgramlari'),href: localePath(locale, '/ders-programi') },
-      ]},
       { label: t(locale, 'nav.sub.sehirTemsilcilikleri'),href: localePath(locale, '/ilim-bilme/sehir-temsilcilikleri') },
       { label: t(locale, 'nav.sub.mtoBulten'),           href: localePath(locale, '/ilim-bilme/mto-bulten') },
       { label: t(locale, 'nav.sub.sss'),                 href: localePath(locale, '/ilim-bilme/sss') },
+    ], [
+      { label: t(locale, 'nav.sub.akademi'), href: '#', isHeader: true },
+      { label: t(locale, 'nav.sub.akademikTakvim'), href: localePath(locale, '/ilim-bilme/akademik-takvim') },
+      { label: t(locale, 'nav.sub.akademikKadro'),  href: localePath(locale, '/ilim-bilme/akademik-kadro') },
+      { label: t(locale, 'nav.sub.dersProgramlari'),href: localePath(locale, '/ders-programi') },
     ]],
   },
   {
@@ -100,46 +100,19 @@ const rawPath = Astro.url.pathname
             {item.children && (
               <div class="absolute top-full left-0 pt-0 invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-200 z-50">
                 <div class:list={[
-                  'bg-white backdrop-blur-md border border-gray-100 rounded-b-lg shadow-xl p-6 flex border-t-[3px]',
+                  'bg-white/95 backdrop-blur-md border border-gray-200 rounded-b-lg shadow-xl p-6 flex gap-10 border-t-[3px]',
                   c.topBorder,
                 ]}>
                   {item.children.map((col) => (
-                    <div class="space-y-1 min-w-[180px]">
+                    <div class="space-y-1 min-w-[160px]">
                       {col.map((link) => (
-                        link.hasSubmenu ? (
-                          <div class="relative group/sub">
-                            <span class:list={[
-                              'flex items-center justify-between py-2 px-2 text-sm font-semibold text-lacivert rounded-md transition-colors cursor-pointer font-body whitespace-nowrap group-hover/sub:bg-gray-50',
-                            ]}>
-                              {link.label}
-                              <svg class="w-3.5 h-3.5 opacity-40 group-hover/sub:opacity-80 transition-opacity" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                              </svg>
-                            </span>
-                            {link.subItems && (
-                              <div class="absolute left-full top-0 ml-0 invisible opacity-0 group-hover/sub:visible group-hover/sub:opacity-100 transition-all duration-200">
-                                <div class="bg-white border border-gray-100 rounded-lg shadow-lg p-4 min-w-[180px] space-y-1">
-                                  {link.subItems.map((sub) => (
-                                    <a
-                                      href={sub.href}
-                                      class:list={[
-                                        'block py-2 px-3 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap',
-                                        c.hoverText,
-                                        c.hoverBg,
-                                      ]}
-                                    >
-                                      {sub.label}
-                                    </a>
-                                  ))}
-                                </div>
-                              </div>
-                            )}
-                          </div>
+                        link.isHeader ? (
+                          <span class="block py-1.5 px-2 text-sm font-bold text-lacivert font-body">{link.label}</span>
                         ) : (
                           <a
                             href={link.href}
                             class:list={[
-                              'block py-2 px-2 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap',
+                              'block py-1.5 text-sm text-body rounded-md transition-colors no-underline font-body whitespace-nowrap px-2',
                               c.hoverText,
                               c.hoverBg,
                             ]}

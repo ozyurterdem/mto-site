@@ -46,7 +46,7 @@
     "akademisyen": "Academics",
     "kademe": "Levels",
     "farklıDers": "Courses",
-    "gunHafta": "Days / Week"
+    "gunHafta": "Articles"
   },
   "mtoDanMesaj": {
     "badge": "School of Civilization Vision",
@@ -77,7 +77,9 @@
     "items": [
       { "tarih": "Spring 2026", "baslik": "Spring Semester 2025–2026 Has Begun", "ozet": "The new semester continues with 5 levels, 15 academics and 24 different courses." },
       { "tarih": "Spring 2026", "baslik": "Academic Staff Grows Stronger", "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal and many more distinguished academics join our faculty." },
-      { "tarih": "Spring 2026", "baslik": "Course Schedule Published", "ozet": "Our intensive course schedule, running every day from Monday to Sunday, is now published on our website." }
+      { "tarih": "Spring 2026", "baslik": "Course Schedule Published", "ozet": "Our intensive course schedule, running every day from Monday to Sunday, is now published on our website." },
+      { "tarih": "Spring 2026", "baslik": "100 Book List Updated", "ozet": "Our 100 Book list, containing the foundational sources of civilizational thought, has been enriched with new works." },
+      { "tarih": "Spring 2026", "baslik": "City Representatives Growing", "ozet": "MTO city representatives are expanding to new provinces, local education circles are being established." }
     ]
   },
   "akademikKadro": {
@@ -89,7 +91,7 @@
   "egitimler": {
     "badge": "Spring Semester 2025–2026",
     "title": "Our Courses",
-    "viewAll": "View Full Course Schedule"
+    "viewAll": "View All Courses"
   },
   "sss": {
     "title": "Frequently Asked Questions",
@@ -167,7 +169,7 @@
   },
   "hakkimizda": {
     "title": "About Us",
-    "breadcrumb1": "KNOWLEDGE - LEARNING",
+    "breadcrumb1": "KNOWLEDGE · LEARNING",
     "breadcrumb2": "ABOUT US",
     "heroTitle": "KNOWLEDGE WISDOM ENLIGHTENMENT",
     "content": {
