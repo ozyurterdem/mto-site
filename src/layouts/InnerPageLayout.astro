@@ -25,6 +25,7 @@ interface Props {
   description?: string;
   pageTitle: string;
   sidebarTitle: string;
+  sidebarTitleHref?: string;
   sidebarItems: NavItem[];
   breadcrumbs: BreadcrumbItem[];
   showBulten?: boolean;
@@ -38,6 +39,7 @@ const {
   description,
   pageTitle,
   sidebarTitle,
+  sidebarTitleHref,
   sidebarItems,
   breadcrumbs,
   showBulten = true,
@@ -55,7 +57,7 @@ const titleColorClass = accentColor === 'vizon' ? 'text-vizon' : accentColor ===
     <div class="max-w-[1200px] mx-auto px-6 lg:px-12 py-12 lg:py-16">
       <div class="flex flex-col lg:flex-row gap-10 lg:gap-16">
         <!-- Sidebar -->
-        <SidebarNav title={sidebarTitle} items={sidebarItems} currentPath={currentPath} accentColor={accentColor} />
+        <SidebarNav title={sidebarTitle} titleHref={sidebarTitleHref} items={sidebarItems} currentPath={currentPath} accentColor={accentColor} />
 
         <!-- Content -->
         <div class="flex-1 min-w-0">

@@ -8,12 +8,13 @@ interface NavItem {
 
 interface Props {
   title: string;
+  titleHref?: string;
   items: NavItem[];
   currentPath?: string;
   accentColor?: 'vizon' | 'turuncu' | 'mavi';
 }
 
-const { title, items, currentPath = '', accentColor = 'vizon' } = Astro.props;
+const { title, titleHref, items, currentPath = '', accentColor = 'vizon' } = Astro.props;
 
 function isActive(item: NavItem): boolean {
   if (item.active) return true;
@@ -31,9 +32,15 @@ const hoverText = accentColor === 'vizon' ? 'hover:text-vizon' : accentColor ===
 ---
 
 <aside class="w-full lg:w-[260px] flex-shrink-0">
-  <h3 class:list={['text-[1.1rem] font-bold tracking-wider uppercase border-b-2 pb-3 mb-4 font-heading', titleColor, borderColor]}>
-    {title}
-  </h3>
+  {titleHref ? (
+    <a href={titleHref} class:list={['block text-[1.1rem] font-bold tracking-wider uppercase border-b-2 pb-3 mb-4 font-heading no-underline hover:opacity-80 transition-opacity', titleColor, borderColor]}>
+      {title}
+    </a>
+  ) : (
+    <h3 class:list={['text-[1.1rem] font-bold tracking-wider uppercase border-b-2 pb-3 mb-4 font-heading', titleColor, borderColor]}>
+      {title}
+    </h3>
+  )}
   <ul class="list-none space-y-0">
     {items.map(item => {
       const active = isActive(item);
