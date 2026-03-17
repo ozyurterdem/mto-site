@@ -15,10 +15,10 @@ const { locale = defaultLocale } = Astro.props;
     <div class="absolute -right-10 -top-10 w-48 h-48 rounded-full border border-white/15"></div>
   </div>
   <div class="relative z-10">
-    <h2 class="font-heading text-[clamp(2.2rem,4vw,3.2rem)] text-[#FF8C42] uppercase mb-5 font-black tracking-wider">{t(locale, 'kitapBanner.title')}</h2>
+    <h2 class="font-heading text-[clamp(2.2rem,4vw,3.2rem)] text-[#0E7C86] uppercase mb-5 font-black tracking-wider">{t(locale, 'kitapBanner.title')}</h2>
     <a
       href={localePath(locale, '/100-kitap')}
-      class="inline-block px-10 py-4 bg-[#FF8C42] text-white no-underline font-bold text-sm uppercase tracking-[2px] rounded hover:bg-lacivert hover:text-white transition-all duration-300"
+      class="inline-block px-10 py-4 bg-[#0E7C86] text-white no-underline font-bold text-sm uppercase tracking-[2px] rounded hover:bg-lacivert hover:text-white transition-all duration-300"
     >
       {t(locale, 'kitapBanner.cta')}
     </a>
