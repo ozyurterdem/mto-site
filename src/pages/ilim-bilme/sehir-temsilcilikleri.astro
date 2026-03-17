@@ -51,11 +51,6 @@ const sehirler = [
         <div class="space-y-4">
           {sehirler.map((sehir) => (
             <div class="flex items-center gap-3 p-4 bg-lacivert/5 rounded-xl hover:bg-turkuaz/10 transition-colors group">
-              <div class="w-10 h-10 rounded-full bg-turuncu/20 flex items-center justify-center flex-shrink-0 group-hover:bg-turuncu/30 transition-colors">
-                <svg class="w-5 h-5 text-turuncu" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                </svg>
-              </div>
               <span class="font-heading font-semibold text-lacivert">{sehir}</span>
             </div>
           ))}
