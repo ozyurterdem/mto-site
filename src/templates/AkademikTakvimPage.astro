@@ -1,0 +1,151 @@
+---
+import InnerPageLayout from '../layouts/InnerPageLayout.astro';
+import { getIlimBilmeNav } from '../data/navigation';
+import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const nav = getIlimBilmeNav(locale);
+const pagePath = '/ilim-bilme/akademik-takvim';
+
+const sidebarItems = nav.items.map(item => ({
+  ...item,
+  active: item.href === localePath(locale, pagePath)
+}));
+
+const breadcrumbs = [
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.akademikTakvim') }
+];
+---
+
+<InnerPageLayout
+  locale={locale}
+  title={`${t(locale, 'nav.sub.akademikTakvim')} — MTO`}
+  description={t(locale, 'meta.siteDescription')}
+  pageTitle={t(locale, 'nav.sub.akademikTakvim')}
+  sidebarTitle={nav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath={localePath(locale, pagePath)}
+  accentColor="vizon"
+>
+  <div class="space-y-12">
+    <div class="prose prose-lg max-w-none font-body text-lacivert/80">
+      <p>
+        Medeniyet Tasavvuru Okulu, <strong>Güz Dönemi</strong> (Ekim, Kasım, Aralık) ve <strong>Bahar Dönemi</strong> (Mart, Nisan, Mayıs) olarak iki dönemden oluşmaktadır. Her dönem, belirli bir müfredat çerçevesinde dersler, seminerler ve atölye çalışmaları içermektedir.
+      </p>
+    </div>
+
+    <!-- 2025-2026 Güz Dönemi -->
+    <div class="bg-lacivert/5 rounded-2xl p-8">
+      <h3 class="font-heading text-2xl font-bold text-lacivert mb-6">2025-2026 Güz Dönemi</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left font-body">
+          <thead>
+            <tr class="border-b-2 border-vizon/30">
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Tarih</th>
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Etkinlik</th>
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Açıklama</th>
+            </tr>
+          </thead>
+          <tbody class="text-lacivert/70">
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">1 Ekim 2025</td>
+              <td class="py-3 px-4 font-semibold">Dönem Açılışı</td>
+              <td class="py-3 px-4">Güz dönemi açılış programı ve oryantasyon</td>
+            </tr>
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">4 Ekim 2025</td>
+              <td class="py-3 px-4 font-semibold">Dersler Başlangıcı</td>
+              <td class="py-3 px-4">Tüm derslerin ilk haftası</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">29 Ekim 2025</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Cumhuriyet Bayramı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır</td>
+            </tr>
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">15 Kasım 2025</td>
+              <td class="py-3 px-4 font-semibold">Ara Değerlendirme</td>
+              <td class="py-3 px-4">Dönem ortası değerlendirme ve geri bildirim</td>
+            </tr>
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">20 Aralık 2025</td>
+              <td class="py-3 px-4 font-semibold">Dönem Sonu</td>
+              <td class="py-3 px-4">Güz dönemi kapanış programı</td>
+            </tr>
+            <tr class="bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">1 Ocak 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Yılbaşı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — dönem arası</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2025-2026 Bahar Dönemi -->
+    <div class="bg-lacivert/5 rounded-2xl p-8">
+      <h3 class="font-heading text-2xl font-bold text-lacivert mb-6">2025-2026 Bahar Dönemi</h3>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left font-body">
+          <thead>
+            <tr class="border-b-2 border-vizon/30">
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Tarih</th>
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Etkinlik</th>
+              <th class="py-3 px-4 font-heading font-semibold text-lacivert">Açıklama</th>
+            </tr>
+          </thead>
+          <tbody class="text-lacivert/70">
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">1 Mart 2026</td>
+              <td class="py-3 px-4 font-semibold">Dönem Açılışı</td>
+              <td class="py-3 px-4">Bahar dönemi açılış programı ve oryantasyon</td>
+            </tr>
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">7 Mart 2026</td>
+              <td class="py-3 px-4 font-semibold">Dersler Başlangıcı</td>
+              <td class="py-3 px-4">Tüm derslerin ilk haftası</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">20 – 22 Mart 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Ramazan Bayramı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır (3 gün)</td>
+            </tr>
+            <tr class="border-b border-lacivert/5">
+              <td class="py-3 px-4 whitespace-nowrap">11 Nisan 2026</td>
+              <td class="py-3 px-4 font-semibold">Ara Değerlendirme</td>
+              <td class="py-3 px-4">Dönem ortası değerlendirme ve geri bildirim</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">23 Nisan 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Ulusal Egemenlik ve Çocuk Bayramı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">1 Mayıs 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Emek ve Dayanışma Günü</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">19 Mayıs 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Atatürk'ü Anma, Gençlik ve Spor Bayramı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır</td>
+            </tr>
+            <tr class="border-b border-lacivert/5 bg-vizon/10">
+              <td class="py-3 px-4 whitespace-nowrap font-semibold text-vizon">27 – 30 Mayıs 2026</td>
+              <td class="py-3 px-4 font-semibold text-vizon">Kurban Bayramı</td>
+              <td class="py-3 px-4 text-vizon">Resmî tatil — ders yapılmayacaktır (4 gün)</td>
+            </tr>
+            <tr>
+              <td class="py-3 px-4 whitespace-nowrap">6 Haziran 2026</td>
+              <td class="py-3 px-4 font-semibold">Dönem Sonu</td>
+              <td class="py-3 px-4">Bahar dönemi kapanış programı</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</InnerPageLayout>

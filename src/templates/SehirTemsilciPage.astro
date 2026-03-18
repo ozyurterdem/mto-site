@@ -1,0 +1,77 @@
+---
+import InnerPageLayout from '../layouts/InnerPageLayout.astro';
+import { getIlimBilmeNav } from '../data/navigation';
+import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const nav = getIlimBilmeNav(locale);
+const pagePath = '/ilim-bilme/sehir-temsilcilikleri';
+
+const sidebarItems = nav.items.map(item => ({
+  ...item,
+  active: item.href === localePath(locale, pagePath)
+}));
+
+const sehirler = [
+  'İstanbul',
+  'Bursa',
+  'Ankara',
+  'Diyarbakır',
+  'Erzurum',
+  'Trabzon',
+]
+
+const breadcrumbs = [
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.sehirTemsilcilikleri') }
+];
+---
+
+<InnerPageLayout
+  locale={locale}
+  title={`${t(locale, 'nav.sub.sehirTemsilcilikleri')} — MTO`}
+  description={t(locale, 'meta.siteDescription')}
+  pageTitle={t(locale, 'nav.sub.sehirTemsilcilikleri')}
+  sidebarTitle={nav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath={localePath(locale, pagePath)}
+  accentColor="vizon"
+>
+  <!-- Content -->
+  <div class="space-y-10">
+    <!-- Description -->
+    <p class="text-lacivert/70 font-body text-lg leading-relaxed">
+      Temsilciliklerimizin bulunduğu şehirler aşağıda verilmiştir. Temsilciliklerimiz ile iletişime geçmek için <a href="mailto:mtokurumsal@gmail.com" class="text-turkuaz font-semibold no-underline hover:underline">mtokurumsal@gmail.com</a> mail adresinden yönlendirme talep edebilirsiniz.
+    </p>
+
+    <!-- Cities List -->
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-1">
+      {sehirler.map((sehir, i) => (
+        <div class="flex items-center gap-3 py-3 border-b border-gray-100">
+          <span class="w-5 text-right text-vizon/50 text-xs font-heading font-bold">{i + 1}</span>
+          <div class="w-[3px] h-4 rounded-full bg-vizon/30"></div>
+          <span class="font-body text-lacivert text-[0.95rem]">{sehir}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="bg-gradient-to-r from-lacivert to-lacivert/90 rounded-2xl p-8 text-center">
+      <h3 class="font-heading text-2xl font-bold text-white mb-3">İletişime Geçin</h3>
+      <p class="font-body text-white/70 mb-6">
+        Şehir temsilciliğimize ulaşmak veya yeni bir temsilcilik açmak için bizimle iletişime geçebilirsiniz.
+      </p>
+      <a
+        href="mailto:mtokurumsal@gmail.com"
+        class="inline-flex items-center gap-2 bg-vizon hover:bg-vizon/90 text-white font-heading font-semibold px-8 py-3 rounded-full transition-colors"
+      >
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        mtokurumsal@gmail.com
+      </a>
+    </div>
+  </div>
+</InnerPageLayout>

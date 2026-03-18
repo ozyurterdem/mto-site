@@ -1,0 +1,42 @@
+---
+import InnerPageLayout from '../layouts/InnerPageLayout.astro';
+import { getIlimBilmeNav } from '../data/navigation';
+import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const nav = getIlimBilmeNav(locale);
+const pagePath = '/ilim-bilme/nisangah';
+
+const sidebarItems = nav.items.map(item => ({
+  ...item,
+  active: item.href === localePath(locale, pagePath)
+}));
+
+const breadcrumbs = [
+  { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
+  { label: t(locale, 'nav.sub.nisangah') }
+];
+---
+
+<InnerPageLayout
+  locale={locale}
+  title={`${t(locale, 'nav.sub.nisangah')} — MTO`}
+  description={t(locale, 'meta.siteDescription')}
+  pageTitle={t(locale, 'nav.sub.nisangah')}
+  sidebarTitle={nav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath={localePath(locale, pagePath)}
+  accentColor="vizon"
+>
+  <div class="space-y-6 text-body leading-relaxed">
+    <p>
+      Medeniyet Tasavvuru Okulu'nın aslî gâyesi akıl, kalp ve ruhu aynı anda harekete geçirerek, çağ açan, çağ aşan ve çağrısı çağını kuran, 10 yılda 100 yılın tohumlarını ekmektir.
+    </p>
+
+    <p>
+      Bu yolda, Yusuf Kaplan'ın Fussilet Sûresi 53. âyete dayandırdığı Hz. Mevlânâ'nın pergel metaforu Medeniyet Tasavvuru Okulu'nun nişangâhıdır. Pergelin sabit ayağı kendi kadîm medeniyetimize sabitlenecek, hareketli ayağı ise dünyaya ve başka dünyalara açılacaktır.
+    </p>
+  </div>
+</InnerPageLayout>
