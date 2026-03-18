@@ -1,6 +1,5 @@
 ---
-import { bugunGun, bugunTatilMi } from '../data/ders-programi';
-import { getDersProgramlari, getTranslation } from '../lib/directus';
+import { bugunGun, bugunDersler, bugunTatilMi } from '../data/ders-programi';
 import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
 
 interface Props {
@@ -10,31 +9,7 @@ const { locale = defaultLocale } = Astro.props;
 
 const tatil = bugunTatilMi();
 const gunTR = bugunGun();
-
-// CMS'ten bugünün derslerini çek
-let dersler: { saat: string; ders: string; hoca: string; sure: string; kademeler: string[] }[] = [];
-if (!tatil) {
-  const rawPrograms = await getDersProgramlari();
-  const map = new Map<string, typeof dersler[0]>();
-  for (const kp of rawPrograms) {
-    const kpT = getTranslation(kp.translations, locale);
-    const gp = (kp.gunler || []).find(g => {
-      const gT = getTranslation(g.translations, 'tr'); // gün adı her zaman TR'de karşılaştır
-      return gT?.gun === gunTR;
-    });
-    if (!gp) continue;
-    for (const d of gp.dersler || []) {
-      const dT = getTranslation(d.translations, locale);
-      const key = `${d.saat}-${dT?.ders}`;
-      if (map.has(key)) {
-        map.get(key)!.kademeler.push(kpT?.kisa || '');
-      } else {
-        map.set(key, { saat: d.saat, ders: dT?.ders || '', hoca: dT?.hoca || '', sure: d.sure, kademeler: [kpT?.kisa || ''] });
-      }
-    }
-  }
-  dersler = [...map.values()].sort((a, b) => a.saat.localeCompare(b.saat));
-}
+const dersler = tatil ? [] : bugunDersler();
 
 // Gün adını locale'e göre çevir
 const gun = t(locale, `days.${gunTR}`) !== `days.${gunTR}` ? t(locale, `days.${gunTR}`) : gunTR;

@@ -16,8 +16,3 @@ dist/
 
 # OS
 .DS_Store
-
-# Directus
-directus/.env
-directus/uploads/
-directus/database/

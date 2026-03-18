@@ -2,32 +2,11 @@
 import InnerPageLayout from '../layouts/InnerPageLayout.astro';
 import { getIlimBilmeNav } from '../data/navigation';
 import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
-import { getDersProgramlari, getTranslation } from '../lib/directus';
+import { dersProgramlari } from '../data/ders-programi';
 
 interface Props { locale?: Locale; }
 const { locale = defaultLocale } = Astro.props;
 const nav = getIlimBilmeNav(locale);
-
-// CMS'ten ders programlarını çek ve eski yapıya dönüştür
-const rawPrograms = await getDersProgramlari();
-const dersProgramlari = rawPrograms.map(kp => {
-  const kpT = getTranslation(kp.translations, locale);
-  return {
-    kademe: kpT?.kademe || '',
-    kisa: kpT?.kisa || '',
-    makaleSayisi: kp.makale_sayisi,
-    programlar: (kp.gunler || []).map(g => {
-      const gT = getTranslation(g.translations, locale);
-      return {
-        gun: gT?.gun || '',
-        dersler: (g.dersler || []).map(d => {
-          const dT = getTranslation(d.translations, locale);
-          return { saat: d.saat, ders: dT?.ders || '', hoca: dT?.hoca || '', sure: d.sure };
-        }),
-      };
-    }),
-  };
-});
 
 const sidebarItems = nav.items.map(item => ({
   ...item,
