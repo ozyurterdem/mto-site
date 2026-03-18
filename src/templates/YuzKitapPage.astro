@@ -6,11 +6,28 @@ import ScrollTop from '../components/ScrollTop.astro';
 import SidebarNav from '../components/SidebarNav.astro';
 import { getIrfanBulmaNav } from '../data/navigation';
 import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+import { getKitaplar, getTranslation } from '../lib/directus';
+import { readingCategories, categoryColors, categorySubtitles, categoryNotes } from '../data/hundred-books';
 
 interface Props { locale?: Locale; }
 const { locale = defaultLocale } = Astro.props;
 const irfanBulmaNav = getIrfanBulmaNav(locale);
-import { hundredBooks, readingCategories, categoryColors, categorySubtitles, categoryNotes } from '../data/hundred-books';
+
+// CMS'ten kitapları çek
+const rawKitaplar = await getKitaplar();
+const hundredBooks = rawKitaplar.map(k => {
+  const tr = getTranslation(k.translations, locale);
+  return {
+    title: tr?.baslik || '',
+    author: tr?.yazar || '',
+    publisher: tr?.yayinevi || '',
+    description: tr?.aciklama || '',
+    category: k.kategori,
+    color: k.renk,
+    isReference: k.referans_mi,
+    number: k.numara,
+  };
+});
 
 const sidebarItems = irfanBulmaNav.items.map(item => ({
   ...item,
