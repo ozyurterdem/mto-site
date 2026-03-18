@@ -1,0 +1,100 @@
+---
+import InnerPageLayout from '../layouts/InnerPageLayout.astro';
+import { getHikmetOlmaNav } from '../data/navigation';
+import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
+
+interface Props { locale?: Locale; }
+const { locale = defaultLocale } = Astro.props;
+const nav = getHikmetOlmaNav(locale);
+const pagePath = '/hikmet-olma/kulupler';
+
+const sidebarItems = nav.items.map(item => ({
+  ...item,
+  active: item.href === localePath(locale, pagePath)
+}));
+
+const universities = [
+  'Uludağ Üniversitesi',
+  'İstanbul Üniversitesi',
+  'Marmara Üniversitesi',
+  'Sakarya Üniversitesi',
+  'Namık Kemal Üniversitesi',
+  'Bolu Abant İzzet Baysal Üniversitesi',
+  'Siirt Üniversitesi',
+  'Karadeniz Teknik Üniversitesi',
+  'İstanbul Sabahattin Zaim Üniversitesi',
+  'Malatya Turgut Özal Üniversitesi',
+  'Ondokuz Mayıs Üniversitesi',
+  'Harran Üniversitesi',
+  'Dicle Üniversitesi',
+  'Recep Tayyip Erdoğan Üniversitesi',
+  'Fatih Sultan Mehmet Vakıf Üniversitesi',
+  'Bitlis Eren Üniversitesi',
+  '29 Mayıs Üniversitesi',
+];
+
+const breadcrumbs = [
+  { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
+  { label: t(locale, 'nav.sub.kulupler') }
+];
+---
+
+<InnerPageLayout
+  locale={locale}
+  title={`${t(locale, 'nav.sub.kulupler')} — MTO`}
+  description={t(locale, 'meta.siteDescription')}
+  pageTitle={t(locale, 'nav.sub.kulupler')}
+  sidebarTitle={nav.title}
+  sidebarItems={sidebarItems}
+  breadcrumbs={breadcrumbs}
+  currentPath={localePath(locale, pagePath)}
+  accentColor="mavi"
+>
+  <!-- Aciklama -->
+  <div class="mb-10 text-body text-[1.05rem] leading-[2]">
+    <p>
+      MTO Kulüpleri, üniversite ve lise bünyesinde faaliyet gösteren, talebelerin düşünce dünyalarını zenginleştirmek, okuma alışkanlığı kazandırmak ve medeniyet bilincini güçlendirmek amacıyla kurulmuş öğrenci topluluklarıdır.
+    </p>
+    <p class="mt-4">
+      Kulüpler, MTO'nun akademik müfredatını kampüslere taşıyan, talebelerin birbirleriyle ve hocalarıyla buluşmasını sağlayan, düzenli okuma halkaları ve seminerler organize eden yapılardır. Her kulüp, bulunduğu şehrin dinamiklerini gözeterek kendi programını oluşturur.
+    </p>
+  </div>
+
+  <!-- Aktif Kulupler Basligi -->
+  <div class="not-prose">
+    <h2 class="font-heading text-xl md:text-2xl text-turkuaz font-bold uppercase tracking-wide mb-6 pb-3 border-b-2 border-turkuaz/20">
+      Aktif Kulüplerin Bulunduğu Üniversiteler
+    </h2>
+
+    <!-- Universite Listesi (2 Kolon) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3">
+      {universities.map((uni, index) => (
+        <div class="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-turkuaz/5 transition-colors duration-200 group">
+          <div class="w-8 h-8 rounded-lg bg-lacivert/5 grid place-items-center flex-shrink-0 group-hover:bg-turkuaz/10 transition-colors">
+            <span class="font-heading font-bold text-xs text-lacivert/60 group-hover:text-turkuaz transition-colors">
+              {index + 1}
+            </span>
+          </div>
+          <span class="font-body text-[0.9rem] text-lacivert leading-snug">{uni}</span>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bilgi Kutusu -->
+    <div class="mt-10 px-6 py-5 bg-lacivert/5 rounded-xl border border-lacivert/10">
+      <div class="flex items-start gap-4">
+        <div class="w-10 h-10 rounded-full bg-turkuaz/10 grid place-items-center flex-shrink-0">
+          <svg class="w-5 h-5 text-turkuaz" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+        </div>
+        <div>
+          <h3 class="font-heading text-lacivert font-bold text-sm uppercase tracking-wide mb-1">Kulüp Kurmak İsteyenler İçin</h3>
+          <p class="text-body text-sm leading-relaxed">
+            Üniversitenizde veya lisenizde MTO kulübü kurmak istiyorsanız, iletişim sayfamız üzerinden bizimle bağlantıya geçebilirsiniz. Yeni kulüp başvuruları her akademik yılın başında değerlendirilmektedir.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</InnerPageLayout>

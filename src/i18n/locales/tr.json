@@ -75,11 +75,31 @@
   "mtoBulten": {
     "title": "MTO Bülten",
     "items": [
-      { "tarih": "Bahar 2026", "baslik": "2025–2026 Bahar Dönemi Başladı", "ozet": "Yeni dönemde 5 kademe, 15 akademisyen ve 24 farklı ders ile eğitimler devam ediyor." },
-      { "tarih": "Bahar 2026", "baslik": "Akademik Kadro Güçleniyor", "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal ve daha birçok değerli akademisyen kadromuzda." },
-      { "tarih": "Bahar 2026", "baslik": "Ders Programı Yayında", "ozet": "Pazartesi'den Pazar'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı." },
-      { "tarih": "Bahar 2026", "baslik": "100 Kitap Listesi Güncellendi", "ozet": "Medeniyet tasavvurunun temel kaynaklarını içeren 100 Kitap listemiz yeni eserlerle zenginleştirildi." },
-      { "tarih": "Bahar 2026", "baslik": "Şehir Temsilcilikleri Büyüyor", "ozet": "MTO şehir temsilcilikleri yeni illere yayılıyor, yerel eğitim halkaları oluşturuluyor." }
+      {
+        "tarih": "Bahar 2026",
+        "baslik": "2025–2026 Bahar Dönemi Başladı",
+        "ozet": "Yeni dönemde 5 kademe, 15 akademisyen ve 24 farklı ders ile eğitimler devam ediyor."
+      },
+      {
+        "tarih": "Bahar 2026",
+        "baslik": "Akademik Kadro Güçleniyor",
+        "ozet": "Tahsin Görgün, Yusuf Kaplan, Asım Cüneyd Köksal ve daha birçok değerli akademisyen kadromuzda."
+      },
+      {
+        "tarih": "Bahar 2026",
+        "baslik": "Ders Programı Yayında",
+        "ozet": "Pazartesi'den Pazar'a her gün devam eden yoğun ders programımız web sitemizde yayınlandı."
+      },
+      {
+        "tarih": "Bahar 2026",
+        "baslik": "100 Kitap Listesi Güncellendi",
+        "ozet": "Medeniyet tasavvurunun temel kaynaklarını içeren 100 Kitap listemiz yeni eserlerle zenginleştirildi."
+      },
+      {
+        "tarih": "Bahar 2026",
+        "baslik": "Şehir Temsilcilikleri Büyüyor",
+        "ozet": "MTO şehir temsilcilikleri yeni illere yayılıyor, yerel eğitim halkaları oluşturuluyor."
+      }
     ]
   },
   "akademikKadro": {
@@ -97,9 +117,18 @@
     "title": "Sıkça Sorulan Sorular",
     "viewAll": "Tüm Soruları Gör",
     "questions": [
-      { "q": "Başvurular Ne Zaman Alınıyor?", "a": "Her yıl Güz Dönemi'nde (Eylül – Ekim) 1. Kademe Başvurusu alınırken; Bahar Dönemi'nde (Şubat – Mart) Hazırlık Dönemi başvurusu alınmaktadır. Hazırlık Dönemi zorunlu değildir." },
-      { "q": "Başvuru Nereden ve Nasıl Yapılır?", "a": "Başvuru döneminde, erişime açtığımız başvuru form linkine web sitemizden veya sosyal medya hesaplarımızdan ulaşabilirsiniz. Başvurular eksiksiz ve doğru bir şekilde doldurulmalıdır." },
-      { "q": "Başvuru Şartları Nelerdir?", "a": "MTO'ya başvuru yapmak isteyen talebenin başvuru öncesinde 100 Kitap Listesi'nin Birinci Aşaması'nı 4 kalem tekniğiyle okumuş olması gerekir." }
+      {
+        "q": "Başvurular Ne Zaman Alınıyor?",
+        "a": "Her yıl Güz Dönemi'nde (Eylül – Ekim) 1. Kademe Başvurusu alınırken; Bahar Dönemi'nde (Şubat – Mart) Hazırlık Dönemi başvurusu alınmaktadır. Hazırlık Dönemi zorunlu değildir."
+      },
+      {
+        "q": "Başvuru Nereden ve Nasıl Yapılır?",
+        "a": "Başvuru döneminde, erişime açtığımız başvuru form linkine web sitemizden veya sosyal medya hesaplarımızdan ulaşabilirsiniz. Başvurular eksiksiz ve doğru bir şekilde doldurulmalıdır."
+      },
+      {
+        "q": "Başvuru Şartları Nelerdir?",
+        "a": "MTO'ya başvuru yapmak isteyen talebenin başvuru öncesinde 100 Kitap Listesi'nin Birinci Aşaması'nı 4 kalem tekniğiyle okumuş olması gerekir."
+      }
     ]
   },
   "yorumlar": {
@@ -109,10 +138,30 @@
     "prevAria": "Önceki",
     "nextAria": "Sonraki",
     "items": [
-      { "yorum": "MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.", "isim": "MTO Talebesi", "unvan": "2. Kademe", "initials": "MT" },
-      { "yorum": "Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.", "isim": "MTO Mezunu", "unvan": "3. Kademe", "initials": "MM" },
-      { "yorum": "Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.", "isim": "MTO Talebesi", "unvan": "1. Kademe", "initials": "MT" },
-      { "yorum": "Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.", "isim": "MTO Mezunu", "unvan": "İhtisas", "initials": "MM" }
+      {
+        "yorum": "MTO programı sayesinde medeniyet kavramına bakış açım tamamen değişti. Akademik kadronun derinliği ve ders içeriklerinin zenginliği gerçekten etkileyici.",
+        "isim": "MTO Talebesi",
+        "unvan": "2. Kademe",
+        "initials": "MT"
+      },
+      {
+        "yorum": "Kavramsal düşünme yeteneğimi geliştiren, ufkumu açan bir program oldu. Hem akademik hem de kişisel gelişimime büyük katkı sağladı.",
+        "isim": "MTO Mezunu",
+        "unvan": "3. Kademe",
+        "initials": "MM"
+      },
+      {
+        "yorum": "Bilgi, irfan ve hikmet üçlüsünü bu kadar bütüncül ele alan başka bir program görmedim. MTO gerçek bir medeniyet okulu.",
+        "isim": "MTO Talebesi",
+        "unvan": "1. Kademe",
+        "initials": "MT"
+      },
+      {
+        "yorum": "Her ders, kavramların derinliklerine iniyor. Yüzeysel değil, temelden başlayan bir eğitim anlayışı var.",
+        "isim": "MTO Mezunu",
+        "unvan": "İhtisas",
+        "initials": "MM"
+      }
     ]
   },
   "ctaBanner": {
@@ -122,9 +171,18 @@
   },
   "footer": {
     "navLinks": [
-      { "label": "Anasayfa", "href": "/" },
-      { "label": "Hakkımızda", "href": "/ilim-bilme/hakkimizda" },
-      { "label": "İletişim", "href": "/iletisim" }
+      {
+        "label": "Anasayfa",
+        "href": "/"
+      },
+      {
+        "label": "Hakkımızda",
+        "href": "/ilim-bilme/hakkimizda"
+      },
+      {
+        "label": "İletişim",
+        "href": "/iletisim"
+      }
     ],
     "copyright": "© 2025–2026 Medeniyet Tasavvuru Okulu — Tüm hakları saklıdır.",
     "designBy": "Design by"
@@ -173,13 +231,14 @@
     "breadcrumb2": "HAKKIMIZDA",
     "heroTitle": "İLİM İRFAN HİKMET",
     "content": {
-      "intro": "Hakîkatin İzinde, Yeni Bir Eğitim Modeli. Geleneksel eğitim sistemlerinin bilgiye ulaşmayı kolaylaştırdığı ama hakîkati anlamayı zorlaştırdığı bir çağda, Medeniyet Tasavvuru Okulu yeni bir eğitim modelinin temellerini atar.",
+      "intro": "Hakîkatin İzinde, Yeni Bir Eğitim Modeli. Geleneksel eğitim sistemlerinin bilgiye ulaşmayı kolaylaştırdığı ama hakîkati anlamayı zorlaştırdığı bir çağda, Medeniyet Tasavvuru Okulu yeni bir eğitim modelinin temellerini atar. Medeniyet Tasavvuru talebeleri için öğrenmek; bir kimlik inşâ etmek, düşünce ufkunu genişletmek ve medeniyet bilinci oluşturmaktır. Bu istikâmette Medeniyet Tasavvuru Okulu üç aşamadan oluşan kazanımları amaçlar;",
       "h1": "1- Medeniyet perspektifi kazandırmak,",
-      "p1": "Medeniyet perspektifini ve dinamiklerini, ruhunu, ideallerini ve ufkunu yitiren toplumlar hem başkalarının kölesi olmaktan hem de yok olmanın eşiğine yuvarlanmaktan kurtulamazlar. Bu doğrultuda Medeniyet Tasavvuru '3T' modelini sunar.",
+      "p1": "Medeniyet perspektifini ve dinamiklerini, ruhunu, ideallerini ve ufkunu yitiren toplumlar hem başkalarının kölesi olmaktan hem de yok olmanın eşiğine yuvarlanmaktan kurtulamazlar. Bu doğrultuda Medeniyet Tasavvuru \"3T\" modelini sunar. Hakikat medeniyetinin yeniden ve adım adım hayata geçirilmesine imkân tanıyabilecek üç aşamalı bir eğitim tasavvuru: Tevârûs - Temellûk - Temessûl. Bir medeniyet perspektifini tevarûs etme (öğrenme), temellûk etme (özümseme) ve temessûl etme (örnekleyerek başkalarına iletme) ilişkisidir.",
       "h2": "2- Müslümanca düşünme melekeleri kazandırmak,",
-      "p2": "Kademe derslerini ve 100 Kitap Listesi'nin sıkıca takip eden talebe, Müslümanca duyma, kavrama ve düşünme melekeleri geliştirir.",
-      "h3": "3- Dil zevki kazandırmak,",
-      "p3": "Kurucu kavramları olmayan toplumlar, kendi dünyalarını kuramazlar. MTO'da talebe, medeniyetlerin kavram ve düşünce dünyasını tanır."
+      "p2": "Kademe derslerini ve 100 Kitap Listesi'nin sıkıca takip eden talebe, Müslümanca duyma, kavrama ve düşünme melekeleri geliştirir; bütün disiplinleri, sil baştan yeniden inşâ edecek uzun soluklu bir medeniyet tasavvuru yolculuğuna soyunur, zihnini çağdaş hurafeler çöplüğünden arındırarak ümmîleşir.",
+      "h3": "3- Dil zevki kazandırmak",
+      "p3": "Kurucu kavramları olmayan toplumlar, kendi dünyalarını kuramazlar. MTO'da talebe, medeniyetlerin kavram ve düşünce dünyasını tanır, kendi kavramlarını kuşanır ve kendi fenemenolojisini inşâ eder. Bu amaçla farklı kavram ve düşünce hakîkatlerine sahip yazarlar ve düşünürler okunur.",
+      "p3Note": "Sezai Karakoç, Cemil Meriç, Ahmed Hamdi Tanpınar, Aliya İzzetbegoviç, Nurettin Topçu, Ivan Illich, Aristo, Turgut Cansever, Marx, Gazali, Arnold Toynbee, Marshall Hodgson, Fuat Köprülü, İbn Haldun, Konfüçyüs, Eflatun, Kant, Hegel, Rene Guenon, Mevlana gibi farklı usul ve metaforları ilke edinmiş düşünürleri talebe öğrenir ve özümser; kavram dünyasını zenginleştirir ve dil zevkini geliştirir."
     }
   },
   "days": {

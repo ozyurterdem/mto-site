@@ -1,22 +1,5 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import Header from '../../components/Header.astro'
-import Footer from '../../components/Footer.astro'
-import ScrollTop from '../../components/ScrollTop.astro'
-import IletisimContent from '../../components/Iletisim.astro'
-import { t } from '../../i18n/index'
-
-const locale = 'ar' as const;
+import IletisimPage from '../../templates/IletisimPage.astro';
 ---
 
-<BaseLayout
-  locale={locale}
-  title={`${t(locale, 'iletisim.title')} — MTO`}
-  description={t(locale, 'iletisim.subtitle')}
-  basePath="/iletisim"
->
-  <Header locale={locale} />
-  <IletisimContent locale={locale} />
-  <Footer locale={locale} />
-  <ScrollTop />
-</BaseLayout>
+<IletisimPage locale="ar" />

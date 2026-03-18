@@ -1,35 +1,5 @@
 ---
-import InnerPageLayout from '../../layouts/InnerPageLayout.astro'
-import { ilimBilmeNav } from '../../data/navigation'
-
-const sidebarItems = ilimBilmeNav.items.map(item => ({
-  ...item,
-  active: item.href === '/ilim-bilme/nisangah'
-}))
-
-const breadcrumbs = [
-  { label: 'İLİM · BİLME', href: '/ilim-bilme' },
-  { label: 'NİŞANGÂH' }
-]
+import NisangahPage from '../../templates/NisangahPage.astro';
 ---
 
-<InnerPageLayout
-  title="Nişangâh — MTO"
-  description="Medeniyet Tasavvuru Okulu'nun aslî gâyesi ve nişangâhı."
-  pageTitle="NİŞANGÂH"
-  sidebarTitle={ilimBilmeNav.title}
-  sidebarTitleHref="/ilim-bilme"
-  sidebarItems={sidebarItems}
-  breadcrumbs={breadcrumbs}
-  currentPath="/ilim-bilme/nisangah"
->
-  <div class="space-y-6 text-body leading-relaxed">
-    <p>
-      Medeniyet Tasavvuru Okulu'nın aslî gâyesi akıl, kalp ve ruhu aynı anda harekete geçirerek, çağ açan, çağ aşan ve çağrısı çağını kuran, 10 yılda 100 yılın tohumlarını ekmektir.
-    </p>
-
-    <p>
-      Bu yolda, Yusuf Kaplan'ın Fussilet Sûresi 53. âyete dayandırdığı Hz. Mevlânâ'nın pergel metaforu Medeniyet Tasavvuru Okulu'nun nişangâhıdır. Pergelin sabit ayağı kendi kadîm medeniyetimize sabitlenecek, hareketli ayağı ise dünyaya ve başka dünyalara açılacaktır.
-    </p>
-  </div>
-</InnerPageLayout>
+<NisangahPage locale="tr" />
