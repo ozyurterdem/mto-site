@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import MtoDanMesaj from '../components/MtoDanMesaj.astro';
+import BugunkuDersler from '../components/BugunkuDersler.astro';
+import KitapBanner from '../components/KitapBanner.astro';
+import VideoSection from '../components/VideoSection.astro';
+import MtoBulten from '../components/MtoBulten.astro';
+import AkademikKadro from '../components/AkademikKadro.astro';
+import Egitimler from '../components/Egitimler.astro';
+import Stats from '../components/Stats.astro';
+import SSS from '../components/SSS.astro';
+import Yorumlar from '../components/Yorumlar.astro';
+import CtaBanner from '../components/CtaBanner.astro';
+import Footer from '../components/Footer.astro';
+import ScrollTop from '../components/ScrollTop.astro';
+import { t, type Locale, defaultLocale } from '../i18n/index';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = defaultLocale } = Astro.props;
+---
+
+<BaseLayout
+  locale={locale}
+  title={t(locale, 'meta.siteTitle')}
+  description={t(locale, 'meta.siteDescription')}
+  basePath="/"
+>
+  <Header locale={locale} />
+  <Hero locale={locale} />
+  <MtoDanMesaj locale={locale} />
+  <BugunkuDersler locale={locale} />
+  <KitapBanner locale={locale} />
+  <VideoSection locale={locale} />
+  <MtoBulten locale={locale} />
+  <AkademikKadro locale={locale} />
+  <Egitimler locale={locale} />
+  <Stats locale={locale} />
+  <SSS locale={locale} />
+  <Yorumlar locale={locale} />
+  <CtaBanner locale={locale} />
+  <Footer locale={locale} />
+  <ScrollTop />
+</BaseLayout>
