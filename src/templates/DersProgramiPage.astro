@@ -2,7 +2,7 @@
 import InnerPageLayout from '../layouts/InnerPageLayout.astro';
 import { getIlimBilmeNav } from '../data/navigation';
 import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
-import { dersProgramlari } from '../data/ders-programi';
+import { getDersProgram } from '../lib/panel';
 
 interface Props { locale?: Locale; }
 const { locale = defaultLocale } = Astro.props;
@@ -17,6 +17,9 @@ const breadcrumbs = [
   { label: t(locale, 'nav.ilimBilme'), href: localePath(locale, '/ilim-bilme') },
   { label: t(locale, 'nav.sub.dersProgramlari') }
 ];
+
+const program = await getDersProgram();
+const dersProgramlari = program.kademeler;
 
 const kademeColors = ['#D4C5AD', '#C4B394', '#B7A78F', '#A08E74', '#8A7A64'];
 const kademeStats = dersProgramlari.map(kp => {

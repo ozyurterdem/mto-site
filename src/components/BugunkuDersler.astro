@@ -1,5 +1,5 @@
 ---
-import { bugunGun, bugunDersler, bugunTatilMi } from '../data/ders-programi';
+import { getDersProgram, bugunGun, bugunDersler, bugunTatilMi } from '../lib/panel';
 import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
 
 interface Props {
@@ -7,9 +7,10 @@ interface Props {
 }
 const { locale = defaultLocale } = Astro.props;
 
-const tatil = bugunTatilMi();
+const program = await getDersProgram();
+const tatil = bugunTatilMi(program);
 const gunTR = bugunGun();
-const dersler = tatil ? [] : bugunDersler();
+const dersler = tatil ? [] : bugunDersler(program);
 
 // Gün adını locale'e göre çevir
 const gun = t(locale, `days.${gunTR}`) !== `days.${gunTR}` ? t(locale, `days.${gunTR}`) : gunTR;

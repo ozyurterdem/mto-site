@@ -151,3 +151,92 @@ export async function getTakvim(): Promise<IcerikItem[]> {
 export async function getTemsilciler(): Promise<IcerikItem[]> {
   return (await panelFetch<IcerikItem[]>('/api/v1/icerik/temsilciler')) ?? [];
 }
+
+// ─── Ders Programı API ───
+
+export interface DersEntry {
+  saat: string;
+  ders: string;
+  hoca: string;
+  sure: string;
+}
+
+export interface GunProgrami {
+  gun: string;
+  dersler: DersEntry[];
+}
+
+export interface KademeProgrami {
+  kademe: string;
+  kisa: string;
+  makaleSayisi: number;
+  programlar: GunProgrami[];
+}
+
+export interface TatilDonemi {
+  baslangic: string;
+  bitis: string;
+  aciklama: string;
+  donusTarihi: string;
+}
+
+export interface FullDersProgram {
+  kademeler: KademeProgrami[];
+  tatilDonemleri: TatilDonemi[];
+}
+
+/** Fetch full ders programı (public endpoint) */
+export async function getDersProgram(): Promise<FullDersProgram> {
+  const data = await panelFetch<FullDersProgram>('/api/v1/ders/public/full');
+  return data ?? { kademeler: [], tatilDonemleri: [] };
+}
+
+// ─── Helper: bugünün dersleri (Astro build-time) ───
+
+const GUNLER = ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi'];
+
+export function bugunGun(): string {
+  const now = new Date();
+  const tr = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+  return GUNLER[tr.getDay()];
+}
+
+export interface BugunDers {
+  saat: string;
+  ders: string;
+  hoca: string;
+  sure: string;
+  kademeler: string[];
+}
+
+export function bugunDersler(program: FullDersProgram): BugunDers[] {
+  const gun = bugunGun();
+  const map = new Map<string, BugunDers>();
+
+  for (const kp of program.kademeler) {
+    const gp = kp.programlar.find(g => g.gun === gun);
+    if (!gp) continue;
+    for (const d of gp.dersler) {
+      const key = `${d.saat}-${d.ders}`;
+      if (map.has(key)) {
+        const mevcut = map.get(key)!;
+        if (!mevcut.kademeler.includes(kp.kisa)) {
+          mevcut.kademeler.push(kp.kisa);
+        }
+      } else {
+        map.set(key, { saat: d.saat, ders: d.ders, hoca: d.hoca, sure: d.sure, kademeler: [kp.kisa] });
+      }
+    }
+  }
+  return Array.from(map.values()).sort((a, b) => a.saat.localeCompare(b.saat));
+}
+
+export function bugunTatilMi(program: FullDersProgram): TatilDonemi | null {
+  const now = new Date();
+  const tr = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Istanbul' }));
+  const bugun = tr.toISOString().slice(0, 10);
+  for (const tatil of program.tatilDonemleri) {
+    if (bugun >= tatil.baslangic && bugun <= tatil.bitis) return tatil;
+  }
+  return null;
+}
