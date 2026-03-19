@@ -83,10 +83,10 @@ async function panelFetch<T>(path: string): Promise<T | null> {
 
 // ─── Public API ───
 
-/** Fetch published articles (paginated) */
-export async function getMakaleler(page = 1, perPage = 50): Promise<MakaleListResponse> {
+/** Fetch published articles (paginated, max 100 per page) */
+export async function getMakaleler(page = 1, perPage = 100): Promise<MakaleListResponse> {
   const data = await panelFetch<MakaleListResponse>(
-    `/api/v1/makaleler?page=${page}&per_page=${perPage}`
+    `/api/v1/makaleler?page=${page}&per_page=${Math.min(perPage, 100)}`
   );
   return data ?? { items: [], total: 0, page: 1, per_page: perPage };
 }
