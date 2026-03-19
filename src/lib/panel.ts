@@ -107,3 +107,47 @@ export async function getYorumlar(makaleId: number): Promise<Yorum[]> {
   const data = await panelFetch<Yorum[]>(`/api/v1/yorumlar/makale/${makaleId}`);
   return data ?? [];
 }
+
+// ─── İçerik API (Kadro, Faaliyetler, Sayfalar, SSS, Takvim, Temsilciler) ───
+
+export interface IcerikItem {
+  id: number;
+  sira?: number;
+  slug?: string;
+  tur?: string;
+  durum?: string;
+  donem?: string;
+  foto_url?: string;
+  kapak_url?: string;
+  tarih?: string;
+  translations: { lang: string; [key: string]: string }[];
+}
+
+export async function getKadro(): Promise<IcerikItem[]> {
+  return (await panelFetch<IcerikItem[]>('/api/v1/icerik/kadro')) ?? [];
+}
+
+export async function getFaaliyetler(tur?: string): Promise<IcerikItem[]> {
+  const path = tur ? `/api/v1/icerik/faaliyetler?tur=${tur}` : '/api/v1/icerik/faaliyetler';
+  return (await panelFetch<IcerikItem[]>(path)) ?? [];
+}
+
+export async function getSayfalar(): Promise<IcerikItem[]> {
+  return (await panelFetch<IcerikItem[]>('/api/v1/icerik/sayfalar')) ?? [];
+}
+
+export async function getSayfa(slug: string): Promise<IcerikItem | null> {
+  return panelFetch<IcerikItem>(`/api/v1/icerik/sayfalar/${slug}`);
+}
+
+export async function getSSS(): Promise<IcerikItem[]> {
+  return (await panelFetch<IcerikItem[]>('/api/v1/icerik/sss')) ?? [];
+}
+
+export async function getTakvim(): Promise<IcerikItem[]> {
+  return (await panelFetch<IcerikItem[]>('/api/v1/icerik/takvim')) ?? [];
+}
+
+export async function getTemsilciler(): Promise<IcerikItem[]> {
+  return (await panelFetch<IcerikItem[]>('/api/v1/icerik/temsilciler')) ?? [];
+}
