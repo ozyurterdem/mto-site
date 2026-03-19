@@ -8,15 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Coolify Rebuild
-        uses: appleboy/ssh-action@v1
-        with:
-          host: adawhm.siberkale.com
-          username: root
-          key: ${{ secrets.WHM_SSH_KEY }}
-          script: |
-            curl -sf -X POST \
-              -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
-              -H "Content-Type: application/json" \
-              -d '{"uuid": "${{ secrets.COOLIFY_SITE_UUID }}"}' \
-              "http://192.168.254.4:8000/api/v1/deploy"
-            echo "mto-site rebuild triggered"
+        run: |
+          curl -sf -X POST \
+            -H "Authorization: Bearer ${{ secrets.COOLIFY_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d '{"uuid": "${{ secrets.COOLIFY_SITE_UUID }}"}' \
+            "https://coolify.siberkale.com/api/v1/deploy"
+          echo "✅ mto-site rebuild triggered"
