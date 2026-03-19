@@ -1,5 +1,6 @@
 ---
 import InnerPageLayout from '../layouts/InnerPageLayout.astro';
+import FaaliyetGaleri from '../components/FaaliyetGaleri.astro';
 import { getHikmetOlmaNav } from '../data/navigation';
 import { t, localePath, type Locale, defaultLocale } from '../i18n/index';
 
@@ -7,58 +8,16 @@ interface Props { locale?: Locale; }
 const { locale = defaultLocale } = Astro.props;
 const nav = getHikmetOlmaNav(locale);
 const pagePath = '/hikmet-olma/faaliyetler/iftarlar';
-
-const sidebarItems = nav.items.map(item => ({
-  ...item,
-  active: item.href === localePath(locale, pagePath)
-}));
-
-const photos = Array.from({ length: 12 }, (_, i) => ({
-  id: i + 1,
-  alt: `MTO İftar ${i + 1}`,
-}));
-
+const sidebarItems = nav.items.map(item => ({ ...item, active: item.href === localePath(locale, pagePath) }));
 const breadcrumbs = [
   { label: t(locale, 'nav.hikmetOlma'), href: localePath(locale, '/hikmet-olma') },
   { label: t(locale, 'nav.sub.iftarlar') }
 ];
 ---
 
-<InnerPageLayout
-  locale={locale}
-  title={`${t(locale, 'nav.sub.iftarlar')} — MTO`}
-  description={t(locale, 'meta.siteDescription')}
-  pageTitle={t(locale, 'nav.sub.iftarlar')}
-  sidebarTitle={nav.title}
-  sidebarItems={sidebarItems}
-  breadcrumbs={breadcrumbs}
-  currentPath={localePath(locale, pagePath)}
-  accentColor="mavi"
->
-  <!-- Aciklama -->
+<InnerPageLayout locale={locale} title={`${t(locale, 'nav.sub.iftarlar')} — MTO`} description={t(locale, 'meta.siteDescription')} pageTitle={t(locale, 'nav.sub.iftarlar')} sidebarTitle={nav.title} sidebarItems={sidebarItems} breadcrumbs={breadcrumbs} currentPath={localePath(locale, pagePath)} accentColor="mavi">
   <div class="mb-10 text-body text-[1.05rem] leading-[2]">
-    <p>
-      MTO, Ramazan ayını yalnızca bireysel bir ibadet dönemi olarak değil; talebelerin bir araya gelerek fikir alışverişinde bulunduğu, kardeşlik bağlarını pekiştirdiği ve medeniyet şuurunu tazeledikleri özel bir vakit olarak değerlendirir.
-    </p>
-    <p class="mt-4">
-      Her yıl düzenlenen iftar programları, farklı şehirlerdeki MTO talebelerini aynı sofra etrafında buluşturur. Bu buluşmalar; dostluk, paylaşım ve ortak bir medeniyet bilincinin pekiştirildiği samimi ortamlar olarak MTO geleneğinin ayrılmaz bir parçasıdır.
-    </p>
+    <p>MTO iftar programları, talebelerin bir araya gelerek hem gönüllerini hem sofralarını paylaştığı bereketli buluşmalardır.</p>
   </div>
-
-  <!-- Fotograf Grid -->
-  <div class="grid grid-cols-2 md:grid-cols-4 gap-3 not-prose">
-    {photos.map((photo) => (
-      <div class="group relative aspect-square rounded-xl overflow-hidden bg-lacivert/5 hover:shadow-lg transition-all duration-300">
-        <div class="absolute inset-0 bg-gradient-to-br from-turkuaz/10 via-lacivert/5 to-mavi/10 flex items-center justify-center">
-          <div class="text-center opacity-60 group-hover:opacity-100 transition-opacity">
-            <svg class="w-8 h-8 text-lacivert/30 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span class="text-lacivert/40 text-[10px] font-heading uppercase tracking-widest">{photo.alt}</span>
-          </div>
-        </div>
-        <div class="absolute inset-0 bg-lacivert/0 group-hover:bg-lacivert/20 transition-colors duration-300"></div>
-      </div>
-    ))}
-  </div>
+  <FaaliyetGaleri tur="iftar" locale={locale} placeholderCount={12} placeholderLabel="İftar" />
 </InnerPageLayout>
