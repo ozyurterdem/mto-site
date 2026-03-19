@@ -3,7 +3,7 @@
  * Public endpoints only (no auth needed for published content).
  */
 
-const PANEL_URL = import.meta.env.PANEL_URL || 'https://panel.mto2.siberkale.com';
+const PANEL_URL = import.meta.env.PANEL_URL || 'https://enfus.mto2.siberkale.com';
 
 // ─── Types ───
 
