@@ -1,4 +1,5 @@
 ---
+import { getDersProgram } from '../lib/panel';
 import { t, localePath, defaultLocale, type Locale } from '../i18n/index';
 
 interface Props {
@@ -6,14 +7,31 @@ interface Props {
 }
 const { locale = defaultLocale } = Astro.props;
 
-const oneCikanlar = [
-  { ders: 'Fütûhât-ı Medeniyye', hoca: 'Yusuf Kaplan', gun: 'Salı', saat: '21:30', kademeler: 'Tüm Kademeler' },
-  { ders: 'Elmalılı Tefsiri', hoca: 'Asım Cüneyd Köksal', gun: 'Pazartesi', saat: '20:00', kademeler: '2-3. Kademe, İhtisas' },
-  { ders: 'Düşünce Tarihi', hoca: 'Tahsin Görgün', gun: 'Pazartesi / Perşembe', saat: '20:00', kademeler: '1-2. Kademe' },
-  { ders: 'Siyaset Düşüncesi', hoca: 'Bengül Güngörmez', gun: 'Çarşamba', saat: '20:00', kademeler: '2-3. Kademe' },
-  { ders: 'Öncüler', hoca: 'Saadettin Acar', gun: 'Çarşamba', saat: '21:30', kademeler: 'Tüm Kademeler' },
-  { ders: 'Sesin Nefesi: Nefesin Sesi', hoca: 'Yücel Arzen', gun: 'Pazartesi', saat: '21:30', kademeler: 'Tüm Kademeler' },
-];
+const program = await getDersProgram();
+
+// Öne çıkan dersleri programdan çıkar — unique kurs adı + hoca, en çok kademede geçenler önce
+const kursMap = new Map<string, { ders: string; hoca: string; gun: string; saat: string; kademeler: string[] }>();
+for (const kademe of program.kademeler) {
+  for (const gp of kademe.programlar) {
+    for (const d of gp.dersler) {
+      const key = `${d.ders}|${d.hoca}`;
+      if (kursMap.has(key)) {
+        const existing = kursMap.get(key)!;
+        if (!existing.kademeler.includes(kademe.kisa)) {
+          existing.kademeler.push(kademe.kisa);
+        }
+      } else {
+        kursMap.set(key, { ders: d.ders, hoca: d.hoca, gun: gp.gun, saat: d.saat, kademeler: [kademe.kisa] });
+      }
+    }
+  }
+}
+
+// En çok kademede geçen ilk 6 ders
+const oneCikanlar = Array.from(kursMap.values())
+  .filter(k => k.hoca !== '-')
+  .sort((a, b) => b.kademeler.length - a.kademeler.length)
+  .slice(0, 6);
 ---
 
 <section id="egitimler" class="py-20 px-8 lg:px-12 bg-gray-50">
@@ -30,16 +48,12 @@ const oneCikanlar = [
       <div class="group bg-white rounded-xl overflow-hidden shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_32px_rgba(0,0,0,0.12)]">
         <!-- Görsel alan -->
         <div class="relative aspect-[4/3] bg-lacivert overflow-hidden">
-          <!-- Sol kenar renk çizgisi -->
           <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-turuncu"></div>
-          <!-- Dekoratif daire -->
           <div class="absolute -right-8 -top-8 w-32 h-32 rounded-full border border-white/5"></div>
           <div class="absolute right-12 bottom-8 w-20 h-20 rounded-full border border-white/5"></div>
-          <!-- Medrese ikon -->
           <div class="absolute inset-0 flex items-center justify-center opacity-10">
             <img src="/images/medrese-icon.png" alt="" class="w-24 h-24 object-contain" />
           </div>
-          <!-- Hoca adı badge -->
           <div class="absolute left-4 bottom-4">
             <span class="inline-block px-4 py-1.5 text-xs font-heading font-bold text-white uppercase tracking-wider rounded-sm bg-turuncu">
               {e.hoca}
@@ -52,7 +66,7 @@ const oneCikanlar = [
             <h3 class="font-heading text-[15px] text-lacivert font-bold leading-snug uppercase tracking-wide flex-1">
               {e.ders}
             </h3>
-            <span class="text-xs text-body/50 font-body whitespace-nowrap mt-0.5">{e.gun.split(' / ').map(g => t(locale, `days.${g}`)).join(' / ')}</span>
+            <span class="text-xs text-body/50 font-body whitespace-nowrap mt-0.5">{e.gun}</span>
           </div>
         </div>
       </div>
