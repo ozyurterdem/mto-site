@@ -31,7 +31,7 @@ import Footer from '../components/Footer.astro';
           <div>
             <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">E-posta</label>
             <input type="email" id="login-email" required autocomplete="email"
-              class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all" 
+              class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
               placeholder="ornek@mail.com" />
           </div>
           <div>
@@ -50,9 +50,8 @@ import Footer from '../components/Footer.astro';
           </div>
         </form>
 
-        <!-- REGISTER FORM -->
+        <!-- REGISTER FORM — Sadece hesap oluşturma (talebe bilgileri ayrı adımda) -->
         <form id="form-register" class="p-6 space-y-4 hidden">
-          <!-- Hesap Bilgileri -->
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Ad</label>
@@ -80,128 +79,23 @@ import Footer from '../components/Footer.astro';
               placeholder="En az 8 karakter, harf + rakam" />
           </div>
 
-          <!-- MTO Öğrenci Toggle -->
-          <div class="bg-turkuaz/5 rounded-xl p-4 border border-turkuaz/10">
-            <label class="flex items-center gap-3 cursor-pointer">
-              <input type="checkbox" id="reg-mto-ogrenci" class="w-5 h-5 rounded border-gray-300 text-turkuaz focus:ring-turkuaz/30 accent-turkuaz" />
-              <div>
-                <span class="text-sm font-semibold text-lacivert">MTO öğrencisiyim</span>
-                <p class="text-xs text-body/60 mt-0.5">Hâlihazırda MTO'da eğitim alıyorsanız işaretleyin</p>
-              </div>
+          <!-- KVKK Onayı -->
+          <div class="space-y-3 border-t border-gray-100 pt-4">
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="reg-kvkk" required
+                class="w-5 h-5 mt-0.5 rounded border-gray-300 text-turkuaz focus:ring-turkuaz/30 accent-turkuaz" />
+              <span class="text-xs text-body/70 leading-relaxed">
+                <a href="/kvkk-aydinlatma" target="_blank" class="text-turkuaz font-semibold hover:underline">Kişisel Verilerin İşlenmesine İlişkin Aydınlatma Metni</a>'ni
+                okudum ve kabul ediyorum. <span class="text-red-500">*</span>
+              </span>
             </label>
-          </div>
-
-          <!-- Talebe Ek Bilgileri (toggle ile açılır) -->
-          <div id="talebe-fields" class="hidden space-y-4 border-t border-gray-100 pt-4">
-            <p class="text-xs text-turkuaz font-semibold uppercase tracking-wider">Talebe Bilgileri</p>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Telefon</label>
-              <input type="tel" id="reg-telefon" minlength="10" maxlength="20"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                placeholder="05XX XXX XX XX" />
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Şehir</label>
-                <input type="text" id="reg-sehir"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="İstanbul" />
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">İlçe</label>
-                <input type="text" id="reg-ilce"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="Fatih" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Doğum Tarihi</label>
-              <input type="date" id="reg-dogum"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Cinsiyet</label>
-              <select id="reg-cinsiyet" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all">
-                <option value="">Seçiniz</option>
-                <option value="erkek">Erkek</option>
-                <option value="kadin">Kadın</option>
-              </select>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Eğitim Durumu</label>
-              <select id="reg-egitim" class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all">
-                <option value="">Seçiniz</option>
-                <option value="lise">Lise</option>
-                <option value="universite">Üniversite</option>
-                <option value="mezun">Mezun</option>
-                <option value="lisansustu">Lisansüstü</option>
-              </select>
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Okul</label>
-                <input type="text" id="reg-okul"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="İstanbul Üniversitesi" />
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Bölüm</label>
-                <input type="text" id="reg-bolum"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="İlahiyat" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Meslek</label>
-              <input type="text" id="reg-meslek"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                placeholder="Öğretmen, mühendis, vb." />
-            </div>
-
-            <p class="text-xs text-turkuaz font-semibold uppercase tracking-wider pt-2">MTO Bilgileri</p>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Kademe / Halka Bilgisi</label>
-              <input type="text" id="reg-kademe-bilgi"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                placeholder="Ör: 3. Kademe, İstanbul halkası" />
-            </div>
-
-            <div class="grid grid-cols-2 gap-3">
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Halka Şehri</label>
-                <input type="text" id="reg-halka-sehir"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="İstanbul" />
-              </div>
-              <div>
-                <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Katılım Yılı</label>
-                <input type="number" id="reg-katilim-yili" min="2010" max="2030"
-                  class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                  placeholder="2023" />
-              </div>
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Referans</label>
-              <input type="text" id="reg-referans"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all"
-                placeholder="Sizi yönlendiren kişi" />
-            </div>
-
-            <div>
-              <label class="block text-xs font-semibold text-lacivert uppercase tracking-wider mb-1.5">Ek Not</label>
-              <textarea id="reg-not" rows="2" maxlength="2000"
-                class="w-full px-4 py-3 rounded-xl border border-gray-200 text-sm focus:outline-none focus:ring-2 focus:ring-turkuaz/30 focus:border-turkuaz transition-all resize-none"
-                placeholder="Eklemek istediğiniz bilgi varsa yazın"></textarea>
-            </div>
+            <label class="flex items-start gap-3 cursor-pointer">
+              <input type="checkbox" id="reg-ticari"
+                class="w-5 h-5 mt-0.5 rounded border-gray-300 text-turkuaz focus:ring-turkuaz/30 accent-turkuaz" />
+              <span class="text-xs text-body/70 leading-relaxed">
+                MTO'dan eğitim ve etkinliklerle ilgili bilgilendirme e-postaları almak istiyorum.
+              </span>
+            </label>
           </div>
 
           <div id="reg-error" class="hidden text-sm text-red-600 bg-red-50 rounded-xl px-4 py-3"></div>
@@ -262,23 +156,14 @@ import Footer from '../components/Footer.astro';
 </BaseLayout>
 
 <script>
-  import { register, login, resendVerification, clearAuth, isLoggedIn, createTalebeProfile } from '../lib/auth-client';
+  import { register, login, resendVerification, isLoggedIn } from '../lib/auth-client';
+  import { PANEL_URL } from '../lib/portal-client';
 
-  // If already logged in, redirect
   if (isLoggedIn()) {
     window.location.href = '/';
   }
 
   let registeredEmail = '';
-
-  // ─── MTO Öğrenci toggle ───
-  document.getElementById('reg-mto-ogrenci')?.addEventListener('change', (e) => {
-    const checked = (e.target as HTMLInputElement).checked;
-    document.getElementById('talebe-fields')?.classList.toggle('hidden', !checked);
-    // Telefon zorunlu yap
-    const tel = document.getElementById('reg-telefon') as HTMLInputElement;
-    if (tel) tel.required = checked;
-  });
 
   // ─── Tab switching ───
   (window as any).switchTab = function(tab: string) {
@@ -311,7 +196,6 @@ import Footer from '../components/Footer.astro';
     }
   };
 
-  // ─── Helper: input value ───
   function val(id: string): string {
     return (document.getElementById(id) as HTMLInputElement)?.value?.trim() || '';
   }
@@ -328,81 +212,45 @@ import Footer from '../components/Footer.astro';
 
     try {
       await login(val('login-email'), val('login-password'));
-
-      // Check for pending talebe profile (created during registration)
-      const pendingTalebe = sessionStorage.getItem('mto_talebe_pending');
-      if (pendingTalebe) {
-        try {
-          await createTalebeProfile(JSON.parse(pendingTalebe));
-          sessionStorage.removeItem('mto_talebe_pending');
-        } catch {
-          // Profile creation failed — user can do it later from profile page
-          console.warn('Talebe profili oluşturulamadı, daha sonra tekrar denenecek');
-        }
-      }
-
       const redirect = new URLSearchParams(window.location.search).get('redirect') || '/';
       window.location.href = redirect;
-    } catch (err: any) {
-      errEl.textContent = err.message || 'Giriş başarısız';
+    } catch (err: unknown) {
+      errEl.textContent = err instanceof Error ? err.message : 'Giriş başarısız';
       errEl.classList.remove('hidden');
       btn.disabled = false;
       btn.textContent = 'Giriş Yap';
     }
   });
 
-  // ─── Register ───
+  // ─── Register (sadece hesap + KVKK) ───
   document.getElementById('form-register')?.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = document.getElementById('reg-btn') as HTMLButtonElement;
     const errEl = document.getElementById('reg-error')!;
 
+    const kvkkChecked = (document.getElementById('reg-kvkk') as HTMLInputElement)?.checked;
+    if (!kvkkChecked) {
+      errEl.textContent = 'KVKK aydınlatma metnini kabul etmeniz gerekmektedir.';
+      errEl.classList.remove('hidden');
+      return;
+    }
+
     const ad = val('reg-ad');
     const soyad = val('reg-soyad');
     const email = val('reg-email');
     const password = val('reg-password');
-    const isTalebe = (document.getElementById('reg-mto-ogrenci') as HTMLInputElement)?.checked;
 
     btn.disabled = true;
-    btn.textContent = isTalebe ? 'Hesap ve profil oluşturuluyor...' : 'Kayıt oluşturuluyor...';
+    btn.textContent = 'Kayıt oluşturuluyor...';
     errEl.classList.add('hidden');
 
     try {
-      // 1. Create user account
       await register(email, password, `${ad} ${soyad}`);
       registeredEmail = email;
-
-      // 2. If talebe, we'll show a note — profile will be created after email verification + login
-      // (API requires auth token, which we don't have until verified + logged in)
-
       document.getElementById('verify-email-display')!.textContent = email;
-
-      // Store talebe data in sessionStorage for after-login profile creation
-      if (isTalebe) {
-        const talebeData = {
-          ad, soyad,
-          telefon: val('reg-telefon'),
-          sehir: val('reg-sehir') || null,
-          ilce: val('reg-ilce') || null,
-          dogum_tarihi: val('reg-dogum') || null,
-          cinsiyet: val('reg-cinsiyet') || null,
-          egitim_durumu: val('reg-egitim') || null,
-          okul_adi: val('reg-okul') || null,
-          bolum: val('reg-bolum') || null,
-          meslek: val('reg-meslek') || null,
-          mevcut_ogrenci: true,
-          kademe_bilgi: val('reg-kademe-bilgi') || null,
-          halka_sehir: val('reg-halka-sehir') || null,
-          katilim_yili: val('reg-katilim-yili') ? parseInt(val('reg-katilim-yili')) : null,
-          referans: val('reg-referans') || null,
-          ogrenci_notu: val('reg-not') || null,
-        };
-        sessionStorage.setItem('mto_talebe_pending', JSON.stringify(talebeData));
-      }
-
       (window as any).switchTab('verify');
-    } catch (err: any) {
-      errEl.textContent = err.message || 'Kayıt başarısız';
+    } catch (err: unknown) {
+      errEl.textContent = err instanceof Error ? err.message : 'Kayıt başarısız';
       errEl.classList.remove('hidden');
       btn.disabled = false;
       btn.textContent = 'Kayıt Ol';
@@ -418,7 +266,7 @@ import Footer from '../components/Footer.astro';
 
     btn.disabled = true;
     try {
-      const res = await fetch(`https://enfus.mto.siberkale.com/api/v1/auth/forgot-password?email=${encodeURIComponent(email)}`, { method: 'POST' });
+      await fetch(`${PANEL_URL}/api/v1/auth/forgot-password?email=${encodeURIComponent(email)}`, { method: 'POST' });
       msgEl.textContent = 'Şifre sıfırlama bağlantısı gönderildi. E-postanızı kontrol edin.';
       msgEl.className = 'text-sm rounded-xl px-4 py-3 bg-green-50 text-green-700';
     } catch {
@@ -442,10 +290,9 @@ import Footer from '../components/Footer.astro';
       msgEl.textContent = 'Gönderilemedi, birkaç dakika sonra tekrar deneyin';
       msgEl.classList.remove('hidden');
     }
-    setTimeout(() => { btn.disabled = false; }, 30000); // 30sn cooldown
+    setTimeout(() => { btn.disabled = false; }, 30000);
   };
 
-  // Check URL for tab param
   const urlTab = new URLSearchParams(window.location.search).get('tab');
   if (urlTab === 'register') (window as any).switchTab('register');
 </script>
