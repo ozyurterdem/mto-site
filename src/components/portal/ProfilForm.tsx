@@ -1,16 +1,21 @@
-/** Profil Görüntüleme — Talebenin kendi profili */
+/** Profil Görüntüleme — Talebenin kendi profili (salt okunur) */
 import { useState, useEffect } from 'preact/hooks';
-import { portal } from '../../lib/portal-client';
+import { portal, extractError, type PortalProfil } from '../../lib/portal-client';
 
-export default function ProfilForm() {
-  const [profil, setProfil] = useState<any>(null);
+interface ProfilField {
+  label: string;
+  value: string | number | null | undefined;
+}
+
+export default function ProfilView() {
+  const [profil, setProfil] = useState<PortalProfil | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
   useEffect(() => {
     portal.profil()
       .then(setProfil)
-      .catch(e => setError(e.message))
+      .catch((e: unknown) => setError(extractError(e)))
       .finally(() => setLoading(false));
   }, []);
 
@@ -26,7 +31,7 @@ export default function ProfilForm() {
   if (error) return <div class="bg-red-50 border border-red-100 rounded-xl p-4 text-sm text-red-600">{error}</div>;
   if (!profil) return null;
 
-  const fields = [
+  const fields: ProfilField[] = [
     { label: 'Ad Soyad', value: `${profil.ad} ${profil.soyad}` },
     { label: 'E-posta', value: profil.email },
     { label: 'Telefon', value: profil.telefon },
@@ -39,7 +44,9 @@ export default function ProfilForm() {
     { label: 'Meslek', value: profil.meslek },
     { label: 'Halka Şehri', value: profil.halka_sehir },
     { label: 'Katılım Yılı', value: profil.katilim_yili },
-  ].filter(f => f.value);
+  ];
+
+  const visibleFields = fields.filter(f => f.value);
 
   return (
     <div class="space-y-6">
@@ -47,7 +54,7 @@ export default function ProfilForm() {
 
       <div class="bg-white rounded-xl border border-gray-100 p-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {fields.map(f => (
+          {visibleFields.map(f => (
             <div key={f.label}>
               <p class="text-[10px] font-semibold text-gray-400 uppercase tracking-wider mb-1">{f.label}</p>
               <p class="text-sm text-gray-800">{f.value}</p>

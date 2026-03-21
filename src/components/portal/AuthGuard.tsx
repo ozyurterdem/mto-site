@@ -1,70 +1,74 @@
-/** Portal AuthGuard — Login kontrolü + redirect.
+/** Portal AuthGuard — Login + profil onay kontrolü.
  *  client:load ile Astro sayfalarında kullanılır.
  */
 import { useState, useEffect } from 'preact/hooks';
-import { isLoggedIn, getUser, clearAuth, getToken } from '../../lib/auth-client';
+import type { ComponentChildren } from 'preact';
+import { isLoggedIn, getToken, clearAuth } from '../../lib/auth-client';
+import { PANEL_URL } from '../../lib/portal-client';
 
 interface Props {
-  children: any;
+  children: ComponentChildren;
 }
 
 type AuthState = 'loading' | 'authenticated' | 'unapproved' | 'unauthenticated';
+
+function redirectToLogin(): void {
+  clearAuth();
+  window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
+}
+
+async function verifyToken(token: string): Promise<boolean> {
+  const res = await fetch(`${PANEL_URL}/api/v1/auth/me`, {
+    headers: { 'Authorization': `Bearer ${token}` },
+  });
+  return res.ok;
+}
+
+async function checkProfilDurum(token: string): Promise<{ approved: boolean; message: string }> {
+  const res = await fetch(`${PANEL_URL}/api/v1/talebe/profil`, {
+    headers: { 'Authorization': `Bearer ${token}` },
+  });
+
+  if (res.status === 404) {
+    return { approved: false, message: 'Talebe profiliniz henüz oluşturulmamış. Lütfen önce kayıt olun.' };
+  }
+  if (!res.ok) {
+    return { approved: false, message: 'Profil bilgilerinize erişilemedi.' };
+  }
+
+  const profil = await res.json();
+  if (profil.durum !== 'onaylandi') {
+    return { approved: false, message: 'Hesabınız henüz onaylanmamıştır. Onay süreciniz devam ediyor.' };
+  }
+  return { approved: true, message: '' };
+}
 
 export default function AuthGuard({ children }: Props) {
   const [state, setState] = useState<AuthState>('loading');
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    checkAuth();
-  }, []);
+    (async () => {
+      if (!isLoggedIn()) { redirectToLogin(); return; }
 
-  async function checkAuth() {
-    if (!isLoggedIn()) {
-      window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-      return;
-    }
+      const token = getToken()!;
 
-    try {
-      const token = getToken();
-      // Token geçerliliğini kontrol et
-      const meRes = await fetch('https://enfus.mto.siberkale.com/api/v1/auth/me', {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
+      try {
+        const isValid = await verifyToken(token);
+        if (!isValid) { redirectToLogin(); return; }
 
-      if (!meRes.ok) {
-        clearAuth();
-        window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-        return;
-      }
-
-      // Talebe profili kontrol et
-      const profilRes = await fetch('https://enfus.mto.siberkale.com/api/v1/talebe/profil', {
-        headers: { 'Authorization': `Bearer ${token}` },
-      });
-
-      if (profilRes.status === 404) {
-        setState('unapproved');
-        setMessage('Talebe profiliniz henüz oluşturulmamış. Lütfen önce kayıt olun.');
-        return;
-      }
-
-      if (profilRes.ok) {
-        const profil = await profilRes.json();
-        if (profil.durum !== 'onaylandi') {
+        const { approved, message: msg } = await checkProfilDurum(token);
+        if (!approved) {
           setState('unapproved');
-          setMessage('Hesabınız henüz onaylanmamıştır. Onay süreciniz devam ediyor.');
+          setMessage(msg);
           return;
         }
         setState('authenticated');
-      } else {
-        setState('unapproved');
-        setMessage('Profil bilgilerinize erişilemedi.');
+      } catch {
+        redirectToLogin();
       }
-    } catch {
-      clearAuth();
-      window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-    }
-  }
+    })();
+  }, []);
 
   if (state === 'loading') {
     return (

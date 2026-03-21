@@ -1,6 +1,6 @@
 /** Kurs Listesi — Talebenin kademesindeki kurslar */
 import { useState, useEffect } from 'preact/hooks';
-import { portal, type PortalKurs } from '../../lib/portal-client';
+import { portal, extractError, type PortalKurs } from '../../lib/portal-client';
 
 export default function KursListesi() {
   const [kurslar, setKurslar] = useState<PortalKurs[]>([]);
@@ -10,7 +10,7 @@ export default function KursListesi() {
   useEffect(() => {
     portal.kurslarim()
       .then(setKurslar)
-      .catch(e => setError(e.message))
+      .catch((e: unknown) => setError(extractError(e)))
       .finally(() => setLoading(false));
   }, []);
 

@@ -5,65 +5,54 @@
 
 import { getToken, clearAuth } from './auth-client';
 
-const PANEL_URL = 'https://enfus.mto.siberkale.com';
+export const PANEL_URL = import.meta.env.PUBLIC_PANEL_URL || 'https://enfus.mto.siberkale.com';
 
-async function portalGet<T = any>(path: string): Promise<T> {
-  const token = getToken();
-  if (!token) {
-    window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-    throw new Error('Oturum bulunamadı');
-  }
+// ─── Ortak fetch yardımcısı ───
 
-  const res = await fetch(`${PANEL_URL}${path}`, {
-    headers: {
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
-  });
-
-  if (res.status === 401) {
-    clearAuth();
-    window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-    throw new Error('Oturum süresi doldu');
-  }
-
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.detail || `Hata: ${res.status}`);
-  return data as T;
+function redirectToLogin(): never {
+  clearAuth();
+  window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
+  throw new Error('Oturum bulunamadı');
 }
 
-async function portalPost<T = any>(path: string, body?: any): Promise<T> {
+function extractError(error: unknown): string {
+  return error instanceof Error ? error.message : 'Bilinmeyen hata';
+}
+
+async function portalFetch<T = unknown>(method: 'GET' | 'POST', path: string, body?: unknown): Promise<T> {
   const token = getToken();
-  if (!token) {
-    window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-    throw new Error('Oturum bulunamadı');
-  }
+  if (!token) redirectToLogin();
+
+  const headers: Record<string, string> = {
+    'Accept': 'application/json',
+    'Authorization': `Bearer ${token}`,
+  };
+  if (method === 'POST') headers['Content-Type'] = 'application/json';
 
   const res = await fetch(`${PANEL_URL}${path}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-    },
+    method,
+    headers,
     body: body ? JSON.stringify(body) : undefined,
   });
 
-  if (res.status === 401) {
-    clearAuth();
-    window.location.href = `/giris?redirect=${encodeURIComponent(window.location.pathname)}`;
-    throw new Error('Oturum süresi doldu');
-  }
+  if (res.status === 401) redirectToLogin();
 
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.detail || `Hata: ${res.status}`);
   return data as T;
 }
 
-// ─── Portal Endpoint'leri ───
+// ─── Interface'ler ───
+
+export interface AktifOturum {
+  id: number;
+  kurs_adi: string;
+  baslama: string | null;
+}
 
 export interface PortalDashboard {
   talebe: { ad: string; soyad: string; kademe_adi: string; kademe_id: number };
-  aktif_oturum: any | null;
+  aktif_oturum: AktifOturum | null;
   bugunun_dersleri: Array<{ saat: string; kurs_adi: string; hoca_adi: string }>;
   yoklama_ozet: { toplam: number; katilim: number; yuzde: number };
 }
@@ -90,7 +79,6 @@ export interface YoklamaOzet {
   toplam_ders: number;
   katilim: number;
   yuzde: number;
-  son_30_gun: Array<{ tarih: string; katildi: boolean }>;
 }
 
 export interface StreamUrl {
@@ -98,11 +86,35 @@ export interface StreamUrl {
   expires_at: string;
 }
 
+export interface PortalProfil {
+  id: number;
+  user_id: number;
+  ad: string;
+  soyad: string;
+  email: string | null;
+  telefon: string | null;
+  kademe_adi: string | null;
+  kademe_id: number | null;
+  sehir: string | null;
+  ilce: string | null;
+  egitim_durumu: string | null;
+  okul_adi: string | null;
+  bolum: string | null;
+  meslek: string | null;
+  halka_sehir: string | null;
+  katilim_yili: number | null;
+  durum: string;
+}
+
+// ─── Portal API ───
+
 export const portal = {
-  dashboard: () => portalGet<PortalDashboard>('/api/v1/talebe/portal/dashboard'),
-  kurslarim: () => portalGet<PortalKurs[]>('/api/v1/talebe/portal/kurslarim'),
-  materyaller: (kursId: number) => portalGet<PortalMateryal[]>(`/api/v1/talebe/portal/kurslarim/${kursId}/materyaller`),
-  yoklamaOzet: () => portalGet<YoklamaOzet>('/api/v1/talebe/portal/yoklama-ozet'),
-  streamUrl: (oturumId: number) => portalGet<StreamUrl>(`/api/v1/stream/${oturumId}`),
-  profil: () => portalGet('/api/v1/talebe/profil'),
+  dashboard: () => portalFetch<PortalDashboard>('GET', '/api/v1/talebe/portal/dashboard'),
+  kurslarim: () => portalFetch<PortalKurs[]>('GET', '/api/v1/talebe/portal/kurslarim'),
+  materyaller: (kursId: number) => portalFetch<PortalMateryal[]>('GET', `/api/v1/talebe/portal/kurslarim/${kursId}/materyaller`),
+  yoklamaOzet: () => portalFetch<YoklamaOzet>('GET', '/api/v1/talebe/portal/yoklama-ozet'),
+  streamUrl: (oturumId: number) => portalFetch<StreamUrl>('GET', `/api/v1/stream/${oturumId}`),
+  profil: () => portalFetch<PortalProfil>('GET', '/api/v1/talebe/profil'),
 };
+
+export { extractError };
