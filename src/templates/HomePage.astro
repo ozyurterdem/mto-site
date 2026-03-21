@@ -16,12 +16,14 @@ import CtaBanner from '../components/CtaBanner.astro';
 import Footer from '../components/Footer.astro';
 import ScrollTop from '../components/ScrollTop.astro';
 import { t, type Locale, defaultLocale } from '../i18n/index';
+import { getPublicCanliYayin } from '../lib/panel';
 
 interface Props {
   locale?: Locale;
 }
 
 const { locale = defaultLocale } = Astro.props;
+const canliYayinlar = await getPublicCanliYayin();
 ---
 
 <BaseLayout
@@ -32,6 +34,35 @@ const { locale = defaultLocale } = Astro.props;
 >
   <Header locale={locale} />
   <Hero locale={locale} />
+
+  <!-- Herkese açık canlı yayın banner'ı -->
+  <div id="canli-yayin-banner">
+    {canliYayinlar.length > 0 && canliYayinlar.map((yayin) => (
+      <section class="bg-gray-900 border-b-2 border-green-500">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500 text-white text-sm font-bold animate-pulse">
+              <span class="w-2 h-2 bg-white rounded-full" />
+              CANLI
+            </span>
+            <div>
+              <p class="text-white font-semibold text-lg">{yayin.kurs_adi}</p>
+              <p class="text-gray-300 text-sm">{yayin.hoca_adi}</p>
+            </div>
+          </div>
+          <a
+            href={yayin.youtube_embed_url.replace('/embed/', '/watch?v=')}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors no-underline"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            İzle
+          </a>
+        </div>
+      </section>
+    ))}
+  </div>
   <MtoDanMesaj locale={locale} />
   <BugunkuDersler locale={locale} />
   <KitapBanner locale={locale} />
@@ -45,4 +76,44 @@ const { locale = defaultLocale } = Astro.props;
   <CtaBanner locale={locale} />
   <Footer locale={locale} />
   <ScrollTop />
+
+  <!-- Client-side canlı yayın polling (30sn) -->
+  <script>
+    const PANEL = import.meta.env.PUBLIC_PANEL_URL || 'https://enfus.mto.siberkale.com';
+
+    async function checkCanliYayin() {
+      try {
+        const res = await fetch(`${PANEL}/api/v1/oturum/public/canli`, { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) return;
+        const yayinlar = await res.json();
+        const container = document.getElementById('canli-yayin-banner');
+        if (!container) return;
+
+        if (yayinlar.length === 0) { container.innerHTML = ''; return; }
+
+        container.innerHTML = yayinlar.map((y: any) => `
+          <section class="bg-gray-900 border-b-2 border-green-500">
+            <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-green-500 text-white text-sm font-bold animate-pulse">
+                  <span class="w-2 h-2 bg-white rounded-full"></span>CANLI
+                </span>
+                <div>
+                  <p class="text-white font-semibold text-lg">${y.kurs_adi}</p>
+                  <p class="text-gray-300 text-sm">${y.hoca_adi}</p>
+                </div>
+              </div>
+              <a href="${y.youtube_embed_url.replace('/embed/', '/watch?v=')}" target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-colors no-underline">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>İzle
+              </a>
+            </div>
+          </section>
+        `).join('');
+      } catch { /* sessiz */ }
+    }
+
+    checkCanliYayin();
+    setInterval(checkCanliYayin, 30000);
+  </script>
 </BaseLayout>

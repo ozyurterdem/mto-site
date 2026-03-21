@@ -240,3 +240,23 @@ export function bugunTatilMi(program: FullDersProgram): TatilDonemi | null {
   }
   return null;
 }
+
+
+// ─── Herkese Açık Canlı Yayın ───
+
+export interface PublicCanliYayin {
+  id: number;
+  kurs_adi: string;
+  hoca_adi: string;
+  youtube_embed_url: string;
+  baslama: string;
+}
+
+export async function getPublicCanliYayin(): Promise<PublicCanliYayin[]> {
+  try {
+    const data = await panelFetch<PublicCanliYayin[]>('/api/v1/oturum/public/canli');
+    return data ?? [];
+  } catch {
+    return [];
+  }
+}
