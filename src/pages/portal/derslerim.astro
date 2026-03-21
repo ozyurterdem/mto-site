@@ -1,0 +1,11 @@
+---
+import PortalLayout from '../../layouts/PortalLayout.astro';
+import AuthGuard from '../../components/portal/AuthGuard';
+import KursListesi from '../../components/portal/KursListesi';
+---
+
+<PortalLayout title="Derslerim — MTO Portalı">
+  <AuthGuard client:load>
+    <KursListesi client:load />
+  </AuthGuard>
+</PortalLayout>

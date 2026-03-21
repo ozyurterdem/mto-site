@@ -1,0 +1,77 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+}
+
+const { title = 'Talebe Portalı — MTO' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>{title}</title>
+  <link rel="icon" type="image/png" href="/images/mto-logo.png" />
+</head>
+<body class="bg-gray-50 min-h-screen">
+  <div class="flex min-h-screen">
+    <!-- Sidebar (Preact component, client:load) -->
+    <div id="portal-sidebar"></div>
+
+    <!-- Main content -->
+    <main class="flex-1 min-w-0">
+      <!-- Mobile header -->
+      <div class="lg:hidden sticky top-0 z-40 bg-white border-b border-gray-100 px-4 py-3 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2 no-underline">
+          <img src="/images/mto-logo.png" alt="MTO" class="h-7 w-auto" />
+          <span class="text-sm font-bold text-lacivert">Portal</span>
+        </a>
+        <button id="mobile-sidebar-toggle" class="p-2 rounded-lg text-gray-500 hover:bg-gray-100">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="p-6 lg:p-8">
+        <slot />
+      </div>
+    </main>
+  </div>
+
+  <!-- Sidebar mount script -->
+  <script>
+    import { h, render } from 'preact';
+    import Sidebar from '../components/portal/Sidebar';
+
+    const container = document.getElementById('portal-sidebar');
+    if (container) {
+      // Desktop: her zaman göster
+      container.className = 'hidden lg:block';
+      render(h(Sidebar, {}), container);
+
+      // Mobile toggle
+      const toggle = document.getElementById('mobile-sidebar-toggle');
+      const mobileOverlay = document.createElement('div');
+      mobileOverlay.className = 'fixed inset-0 z-50 hidden lg:hidden';
+      mobileOverlay.innerHTML = '<div class="absolute inset-0 bg-black/30" id="sidebar-backdrop"></div><div class="relative w-64 h-full" id="mobile-sidebar-mount"></div>';
+      document.body.appendChild(mobileOverlay);
+
+      const mobileMount = document.getElementById('mobile-sidebar-mount');
+      if (mobileMount) render(h(Sidebar, {}), mobileMount);
+
+      toggle?.addEventListener('click', () => {
+        mobileOverlay.classList.toggle('hidden');
+        mobileOverlay.classList.toggle('flex');
+      });
+      document.getElementById('sidebar-backdrop')?.addEventListener('click', () => {
+        mobileOverlay.classList.add('hidden');
+        mobileOverlay.classList.remove('flex');
+      });
+    }
+  </script>
+</body>
+</html>
