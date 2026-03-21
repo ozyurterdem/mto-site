@@ -5,7 +5,7 @@
  * Token süresi dolunca tekrar giriş gerekir.
  */
 
-const PANEL_URL = 'https://enfus.mto2.siberkale.com';
+const PANEL_URL = 'https://enfus.mto.siberkale.com';
 const TOKEN_KEY = 'mto_token';
 const USER_KEY = 'mto_user';
 
